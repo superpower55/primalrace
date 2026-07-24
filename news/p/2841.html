@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>当暴力机器撞上自己的物理边界 — breaking news · 费扬</title>
+<meta name="description" content="直接暴力是可见的血，而结构性傲慢是看不见的撞击力。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/2841">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当暴力机器撞上自己的物理边界 — breaking news · 费扬">
+<meta property="og:description" content="直接暴力是可见的血，而结构性傲慢是看不见的撞击力。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/2841">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u5f53\u66b4\u529b\u673a\u5668\u649e\u4e0a\u81ea\u5df1\u7684\u7269\u7406\u8fb9\u754c", "description": "\u76f4\u63a5\u66b4\u529b\u662f\u53ef\u89c1\u7684\u8840\uff0c\u800c\u7ed3\u6784\u6027\u50b2\u6162\u662f\u770b\u4e0d\u89c1\u7684\u649e\u51fb\u529b\u3002", "datePublished": "2026-07-24T22:19:14+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/2841", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a2841">
+  <h2><a href="/news/p/2841"><span class="lang-zh">当暴力机器撞上自己的物理边界</span><span class="lang-en">When the Violence Machine Hits Its Own Physical Boundary</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">直接层 · 结构层 · 元暴力</span>
+    <span class="source"><a href="https://www.theguardian.com/uk-news/2026/jul/24/five-police-officers-injured-boat-strikes-westminster-bridge?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-07-24</span>
+    <span class="permalink"><a href="/news/p/2841">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">直接暴力是可见的血，而结构性傲慢是看不见的撞击力。</div>
+  <div class="axiom lang-en">Direct violence is visible blood; structural arrogance is the invisible impact force.</div>
+  <div class="body lang-zh"><p>一艘警察巡逻艇在伦敦中心区撞上了威斯敏斯特桥。五个警察受伤，三人被直接甩进水里。这是一次典型的 direct violence，但其底色是 structural violence 的物理外溢。</p>
+  <p>在男性中心叙事（masculine-centric narrative）中，警察部队、特种单位、快艇，这些符号共同构成了一种“掌控力”的表达。这种表达的核心是速度、力量和对空间的绝对支配。当这种支配欲在实际操作中转化为“极速行驶”（extremely fast）时，它已经脱离了公共安全的逻辑，变成了一场关于权力的 performance。在这种叙事里，警察不再是秩序的维护者，而是暴力机器的操纵者，而这种操纵者的傲慢，最终让机器撞向了它试图守护的物理边界。</p>
+  <p>最讽刺的是，在这场由男性主导的暴力机器事故后，官方的 PR 话术迅速启动：强调“优先考虑警员福祉”，而将一个公共空间被暴力冲击的事实边缘化。这又是典型的共谋（complicity）：消防、救护、海岸警卫队迅速集结，形成一个巨大的、由制服组成的安全网，旨在迅速掩盖这种“失控”的尴尬。在这个闭环里，公众只是背景板，是那个听到“砰”的一声然后被疏散的观众。</p>
+  <p>这场事故没有造成平民伤亡，但这不意味着它是 good_news。它揭示了一个事实：当一个群体垄断了暴力工具且缺乏外部制衡时，他们对现实的定义权（即“我们在维持秩序”）与物理现实（即“我们撞了桥”）之间存在巨大的差额。这个差额，就是元暴力的具体体现。</p></div>
+  <div class="body lang-en"><p>A police boat slammed into Westminster Bridge in central London. Five officers injured, three thrown into the water. While this is a clear case of direct violence, its essence is the physical overflow of structural violence.</p>
+  <p>Within the masculine-centric narrative, police units and high-speed boats are symbols of &quot;control.&quot; The core of this expression is speed, power, and absolute dominance over space. When this urge for dominance translates into &quot;riding extremely fast,&quot; it ceases to be about public safety and becomes a performance of power. In this narrative, the police are no longer guardians of order but operators of a violence machine—and the arrogance of that operator eventually drove the machine into the very physical boundary it claimed to protect.</p>
+  <p>Ironically, the official PR machine kicked in immediately: prioritizing &quot;officer wellbeing&quot; while marginalizing the fact that a public space was violently impacted. This is a classic case of complicity. The fire brigade, ambulance service, and coastguard converged to form a massive safety net of uniforms, designed to quickly mask the embarrassment of this &quot;loss of control.&quot; In this loop, the public are mere background characters—witnesses who hear a &quot;boom&quot; and are then evacuated.</p>
+  <p>No civilians were injured, but this is not a good_news event. It reveals a stark reality: when a group monopolizes the tools of violence without external checks, a massive gap emerges between their defined reality (&quot;we are maintaining order&quot;) and the physical reality (&quot;we hit a bridge&quot;). That gap is the concrete manifestation of meta-violence.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
