@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>名为禁令的PR，实为共谋的漏洞 — breaking news · 费扬</title>
+<meta name="description" content="制度性禁令若不触及定义权，只是给掠夺穿上合规的外衣。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/2845">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="名为禁令的PR，实为共谋的漏洞 — breaking news · 费扬">
+<meta property="og:description" content="制度性禁令若不触及定义权，只是给掠夺穿上合规的外衣。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/2845">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u540d\u4e3a\u7981\u4ee4\u7684PR\uff0c\u5b9e\u4e3a\u5171\u8c0b\u7684\u6f0f\u6d1e", "description": "\u5236\u5ea6\u6027\u7981\u4ee4\u82e5\u4e0d\u89e6\u53ca\u5b9a\u4e49\u6743\uff0c\u53ea\u662f\u7ed9\u63a0\u593a\u7a7f\u4e0a\u5408\u89c4\u7684\u5916\u8863\u3002", "datePublished": "2026-07-24T23:19:22+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/2845", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a2845">
+  <h2><a href="/news/p/2845"><span class="lang-zh">名为禁令的PR，实为共谋的漏洞</span><span class="lang-en">A Bonus Ban as PR, a Loophole as Complicity</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">结构层 · 文化层 · 元暴力</span>
+    <span class="source"><a href="https://www.theguardian.com/business/2026/jul/24/water-bosses-pay-rises-bonus-ban-sewage?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-07-24</span>
+    <span class="permalink"><a href="/news/p/2845">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">制度性禁令若不触及定义权，只是给掠夺穿上合规的外衣。</div>
+  <div class="axiom lang-en">Institutional bans are mere theater if they do not challenge the power of definition.</div>
+  <div class="body lang-zh"><p>这是一场典型的关于“定义权”的博弈。政府宣布 bonus ban（奖金禁令），在文化层制造了一种“正义在执行”的叙事，但实际上 structural layer（结构层）的漏洞大到可以开进一辆装满现金的卡车。当水务公司把钱从“奖金”改为“留任金 (retention payment)”或“年度津贴 (annual allowance)”时，他们完成了一次极其低成本的语义置换。只要不叫 bonus，它就不是 bonus。</p>
+  <p>这种操作揭示了权力运行的潜规则：规则是由制定者（通常是共谋者）定义的。水务公司、监管机构 Ofwat 以及政府部门在同一个元暴力系统下运作。他们共同维持着一种“私有化公共资源”的共谋关系——让公众承担污染和高额账单的 Actual 成本，而让管理层通过语义操纵攫取 Potential 收益。所谓的“禁令”不过是一次表演性让步，目的是通过微小的、可绕过的限制来平息公众愤怒，从而保护核心的利益分配结构不被触动。</p>
+  <p>最讽刺的是，这种“留任金”的逻辑是将管理层神化为不可替代的稀缺资源。在公司濒临破产、河流被污水填满的现实面前，他们依然在定义什么是“领导力连续性”。这本质上是一种认知武器化：通过重新定义报酬的性质，将赤裸裸的贪婪包装成必要的企业治理。在这种共谋场域里，公众的愤怒被精准地引导至“个别贪婪的 CEO”身上，而真正的问题——将基本生存资源商品化的结构性暴力——被成功地掩盖在账单和术语之中。</p></div>
+  <div class="body lang-en"><p>This is a textbook game of &#x27;definition power.&#x27; The government announces a bonus ban, creating a narrative of justice at the cultural layer, while the structural layer remains riddled with loopholes large enough to drive a cash-laden truck through. By rebranding &#x27;bonuses&#x27; as &#x27;retention payments&#x27; or &#x27;annual allowances,&#x27; water companies perform a low-cost semantic shift. As long as it isn&#x27;t called a bonus, it isn&#x27;t a bonus.</p>
+  <p>This reveals the hidden mechanism of power: rules are defined by the definers, who are often the complicitors. Water companies, the regulator Ofwat, and government departments operate within the same system of meta-violence. They maintain a complicity of privatizing public resources—forcing the public to bear the actual costs of pollution and soaring bills, while executives extract potential gains through semantic manipulation. The &#x27;ban&#x27; is nothing more than a performative concession, designed to pacify public fury with bypassable restrictions to protect the core distribution of wealth.</p>
+  <p>Most cynical is the logic of the &#x27;retention payment,&#x27; which mystifies executives as irreplaceable assets. While companies teeter on insolvency and rivers choke on sewage, they continue to define &#x27;leadership continuity.&#x27; This is the weaponization of cognition: rebranding naked greed as necessary corporate governance. In this field of complicity, public anger is precisely steered toward &#x27;greedy individuals,&#x27; while the structural violence of commodifying basic survival resources remains hidden behind bills and terminology.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
