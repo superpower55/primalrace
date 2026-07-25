@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>流媒体的“夏季真空”：算法统治下的存在性枯竭 — breaking news · 费扬</title>
+<meta name="description" content="当内容生产被奖项周期和流量峰值量化，创造力便成了被精准计算的资产。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/2858">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="流媒体的“夏季真空”：算法统治下的存在性枯竭 — breaking news · 费扬">
+<meta property="og:description" content="当内容生产被奖项周期和流量峰值量化，创造力便成了被精准计算的资产。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/2858">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u6d41\u5a92\u4f53\u7684\u201c\u590f\u5b63\u771f\u7a7a\u201d\uff1a\u7b97\u6cd5\u7edf\u6cbb\u4e0b\u7684\u5b58\u5728\u6027\u67af\u7aed", "description": "\u5f53\u5185\u5bb9\u751f\u4ea7\u88ab\u5956\u9879\u5468\u671f\u548c\u6d41\u91cf\u5cf0\u503c\u91cf\u5316\uff0c\u521b\u9020\u529b\u4fbf\u6210\u4e86\u88ab\u7cbe\u51c6\u8ba1\u7b97\u7684\u8d44\u4ea7\u3002", "datePublished": "2026-07-25T08:21:34+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/2858", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a2858">
+  <h2><a href="/news/p/2858"><span class="lang-zh">流媒体的“夏季真空”：算法统治下的存在性枯竭</span><span class="lang-en">The Summer Vacuum: Existential Exhaustion Under Algorithmic Rule</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">结构层 · 文化层 · 元暴力</span>
+    <span class="source"><a href="https://www.theguardian.com/culture/2026/jul/24/once-the-season-of-surprise-break-out-hits-this-summers-tv-has-lost-its-heat?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-07-25</span>
+    <span class="permalink"><a href="/news/p/2858">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">当内容生产被奖项周期和流量峰值量化，创造力便成了被精准计算的资产。</div>
+  <div class="axiom lang-en">When creativity is quantified by award cycles and traffic peaks, expression becomes a calculated asset.</div>
+  <div class="body lang-zh"><p>这篇文章在抱怨 2026 年夏季电视节目的匮乏，但其潜台词揭示了一个更残酷的 Structural Violence：流媒体巨头已经完成了对“时间”和“注意力”的彻底武器化。当年的“夏季惊喜”是基于创作者对表达的冲动，而现在的“夏季真空”则是基于资本对 Emmy 奖投票截止日期（5月31日）的精准对齐。</p>
+  <p>这是一种典型的认知入口抢夺。Netflix 和 Disney+ 不再关心是否能制造一个“对话开启者”，而是在进行一场关于奖项和数据回笼的博弈。当所有优质剧集被强制压缩在春季以换取奖项提名，夏季就被定义成了“垃圾时间”或“补课时间”。在这种叙事下，观众的注意力被物化为一种可以被调度、被延迟、被精准投放的资源，而非一个活生生的、具有主体性的接收者。</p>
+  <p>最讽刺的是，这种“缺乏”被包装成一种让观众“去接触草地”的幽默建议。但这其实是 Meta Violence 的一种伪装——通过定义什么是“好时机”，权力中心在决定你什么时候该进入精神亢奋状态，什么时候该进入休眠状态。当算法和奖项周期取代了艺术直觉，所谓的“剧集荒”其实是主体性死亡的预演：我们不再被作品地缘性地、随机地击中，而是在被精心设计的投放计划中等待被喂食。</p>
+  <p>这场博弈的赢家是那些掌控发行权的 Executive，而输家是那些在“夏季真空”中失去表达可能性的创作者，以及被驯化成“补课机器”的观众。</p></div>
+  <div class="body lang-en"><p>The article laments the dearth of quality TV in the summer of 2026, but the subtext reveals a more brutal Structural Violence: streaming giants have fully weaponized &#x27;time&#x27; and &#x27;attention.&#x27; The &#x27;summer surprises&#x27; of the past were driven by an impulse for expression; today&#x27;s &#x27;summer vacuum&#x27; is a result of capital aligning precisely with the Emmy voting deadline on May 31st.</p>
+  <p>This is a classic seizure of the cognitive entry point. Netflix and Disney+ no longer care about minting &#x27;conversation-starters&#x27;; they are playing a game of award-hunting and data recovery. By forcing all prestige content into the spring for nominations, summer is structurally defined as &#x27;dead time&#x27; or &#x27;catch-up time.&#x27; In this narrative, the viewer&#x27;s attention is objectified as a resource to be scheduled and deployed, rather than a living, subjective receiver.</p>
+  <p>Most ironic is how this &#x27;void&#x27; is packaged as a humorous suggestion to &#x27;touch grass.&#x27; This is a mask for Meta Violence—by defining the &#x27;right time&#x27; for consumption, the center of power dictates when you should be intellectually stimulated and when you should be dormant. When algorithms and award cycles replace artistic intuition, the &#x27;dearth of shows&#x27; is a rehearsal for the death of subjectivity: we are no longer struck by works randomly or organically, but are waiting to be fed according to a curated deployment plan.</p>
+  <p>The winners of this game are the executives controlling distribution. The losers are the creators stripped of their expressive possibilities and the audiences domesticated into &#x27;catch-up machines.&#x27;</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
