@@ -101,6 +101,18 @@
     }
     .post .date a { color: var(--muted); text-decoration: none; }
     .post .date a:hover { color: var(--accent); text-decoration: underline; }
+    .post .tbtn {
+      background: none; border: none; cursor: pointer;
+      color: var(--accent); font-family: inherit; font-size: 0.72rem;
+      letter-spacing: 0.05em; padding: 0; text-decoration: underline;
+    }
+    .post .tbtn:hover { color: var(--accent-light); }
+    .post .translation {
+      margin-top: 0.9rem; padding-top: 0.9rem;
+      border-top: 1px dashed var(--border);
+      font-size: 1rem; line-height: 1.7; color: var(--muted);
+      white-space: pre-wrap; word-break: break-word; font-style: italic;
+    }
     .post .embed-img { margin-top: 0.9rem; border: 1px solid var(--border); max-width: 100%; display: block; }
     .post .stat { color: var(--accent); }
 
@@ -176,6 +188,8 @@
       } catch(e){ return ''; }
     }
 
+    var POSTS_TEXT = [];
+
     function render(items){
       var feed = document.getElementById('feed');
       if (!items.length){
@@ -183,10 +197,11 @@
         return;
       }
       var html = '';
-      items.forEach(function(it){
+      items.forEach(function(it, i){
         var post = it.post;
         var rec = post.record || {};
         var text = rec.text || '';
+        POSTS_TEXT[i] = text;
         var uri = post.uri || '';
         var rkey = uri.split('/').pop();
         var url = 'https://bsky.app/profile/'+HANDLE+'/post/'+rkey;
@@ -198,11 +213,40 @@
         html += '<article class="post">'
              +  '<div class="text">'+esc(text)+'</div>'
              +  img
+             +  '<div class="translation" style="display:none"></div>'
              +  '<div class="date"><span>'+fmtDate(rec.createdAt)+'</span>'
+             +  '<button class="tbtn" onclick="translatePost('+i+', this)">翻译 / Translate</button>'
              +  '<a href="'+esc(url)+'" target="_blank" rel="noopener">在 Bluesky 查看 ↗</a></div>'
              +  '</article>';
       });
       feed.innerHTML = html;
+    }
+
+    function translatePost(idx, btn){
+      var card = btn.closest('.post');
+      var box = card.querySelector('.translation');
+      if (box.dataset.loaded === '1'){
+        if (box.style.display === 'none'){ box.style.display='block'; btn.textContent='隐藏翻译 / Hide'; }
+        else { box.style.display='none'; btn.textContent='翻译 / Translate'; }
+        return;
+      }
+      var text = POSTS_TEXT[idx] || '';
+      var hasCJK = /[一-鿿]/.test(text);
+      var target = hasCJK ? 'en' : 'zh-CN';
+      btn.textContent = '翻译中… translating…';
+      var u = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl='
+            + target + '&dt=t&q=' + encodeURIComponent(text);
+      fetch(u).then(function(r){ return r.json(); }).then(function(data){
+        var out = '';
+        (data[0] || []).forEach(function(seg){ if (seg && seg[0]) out += seg[0]; });
+        box.textContent = out;
+        box.dataset.loaded = '1';
+        box.style.display = 'block';
+        btn.textContent = '隐藏翻译 / Hide';
+        if (window.gtag) gtag('event','post_translate');
+      }).catch(function(){
+        btn.textContent = '翻译失败 · retry';
+      });
     }
 
     function load(){
