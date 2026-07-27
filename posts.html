@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>随笔 · Posts — 费扬 Yang Fei</title>
+  <meta name="description" content="Yang Fei (费扬) 的随笔与短想 — from Bluesky, author of The Primal Race (原初种族). News commentary excluded." />
+  <meta name="author" content="费扬 Yang Fei" />
+  <link rel="canonical" href="https://www.howtoraiseiq.com/posts" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="随笔 · Posts — 费扬 Yang Fei" />
+  <meta property="og:description" content="The author's own Bluesky posts, news commentary excluded." />
+  <meta property="og:url" content="https://www.howtoraiseiq.com/posts" />
+  <meta property="og:site_name" content="The Primal Race" />
+  <meta property="og:image" content="https://www.howtoraiseiq.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    try {
+      var q = new URLSearchParams(location.search);
+      if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+      if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+    } catch (e) {}
+    if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+      ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+       'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+        var s = document.createElement('script');
+        s.defer = true; s.src = src;
+        document.head.appendChild(s);
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-KRTMG8HV7F');
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1a1109;
+      --paper: #f5f0e8;
+      --accent: #8b1a1a;
+      --accent-light: #b52020;
+      --muted: #6b5c47;
+      --border: #c9bfad;
+    }
+    html, body { min-height: 100%; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+      padding: 2.5rem 1.2rem 4rem;
+      line-height: 1.75;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background: repeating-linear-gradient(0deg,
+        transparent, transparent 28px,
+        rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+    }
+    .wrap { max-width: 620px; margin: 0 auto; position: relative; z-index: 1; }
+
+    header.masthead {
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      border-top: 5px solid var(--accent);
+      padding: 2.2rem 0 1.4rem;
+      margin-bottom: 2.4rem;
+      background: rgba(255,253,248,0.6);
+    }
+    .masthead .ornament {
+      color: var(--accent); font-size: 1.1rem;
+      letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+    }
+    .masthead h1 { font-size: 2rem; font-weight: 700; letter-spacing: 0.1em; }
+    .masthead .subtitle {
+      font-size: 0.82rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted); margin-top: 0.4rem;
+    }
+    .masthead .byline {
+      font-size: 0.82rem; color: var(--muted); margin-top: 1rem; font-style: italic;
+    }
+    .masthead .byline a { color: var(--accent); text-decoration: none; }
+    .masthead .byline a:hover { text-decoration: underline; }
+
+    .post {
+      background: rgba(255,253,248,0.92);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.4rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .post .text {
+      font-size: 1.05rem; line-height: 1.7; white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .post .date {
+      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em;
+      margin-top: 0.9rem; display: flex; gap: 0.8rem; align-items: center;
+      border-top: 1px dashed var(--border); padding-top: 0.7rem;
+    }
+    .post .date a { color: var(--muted); text-decoration: none; }
+    .post .date a:hover { color: var(--accent); text-decoration: underline; }
+    .post .embed-img { margin-top: 0.9rem; border: 1px solid var(--border); max-width: 100%; display: block; }
+    .post .stat { color: var(--accent); }
+
+    .status { text-align: center; color: var(--muted); font-style: italic; padding: 2rem 0; }
+    .status a { color: var(--accent); }
+
+    footer.foot {
+      text-align: center; margin-top: 3rem;
+      font-size: 0.78rem; color: var(--muted); letter-spacing: 0.14em;
+    }
+    footer.foot a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 560px) {
+      body { padding: 1.6rem 0.9rem 3rem; }
+      .masthead h1 { font-size: 1.6rem; }
+      .post { padding: 1.1rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+      <h1>随笔 · Posts</h1>
+      <div class="subtitle">Short writings from Bluesky</div>
+      <div class="byline">
+        by 费扬 Yang Fei &nbsp;·&nbsp;
+        <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+        <a href="https://bsky.app/profile/yang-fei0770.bsky.social" target="_blank" rel="noopener">@yang-fei0770</a>
+      </div>
+    </header>
+
+    <div id="feed">
+      <p class="status" id="status">加载中… loading posts…</p>
+    </div>
+
+    <footer class="foot">
+      ― &nbsp; ― &nbsp; ―<br>
+      <a href="/">The Primal Race · 原初种族</a>
+    </footer>
+  </div>
+
+  <script>
+    var HANDLE = 'yang-fei0770.bsky.social';
+    var API = 'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed';
+
+    function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+    // A post is a "news bot" post if it links to our own /news/p/ permalinks.
+    function isNews(post){
+      var rec = post.record || {};
+      var embed = rec.embed || {};
+      var ext = embed.external || {};
+      var uri = ext.uri || '';
+      if (/howtoraiseiq\.com\/news\/p\//i.test(uri)) return true;
+      var text = rec.text || '';
+      if (/howtoraiseiq\.com\/news\/p\//i.test(text)) return true;
+      // facet links
+      var facets = rec.facets || [];
+      for (var i=0;i<facets.length;i++){
+        var feats = facets[i].features || [];
+        for (var j=0;j<feats.length;j++){
+          if (feats[j].uri && /howtoraiseiq\.com\/news\/p\//i.test(feats[j].uri)) return true;
+        }
+      }
+      return false;
+    }
+
+    function fmtDate(iso){
+      try {
+        var d = new Date(iso);
+        return d.toISOString().slice(0,10);
+      } catch(e){ return ''; }
+    }
+
+    function render(items){
+      var feed = document.getElementById('feed');
+      if (!items.length){
+        feed.innerHTML = '<p class="status">还没有随笔。 No posts yet — see <a href="https://bsky.app/profile/'+HANDLE+'" target="_blank" rel="noopener">Bluesky</a>.</p>';
+        return;
+      }
+      var html = '';
+      items.forEach(function(it){
+        var post = it.post;
+        var rec = post.record || {};
+        var text = rec.text || '';
+        var uri = post.uri || '';
+        var rkey = uri.split('/').pop();
+        var url = 'https://bsky.app/profile/'+HANDLE+'/post/'+rkey;
+        var img = '';
+        var embed = post.embed || {};
+        if (embed.images && embed.images[0] && embed.images[0].thumb){
+          img = '<img class="embed-img" src="'+esc(embed.images[0].thumb)+'" alt="" loading="lazy">';
+        }
+        html += '<article class="post">'
+             +  '<div class="text">'+esc(text)+'</div>'
+             +  img
+             +  '<div class="date"><span>'+fmtDate(rec.createdAt)+'</span>'
+             +  '<a href="'+esc(url)+'" target="_blank" rel="noopener">在 Bluesky 查看 ↗</a></div>'
+             +  '</article>';
+      });
+      feed.innerHTML = html;
+    }
+
+    function load(){
+      var collected = [];
+      var cursor = null;
+      var rounds = 0;
+      function step(){
+        var u = API + '?actor=' + encodeURIComponent(HANDLE) + '&limit=100&filter=posts_no_replies'
+              + (cursor ? '&cursor='+encodeURIComponent(cursor) : '');
+        fetch(u).then(function(r){ return r.json(); }).then(function(data){
+          var feed = data.feed || [];
+          feed.forEach(function(it){
+            // skip reposts (they carry a reason) and news-bot posts
+            if (it.reason) return;
+            if (isNews(it.post)) return;
+            collected.push(it);
+          });
+          cursor = data.cursor;
+          rounds++;
+          if (cursor && rounds < 6){ step(); }   // up to ~600 posts scanned
+          else { render(collected); }
+        }).catch(function(err){
+          document.getElementById('status').innerHTML =
+            '加载失败。 Could not load — see <a href="https://bsky.app/profile/'+HANDLE+'" target="_blank" rel="noopener">Bluesky</a> directly.';
+        });
+      }
+      step();
+    }
+    load();
+  </script>
+</body>
+</html>
