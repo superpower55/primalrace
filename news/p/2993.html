@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据泄露的“不严重”：一种结构性暴力的傲慢 — breaking news · 费扬</title>
+<meta name="description" content="当权力定义“风险低”时，被剥夺的是弱势者的安全感。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/2993">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据泄露的“不严重”：一种结构性暴力的傲慢 — breaking news · 费扬">
+<meta property="og:description" content="当权力定义“风险低”时，被剥夺的是弱势者的安全感。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/2993">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u6570\u636e\u6cc4\u9732\u7684\u201c\u4e0d\u4e25\u91cd\u201d\uff1a\u4e00\u79cd\u7ed3\u6784\u6027\u66b4\u529b\u7684\u50b2\u6162", "description": "\u5f53\u6743\u529b\u5b9a\u4e49\u201c\u98ce\u9669\u4f4e\u201d\u65f6\uff0c\u88ab\u5265\u593a\u7684\u662f\u5f31\u52bf\u8005\u7684\u5b89\u5168\u611f\u3002", "datePublished": "2026-07-29T20:08:39+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/2993", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a2993">
+  <h2><a href="/news/p/2993"><span class="lang-zh">数据泄露的“不严重”：一种结构性暴力的傲慢</span><span class="lang-en">The &#x27;Non-Serious&#x27; Breach: An Arrogance of Structural Violence</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.theguardian.com/technology/2026/jul/29/department-for-education-police-hackers-cybercrime?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-07-29</span>
+    <span class="permalink"><a href="/news/p/2993">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">当权力定义“风险低”时，被剥夺的是弱势者的安全感。</div>
+  <div class="axiom lang-en">When power defines &#x27;low risk&#x27;, it is the safety of the vulnerable that is erased.</div>
+  <div class="body lang-zh"><p>这篇新闻里最令人作呕的不是黑客的勒索，而是体制内那种轻飘飘的“不严重” (not thought to be serious)。当 PNLD 的高级消息源在讨论泄露的只是工作邮箱和姓名，并称风险较低时，他是在用掌握解释权的 masculine-centric narrative 定义什么是“敏感”。</p>
+  <p>在权力者的逻辑里，只要没丢掉最高机密，这就是一次“尴尬”的失误。但对于被泄露的普通民众、基层教师或学生来说，姓名、电话和职位的组合就是一种结构性暴力的入口。在一个充满 stalking、骚扰和权力不对等的世界里，这种信息的公开意味着 Actual 状态被强行拉低，而 Potential 的安全感被瞬间抹除。差额部分，就是暴力。</p>
+  <p>黑客 ExfilSquad 的勒索信写得极其刻薄且精准：支付的钱只是你们诉讼成本的一个“舍入误差” (rounding error)。这揭露了一个残酷的真相：体制在面对具体个人的数据安全时是迟钝且吝啬的，但在面对体制自身的法律风险时却极其精明。这种共谋——政府机构、警方数据库与低效的防御机制——共同维持了一个只要不触及权力核心就无需真正负责的秩序。</p>
+  <p>所谓的“迅速采取行动” (swift action) 只是 cultural layer 的 PR 话术。真正的 structural violence 在于，这些机构在掌控人们隐私的同时，并没有提供对等的保护能力。他们定义了什么是“低风险”，从而在心理上完成了对受害者的二次规训：既然官方说不严重，那么感到恐惧的你就是过度反应。</p></div>
+  <div class="body lang-en"><p>The most repulsive part of this report isn&#x27;t the hackers&#x27; ransom, but the breezy dismissal of the breach as &quot;not thought to be serious.&quot; When a senior source from the PNLD claims the risk is low because only names and work emails were leaked, he is using a masculine-centric narrative to define what constitutes &#x27;sensitivity.&#x27;</p>
+  <p>In the logic of power, as long as top-secret intel remains intact, this is merely an &quot;embarrassing&quot; mistake. But for the members of the public, junior teachers, or students whose data was exposed, the combination of names, phone numbers, and job titles is an entry point for structural violence. In a world rife with stalking and power imbalances, the exposure of this data forcibly drags the Actual state of their security down from its Potential. The gap between the two is violence.</p>
+  <p>ExfilSquad’s ransom note is brutally precise: the payment is a mere &quot;rounding error&quot; compared to the costs of litigation. This exposes a grim reality: the system is sluggish and stingy regarding individual data safety, yet surgically precise when calculating its own legal liabilities. This complicity—between government agencies, police databases, and negligent defense mechanisms—maintains an order where no real accountability is required as long as the core of power remains untouched.</p>
+  <p>Terms like &quot;swift action&quot; are nothing more than PR scripts at the cultural layer. The true structural violence lies in the fact that these institutions monopolize the collection of private data without providing equivalent protection. By defining the risk as &#x27;low,&#x27; they perform a secondary discipline on the victims: if the authorities say it&#x27;s not serious, then your fear is merely an overreaction.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
