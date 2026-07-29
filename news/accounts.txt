@@ -31,6 +31,12 @@ newrepublic.com
 vox.com
 wired.com
 
+# === 财经 / 商业（可免费抓取；FT/WSJ/经济学人是硬付费墙，已排除） ===
+marketwatch.com
+cnbc.com
+theconversation.com
+restofworld.org
+
 # === 中国 / 亚洲（如有更多请加） ===
 scmp.com
 
