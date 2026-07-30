@@ -11,7 +11,7 @@
 function models() {
   const override = (process.env.GEMINI_MODEL || '').trim();
   if (override) return [override];
-  return ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash'];
+  return ['gemini-2.5-flash-lite', 'gemini-flash-latest', 'gemini-2.0-flash'];
 }
 
 async function geminiTry(text, langName, model, key) {
