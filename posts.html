@@ -229,15 +229,14 @@
         return;
       }
       var text = POSTS_TEXT[idx] || '';
-      var hasCJK = /[一-鿿]/.test(text);
-      var target = hasCJK ? 'en' : 'zh-CN';
       btn.textContent = '翻译中… translating…';
-      var u = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl='
-            + target + '&dt=t&q=' + encodeURIComponent(text);
-      fetch(u).then(function(r){ return r.json(); }).then(function(data){
-        var out = '';
-        (data[0] || []).forEach(function(seg){ if (seg && seg[0]) out += seg[0]; });
-        box.textContent = out;
+      fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: text })
+      }).then(function(r){ return r.json(); }).then(function(data){
+        if (!data || !data.translation) throw new Error('empty');
+        box.textContent = data.translation;
         box.dataset.loaded = '1';
         box.style.display = 'block';
         btn.textContent = '隐藏翻译 / Hide';
