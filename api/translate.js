@@ -1,45 +1,43 @@
 // Serverless translation endpoint (Vercel Function).
-// Uses Gemma via Ollama Cloud for quality; falls back to Google MT on
-// failure/timeout so the caller always gets something back.
+// Uses Google Gemini for quality; falls back to Google MT on failure/timeout
+// so the caller always gets something back.
 //
 // Env vars (set in Vercel → Settings → Environment Variables):
-//   OLLAMA_API_KEY   (required for Gemma; without it we use Google only)
-//   OLLAMA_BASE_URL  (default https://ollama.com)
-//   OLLAMA_MODEL     (default gemma4:31b-cloud)
+//   GEMINI_API_KEY   (required for Gemini; from https://aistudio.google.com/apikey)
+//   GEMINI_MODEL     (default gemini-2.5-flash)
 
-async function gemmaTranslate(text, langName) {
-  const key = (process.env.OLLAMA_API_KEY || '').trim();
-  if (!key) throw new Error('no OLLAMA_API_KEY');
-  const base = (process.env.OLLAMA_BASE_URL || 'https://ollama.com').replace(/\/+$/, '');
-  const model = process.env.OLLAMA_MODEL || 'gemma4:31b-cloud';
+async function geminiTranslate(text, langName) {
+  const key = (process.env.GEMINI_API_KEY || '').trim();
+  if (!key) throw new Error('no GEMINI_API_KEY');
+  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
-  const sys = 'You are a professional literary translator. Translate the '
-    + 'user\'s text into ' + langName + '. Preserve tone, voice, rhythm and '
+  const prompt = 'You are a professional literary translator. Translate the '
+    + 'text below into ' + langName + '. Preserve tone, voice, rhythm and '
     + 'meaning; render idioms and slang naturally rather than word-for-word. '
-    + 'Output ONLY the translation — no preamble, no notes, no quotation marks.';
+    + 'Output ONLY the translation — no preamble, no notes, no quotation marks.\n\n'
+    + text;
+
+  const url = 'https://generativelanguage.googleapis.com/v1beta/models/'
+    + model + ':generateContent?key=' + encodeURIComponent(key);
 
   const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), 9000);
+  const t = setTimeout(() => ctrl.abort(), 9500);
   try {
-    const r = await fetch(base + '/api/chat', {
+    const r = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model,
-        messages: [
-          { role: 'system', content: sys },
-          { role: 'user', content: text },
-        ],
-        stream: false,
-        options: { temperature: 0.3 },
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.3 },
       }),
       signal: ctrl.signal,
     });
-    if (!r.ok) throw new Error('ollama ' + r.status);
+    if (!r.ok) throw new Error('gemini ' + r.status);
     const data = await r.json();
-    const out = (data && data.message && data.message.content || '').trim();
-    if (!out) throw new Error('empty');
-    return out;
+    const out = (((data.candidates || [])[0] || {}).content || {}).parts;
+    const txt = (out && out[0] && out[0].text || '').trim();
+    if (!txt) throw new Error('empty');
+    return txt;
   } finally {
     clearTimeout(t);
   }
@@ -74,9 +72,9 @@ export default async function handler(req, res) {
   const googleTl = hasCJK ? 'en' : 'zh-CN';
 
   try {
-    const translation = await gemmaTranslate(text, langName);
+    const translation = await geminiTranslate(text, langName);
     res.setHeader('Cache-Control', 's-maxage=86400');
-    res.status(200).json({ translation, engine: 'gemma' });
+    res.status(200).json({ translation, engine: 'gemini' });
   } catch (e) {
     try {
       const translation = await googleTranslate(text, googleTl);
