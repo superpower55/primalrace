@@ -183,7 +183,9 @@
     function fmtDate(iso){
       try {
         var d = new Date(iso);
-        return d.toISOString().slice(0,10);
+        var m = ('0' + (d.getMonth()+1)).slice(-2);
+        var day = ('0' + d.getDate()).slice(-2);
+        return d.getFullYear() + '-' + m + '-' + day;  // viewer's local date
       } catch(e){ return ''; }
     }
 
