@@ -1,27 +1,29 @@
 // Serverless translation endpoint (Vercel Function).
-// Uses Google Gemini for quality; falls back to Google MT on failure/timeout
-// so the caller always gets something back.
+// Tries Google Gemini (best quality) across a couple of free-tier models,
+// then falls back to Google MT so the caller always gets something.
 //
-// Env vars (set in Vercel → Settings → Environment Variables):
-//   GEMINI_API_KEY   (required for Gemini; from https://aistudio.google.com/apikey)
-//   GEMINI_MODEL     (default gemini-2.5-flash)
+// Env vars (Vercel → Settings → Environment Variables):
+//   GEMINI_API_KEY   from https://aistudio.google.com/apikey
+//   GEMINI_MODEL     optional; overrides the model list below
+//
+// Debug: GET /api/translate?text=hello&debug=1  → shows key presence + errors.
 
-async function geminiTranslate(text, langName) {
-  const key = (process.env.GEMINI_API_KEY || '').trim();
-  if (!key) throw new Error('no GEMINI_API_KEY');
-  const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+function models() {
+  const override = (process.env.GEMINI_MODEL || '').trim();
+  if (override) return [override];
+  return ['gemini-2.5-flash', 'gemini-2.5-flash-lite', 'gemini-2.0-flash'];
+}
 
+async function geminiTry(text, langName, model, key) {
   const prompt = 'You are a professional literary translator. Translate the '
     + 'text below into ' + langName + '. Preserve tone, voice, rhythm and '
     + 'meaning; render idioms and slang naturally rather than word-for-word. '
     + 'Output ONLY the translation — no preamble, no notes, no quotation marks.\n\n'
     + text;
-
   const url = 'https://generativelanguage.googleapis.com/v1beta/models/'
     + model + ':generateContent?key=' + encodeURIComponent(key);
-
   const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), 9500);
+  const t = setTimeout(() => ctrl.abort(), 9000);
   try {
     const r = await fetch(url, {
       method: 'POST',
@@ -32,11 +34,14 @@ async function geminiTranslate(text, langName) {
       }),
       signal: ctrl.signal,
     });
-    if (!r.ok) throw new Error('gemini ' + r.status);
+    if (!r.ok) {
+      const body = await r.text();
+      throw new Error(model + ' HTTP ' + r.status + ': ' + body.slice(0, 160));
+    }
     const data = await r.json();
-    const out = (((data.candidates || [])[0] || {}).content || {}).parts;
-    const txt = (out && out[0] && out[0].text || '').trim();
-    if (!txt) throw new Error('empty');
+    const parts = (((data.candidates || [])[0] || {}).content || {}).parts;
+    const txt = (parts && parts[0] && parts[0].text || '').trim();
+    if (!txt) throw new Error(model + ' empty response');
     return txt;
   } finally {
     clearTimeout(t);
@@ -55,12 +60,15 @@ async function googleTranslate(text, tl) {
 
 export default async function handler(req, res) {
   let text = '';
+  let debug = false;
   try {
     if (req.method === 'POST') {
       const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
       text = body.text || '';
+      debug = !!body.debug;
     } else {
       text = (req.query && req.query.text) || '';
+      debug = !!(req.query && req.query.debug);
     }
   } catch (e) { text = ''; }
 
@@ -71,17 +79,33 @@ export default async function handler(req, res) {
   const langName = hasCJK ? 'English' : 'Chinese';
   const googleTl = hasCJK ? 'en' : 'zh-CN';
 
-  try {
-    const translation = await geminiTranslate(text, langName);
-    res.setHeader('Cache-Control', 's-maxage=86400');
-    res.status(200).json({ translation, engine: 'gemini' });
-  } catch (e) {
-    try {
-      const translation = await googleTranslate(text, googleTl);
-      res.setHeader('Cache-Control', 's-maxage=86400');
-      res.status(200).json({ translation, engine: 'google' });
-    } catch (e2) {
-      res.status(502).json({ error: 'translation failed' });
+  const key = (process.env.GEMINI_API_KEY || '').trim();
+  const errors = [];
+
+  if (key) {
+    for (const m of models()) {
+      try {
+        const translation = await geminiTry(text, langName, m, key);
+        res.setHeader('Cache-Control', 's-maxage=86400');
+        const out = { translation, engine: 'gemini:' + m };
+        if (debug) out.errors = errors;
+        res.status(200).json(out);
+        return;
+      } catch (e) {
+        errors.push(String(e.message || e));
+      }
     }
+  } else {
+    errors.push('GEMINI_API_KEY not set');
+  }
+
+  try {
+    const translation = await googleTranslate(text, googleTl);
+    res.setHeader('Cache-Control', 's-maxage=86400');
+    const out = { translation, engine: 'google', hasKey: !!key };
+    if (debug) out.errors = errors;
+    res.status(200).json(out);
+  } catch (e2) {
+    res.status(502).json({ error: 'translation failed', hasKey: !!key, errors });
   }
 }

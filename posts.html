@@ -236,10 +236,11 @@
         body: JSON.stringify({ text: text })
       }).then(function(r){ return r.json(); }).then(function(data){
         if (!data || !data.translation) throw new Error('empty');
+        var mark = (data.engine && data.engine.indexOf('gemini') === 0) ? '' : ' · google';
         box.textContent = data.translation;
         box.dataset.loaded = '1';
         box.style.display = 'block';
-        btn.textContent = '隐藏翻译 / Hide';
+        btn.textContent = '隐藏翻译 / Hide' + mark;
         if (window.gtag) gtag('event','post_translate');
       }).catch(function(){
         btn.textContent = '翻译失败 · retry';
