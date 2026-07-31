@@ -197,13 +197,26 @@
       var out = [];
       if (!embed) return out;
       if (embed.images) embed.images.forEach(function(im){ out.push(im); });
-      if (embed.media && embed.media.images) embed.media.images.forEach(function(im){ out.push(im); });
+      // video embed → use its poster thumbnail
+      if (embed.thumbnail && typeof embed.thumbnail === 'string') out.push({ thumb: embed.thumbnail });
+      // image+quote (recordWithMedia): media holds images or a video
+      if (embed.media){
+        if (embed.media.images) embed.media.images.forEach(function(im){ out.push(im); });
+        if (embed.media.thumbnail && typeof embed.media.thumbnail === 'string') out.push({ thumb: embed.media.thumbnail });
+      }
+      // quote post: dig into the quoted record's own embeds
       var rec = embed.record;
       if (rec){
         if (rec.embeds) rec.embeds.forEach(function(e){ out = out.concat(collectImages(e)); });
         if (rec.record && rec.record.embeds) rec.record.embeds.forEach(function(e){ out = out.concat(collectImages(e)); });
       }
-      return out;
+      // dedupe by src
+      var seen = {}, uniq = [];
+      out.forEach(function(im){
+        var s = im.thumb || im.fullsize || '';
+        if (s && !seen[s]){ seen[s] = 1; uniq.push(im); }
+      });
+      return uniq;
     }
 
     function render(items){
