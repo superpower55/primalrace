@@ -144,9 +144,9 @@
       </div>
     </header>
 
-    <div id="feed">
-      <p class="status" id="status">加载中… loading posts…</p>
-    </div>
+    <div id="feed"></div>
+    <div id="sentinel" aria-hidden="true"></div>
+    <p class="status" id="status">加载中… loading posts…</p>
 
     <footer class="foot">
       ― &nbsp; ― &nbsp; ―<br>
@@ -222,38 +222,33 @@
       return uniq;
     }
 
-    function render(items){
-      var feed = document.getElementById('feed');
-      if (!items.length){
-        feed.innerHTML = '<p class="status">还没有随笔。 No posts yet — see <a href="https://bsky.app/profile/'+HANDLE+'" target="_blank" rel="noopener">Bluesky</a>.</p>';
-        return;
-      }
-      var html = '';
-      items.forEach(function(it, i){
-        var post = it.post;
-        var rec = post.record || {};
-        var text = rec.text || '';
-        POSTS_TEXT[i] = text;
-        var uri = post.uri || '';
-        var rkey = uri.split('/').pop();
-        var url = 'https://bsky.app/profile/'+HANDLE+'/post/'+rkey;
-        var imgs = collectImages(post.embed);
-        var img = '';
-        imgs.forEach(function(im){
-          var src = im.thumb || im.fullsize;
-          if (src){
-            img += '<img class="embed-img" src="'+esc(src)+'" alt="'+esc(im.alt||'')+'" loading="lazy">';
-          }
-        });
-        html += '<article class="post">'
-             +  '<div class="text">'+esc(text)+'</div>'
-             +  img
-             +  '<div class="translation" style="display:none"></div>'
-             +  '<div class="date"><span>'+fmtDate(rec.createdAt)+'</span>'
-             +  '<button class="tbtn" onclick="translatePost('+i+', this)">翻译 / Translate</button></div>'
-             +  '</article>';
+    function postHTML(it){
+      var post = it.post;
+      var rec = post.record || {};
+      var text = rec.text || '';
+      var idx = POSTS_TEXT.length;
+      POSTS_TEXT[idx] = text;
+      var imgs = collectImages(post.embed);
+      var img = '';
+      imgs.forEach(function(im){
+        var src = im.thumb || im.fullsize;
+        if (src){
+          img += '<img class="embed-img" src="'+esc(src)+'" alt="'+esc(im.alt||'')+'" loading="lazy">';
+        }
       });
-      feed.innerHTML = html;
+      return '<article class="post">'
+           + '<div class="text">'+esc(text)+'</div>'
+           + img
+           + '<div class="translation" style="display:none"></div>'
+           + '<div class="date"><span>'+fmtDate(rec.createdAt)+'</span>'
+           + '<button class="tbtn" onclick="translatePost('+idx+', this)">翻译 / Translate</button></div>'
+           + '</article>';
+    }
+
+    function appendPosts(items){
+      var html = '';
+      items.forEach(function(it){ html += postHTML(it); });
+      document.getElementById('feed').insertAdjacentHTML('beforeend', html);
     }
 
     function translatePost(idx, btn){
@@ -283,33 +278,65 @@
       });
     }
 
-    function load(){
-      var collected = [];
-      var cursor = null;
-      var rounds = 0;
-      function step(){
-        var u = API + '?actor=' + encodeURIComponent(HANDLE) + '&limit=100&filter=posts_and_author_threads'
+    // ---- infinite scroll / paged fetch ----
+    var cursor = null;      // Bluesky pagination cursor
+    var loading = false;
+    var done = false;
+    var anyShown = false;
+    var statusEl = document.getElementById('status');
+
+    function setStatus(msg){ statusEl.innerHTML = msg; }
+
+    function loadMore(){
+      if (loading || done) return;
+      loading = true;
+      setStatus('加载中… loading…');
+      var attempts = 0;
+
+      function pull(){
+        var u = API + '?actor=' + encodeURIComponent(HANDLE) + '&limit=50&filter=posts_and_author_threads'
               + (cursor ? '&cursor='+encodeURIComponent(cursor) : '');
         fetch(u).then(function(r){ return r.json(); }).then(function(data){
-          var feed = data.feed || [];
-          feed.forEach(function(it){
-            // skip reposts (they carry a reason) and news-bot posts
-            if (it.reason) return;
-            if (isNews(it.post)) return;
-            collected.push(it);
+          var raw = data.feed || [];
+          var own = raw.filter(function(it){
+            return !it.reason && !isNews(it.post);   // drop reposts + news-bot posts
           });
+          if (own.length){ appendPosts(own); anyShown = true; }
           cursor = data.cursor;
-          rounds++;
-          if (cursor && rounds < 6){ step(); }   // up to ~600 posts scanned
-          else { render(collected); }
-        }).catch(function(err){
-          document.getElementById('status').innerHTML =
-            '加载失败。 Could not load — see <a href="https://bsky.app/profile/'+HANDLE+'" target="_blank" rel="noopener">Bluesky</a> directly.';
+          attempts++;
+
+          if (!cursor){                       // reached the end
+            done = true; loading = false;
+            setStatus(anyShown ? '― 到底了 · that’s all ―'
+              : '还没有随笔。 No posts yet — see <a href="https://bsky.app/profile/'+HANDLE+'" target="_blank" rel="noopener">Bluesky</a>.');
+            return;
+          }
+          if (own.length === 0 && attempts < 5){  // whole page was news — keep pulling
+            pull(); return;
+          }
+          loading = false;
+          setStatus('');                      // ready for next trigger
+        }).catch(function(){
+          loading = false;
+          setStatus('加载失败，下拉重试。 Load failed — scroll to retry, or open <a href="https://bsky.app/profile/'+HANDLE+'" target="_blank" rel="noopener">Bluesky</a>.');
         });
       }
-      step();
+      pull();
     }
-    load();
+
+    // trigger when the sentinel scrolls into view
+    var sentinel = document.getElementById('sentinel');
+    if ('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        if (entries[0].isIntersecting) loadMore();
+      }, { rootMargin: '400px' });
+      io.observe(sentinel);
+    } else {
+      window.addEventListener('scroll', function(){
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) loadMore();
+      });
+    }
+    loadMore();  // first page
   </script>
 </body>
 </html>
