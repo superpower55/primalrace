@@ -198,6 +198,9 @@
       var out = [];
       if (!embed) return out;
       if (embed.images) embed.images.forEach(function(im){ out.push(im); });
+      // new gallery embed (app.bsky.embed.gallery#view) → items[] with thumbnail/fullsize
+      if (embed.items) embed.items.forEach(function(im){ out.push(im); });
+      if (embed.media && embed.media.items) embed.media.items.forEach(function(im){ out.push(im); });
       // video embed → use its poster thumbnail
       if (embed.thumbnail && typeof embed.thumbnail === 'string') out.push({ thumb: embed.thumbnail });
       // image+quote (recordWithMedia): media holds images or a video
