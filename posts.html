@@ -206,11 +206,18 @@
         var uri = post.uri || '';
         var rkey = uri.split('/').pop();
         var url = 'https://bsky.app/profile/'+HANDLE+'/post/'+rkey;
-        var img = '';
         var embed = post.embed || {};
-        if (embed.images && embed.images[0] && embed.images[0].thumb){
-          img = '<img class="embed-img" src="'+esc(embed.images[0].thumb)+'" alt="" loading="lazy">';
-        }
+        // images can be a direct image embed, or nested under recordWithMedia
+        var imgs = embed.images
+          || (embed.media && embed.media.images)
+          || [];
+        var img = '';
+        imgs.forEach(function(im){
+          var src = im.thumb || im.fullsize;
+          if (src){
+            img += '<img class="embed-img" src="'+esc(src)+'" alt="'+esc(im.alt||'')+'" loading="lazy">';
+          }
+        });
         html += '<article class="post">'
              +  '<div class="text">'+esc(text)+'</div>'
              +  img
