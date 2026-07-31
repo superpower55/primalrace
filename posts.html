@@ -157,7 +157,6 @@
   <script>
     var HANDLE = 'yang-fei0770.bsky.social';
     var API = 'https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed';
-    var DEBUG = /[?&]debug=1/.test(location.search);
 
     function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 
@@ -246,16 +245,9 @@
             img += '<img class="embed-img" src="'+esc(src)+'" alt="'+esc(im.alt||'')+'" loading="lazy">';
           }
         });
-        var dbg = '';
-        if (DEBUG && post.embed){
-          dbg = '<pre style="white-space:pre-wrap;word-break:break-all;font-size:0.7rem;'
-              + 'background:#2a2018;color:#f0e6d2;padding:0.8rem;overflow:auto;max-height:16rem;">'
-              + esc('$type='+(post.embed['$type']||'?')+'\n'+JSON.stringify(post.embed).slice(0,1500))
-              + '</pre>';
-        }
         html += '<article class="post">'
              +  '<div class="text">'+esc(text)+'</div>'
-             +  img + dbg
+             +  img
              +  '<div class="translation" style="display:none"></div>'
              +  '<div class="date"><span>'+fmtDate(rec.createdAt)+'</span>'
              +  '<button class="tbtn" onclick="translatePost('+i+', this)">翻译 / Translate</button></div>'
