@@ -272,7 +272,7 @@
       var cursor = null;
       var rounds = 0;
       function step(){
-        var u = API + '?actor=' + encodeURIComponent(HANDLE) + '&limit=100&filter=posts_no_replies'
+        var u = API + '?actor=' + encodeURIComponent(HANDLE) + '&limit=100&filter=posts_and_author_threads'
               + (cursor ? '&cursor='+encodeURIComponent(cursor) : '');
         fetch(u).then(function(r){ return r.json(); }).then(function(data){
           var feed = data.feed || [];
