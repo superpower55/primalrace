@@ -527,9 +527,56 @@ What is it in your eyes you talk so loud but eyes barely blink
 It says lying
 While I’m lying in his bed</div>
 
+    <p class="status" id="poemStatus" style="text-align:center;color:var(--muted);font-style:italic;font-size:0.85rem;margin:1.5rem 0;"></p>
+    <div id="poemSentinel" aria-hidden="true"></div>
+
     <a class="back" href="/">← 回到《原初种族》 · back to The Primal Race</a>
 
     <span class="footer-ornament">― &nbsp; ― &nbsp; ―</span>
   </div>
+
+  <script>
+    (function(){
+      var card = document.querySelector('.card');
+      // Group each poem: a direct-child .poem-title plus its following
+      // siblings up to (but not including) the next .poem-title.
+      var groups = [], cur = null;
+      Array.prototype.forEach.call(card.children, function(el){
+        if (el.classList.contains('poem-title')) { cur = [el]; groups.push(cur); }
+        else if (el.classList.contains('back') ||
+                 el.classList.contains('footer-ornament') ||
+                 el.id === 'poemStatus' || el.id === 'poemSentinel') { cur = null; }
+        else if (cur) { cur.push(el); }
+      });
+
+      var BATCH = 5, shown = 0;
+      var status = document.getElementById('poemStatus');
+
+      function hide(g){ g.forEach(function(el){ el.style.display = 'none'; }); }
+      function show(g){ g.forEach(function(el){ el.style.display = ''; }); }
+
+      groups.forEach(hide);
+      function revealMore(){
+        if (shown >= groups.length) return;
+        var end = Math.min(shown + BATCH, groups.length);
+        for (var i = shown; i < end; i++) show(groups[i]);
+        shown = end;
+        status.textContent = shown >= groups.length ? '― 到底了 · that’s all ―' : '';
+      }
+      revealMore(); // first batch
+
+      var sentinel = document.getElementById('poemSentinel');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries){
+          if (entries[0].isIntersecting) revealMore();
+        }, { rootMargin: '500px' });
+        io.observe(sentinel);
+      } else {
+        window.addEventListener('scroll', function(){
+          if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) revealMore();
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
