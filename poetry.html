@@ -551,9 +551,14 @@ While I’m lying in his bed</div>
 
       var BATCH = 5, shown = 0;
       var status = document.getElementById('poemStatus');
+      var sentinel = document.getElementById('poemSentinel');
 
       function hide(g){ g.forEach(function(el){ el.style.display = 'none'; }); }
       function show(g){ g.forEach(function(el){ el.style.display = ''; }); }
+      function nearBottom(){
+        var r = sentinel.getBoundingClientRect();
+        return r.top <= (window.innerHeight + 600);
+      }
 
       groups.forEach(hide);
       function revealMore(){
@@ -562,10 +567,10 @@ While I’m lying in his bed</div>
         for (var i = shown; i < end; i++) show(groups[i]);
         shown = end;
         status.textContent = shown >= groups.length ? '― 到底了 · that’s all ―' : '';
+        // keep filling if the screen isn't full yet
+        if (shown < groups.length && nearBottom()) revealMore();
       }
       revealMore(); // first batch
-
-      var sentinel = document.getElementById('poemSentinel');
       if ('IntersectionObserver' in window) {
         var io = new IntersectionObserver(function(entries){
           if (entries[0].isIntersecting) revealMore();

@@ -287,6 +287,12 @@
 
     function setStatus(msg){ statusEl.innerHTML = msg; }
 
+    var sentinel = document.getElementById('sentinel');
+    function nearBottom(){
+      var r = sentinel.getBoundingClientRect();
+      return r.top <= (window.innerHeight + 600);
+    }
+
     function loadMore(){
       if (loading || done) return;
       loading = true;
@@ -315,7 +321,10 @@
             pull(); return;
           }
           loading = false;
-          setStatus('');                      // ready for next trigger
+          setStatus('');
+          // if the sentinel is still near the viewport (content didn't fill
+          // the screen), keep loading — the observer alone won't re-fire.
+          if (nearBottom()) loadMore();
         }).catch(function(){
           loading = false;
           setStatus('加载失败，下拉重试。 Load failed — scroll to retry, or open <a href="https://bsky.app/profile/'+HANDLE+'" target="_blank" rel="noopener">Bluesky</a>.');
@@ -325,7 +334,6 @@
     }
 
     // trigger when the sentinel scrolls into view
-    var sentinel = document.getElementById('sentinel');
     if ('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
         if (entries[0].isIntersecting) loadMore();
