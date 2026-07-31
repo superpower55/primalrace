@@ -191,6 +191,21 @@
 
     var POSTS_TEXT = [];
 
+    // Dig images out of any embed shape: direct images, image+quote (media),
+    // and quoted posts (record / recordWithMedia).
+    function collectImages(embed){
+      var out = [];
+      if (!embed) return out;
+      if (embed.images) embed.images.forEach(function(im){ out.push(im); });
+      if (embed.media && embed.media.images) embed.media.images.forEach(function(im){ out.push(im); });
+      var rec = embed.record;
+      if (rec){
+        if (rec.embeds) rec.embeds.forEach(function(e){ out = out.concat(collectImages(e)); });
+        if (rec.record && rec.record.embeds) rec.record.embeds.forEach(function(e){ out = out.concat(collectImages(e)); });
+      }
+      return out;
+    }
+
     function render(items){
       var feed = document.getElementById('feed');
       if (!items.length){
@@ -206,11 +221,7 @@
         var uri = post.uri || '';
         var rkey = uri.split('/').pop();
         var url = 'https://bsky.app/profile/'+HANDLE+'/post/'+rkey;
-        var embed = post.embed || {};
-        // images can be a direct image embed, or nested under recordWithMedia
-        var imgs = embed.images
-          || (embed.media && embed.media.images)
-          || [];
+        var imgs = collectImages(post.embed);
         var img = '';
         imgs.forEach(function(im){
           var src = im.thumb || im.fullsize;
