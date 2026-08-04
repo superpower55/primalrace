@@ -114,6 +114,10 @@
       white-space: pre-wrap; word-break: break-word; font-style: italic;
     }
     .post .embed-img { margin-top: 0.9rem; border: 1px solid var(--border); max-width: 100%; display: block; }
+    .post .embed-video {
+      margin-top: 0.9rem; border: 1px solid var(--border); max-width: 100%;
+      display: block; background: #000;
+    }
     .post .stat { color: var(--accent); }
 
     .status { text-align: center; color: var(--muted); font-style: italic; padding: 2rem 0; }
@@ -131,6 +135,10 @@
       .post { padding: 1.1rem 1.2rem; }
     }
   </style>
+  <!-- hls.js: needed so Chrome/Firefox/Android can play Bluesky's HLS (.m3u8) video posts.
+       Safari plays HLS natively and doesn't need it. Loaded (not deferred) so it's ready
+       before the main script below runs. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.17/hls.min.js"></script>
 </head>
 <body>
   <div class="wrap">
@@ -191,33 +199,62 @@
 
     var POSTS_TEXT = [];
 
-    // Dig images out of any embed shape: direct images, image+quote (media),
-    // and quoted posts (record / recordWithMedia).
-    function collectImages(embed){
+    // Walk any embed shape (direct images/video, image+quote "media", or a
+    // quoted post's own embeds) and collect a flat list of renderable media.
+    // Each item is either { type:'image', thumb, alt } or
+    // { type:'video', playlist, thumbnail, alt }.
+    function collectMedia(embed){
       var out = [];
       if (!embed) return out;
-      if (embed.images) embed.images.forEach(function(im){ out.push(im); });
-      // new gallery embed (app.bsky.embed.gallery#view) → items[] with thumbnail/fullsize
-      if (embed.items) embed.items.forEach(function(im){ out.push(im); });
-      if (embed.media && embed.media.items) embed.media.items.forEach(function(im){ out.push(im); });
-      // video embed → use its poster thumbnail
-      if (embed.thumbnail && typeof embed.thumbnail === 'string') out.push({ thumb: embed.thumbnail });
-      // image+quote (recordWithMedia): media holds images or a video
-      if (embed.media){
-        if (embed.media.images) embed.media.images.forEach(function(im){ out.push(im); });
-        if (embed.media.thumbnail && typeof embed.media.thumbnail === 'string') out.push({ thumb: embed.media.thumbnail });
+
+      function pushImg(im){
+        var src = im.thumb || im.fullsize;
+        if (src) out.push({ type: 'image', thumb: src, alt: im.alt || '' });
       }
+      function pushVideo(v){
+        if (!v.playlist) return;
+        out.push({
+          type: 'video',
+          playlist: v.playlist,
+          thumbnail: v.thumbnail || '',
+          alt: v.alt || ''
+        });
+      }
+      function isVideoView(x){
+        return x && typeof x.$type === 'string' && x.$type.indexOf('app.bsky.embed.video') === 0;
+      }
+
+      // direct video embed
+      if (isVideoView(embed)) pushVideo(embed);
+
+      // direct images / gallery
+      if (embed.images) embed.images.forEach(pushImg);
+      if (embed.items) embed.items.forEach(function(im){
+        if (im.playlist) pushVideo(im); else pushImg(im);
+      });
+
+      // recordWithMedia: media can itself be images or a video
+      if (embed.media){
+        var m = embed.media;
+        if (isVideoView(m)) pushVideo(m);
+        if (m.images) m.images.forEach(pushImg);
+        if (m.items) m.items.forEach(function(im){
+          if (im.playlist) pushVideo(im); else pushImg(im);
+        });
+      }
+
       // quote post: dig into the quoted record's own embeds
       var rec = embed.record;
       if (rec){
-        if (rec.embeds) rec.embeds.forEach(function(e){ out = out.concat(collectImages(e)); });
-        if (rec.record && rec.record.embeds) rec.record.embeds.forEach(function(e){ out = out.concat(collectImages(e)); });
+        if (rec.embeds) rec.embeds.forEach(function(e){ out = out.concat(collectMedia(e)); });
+        if (rec.record && rec.record.embeds) rec.record.embeds.forEach(function(e){ out = out.concat(collectMedia(e)); });
       }
+
       // dedupe by src
       var seen = {}, uniq = [];
-      out.forEach(function(im){
-        var s = im.thumb || im.fullsize || '';
-        if (s && !seen[s]){ seen[s] = 1; uniq.push(im); }
+      out.forEach(function(m){
+        var key = m.playlist || m.thumb || '';
+        if (key && !seen[key]){ seen[key] = 1; uniq.push(m); }
       });
       return uniq;
     }
@@ -228,27 +265,49 @@
       var text = rec.text || '';
       var idx = POSTS_TEXT.length;
       POSTS_TEXT[idx] = text;
-      var imgs = collectImages(post.embed);
-      var img = '';
-      imgs.forEach(function(im){
-        var src = im.thumb || im.fullsize;
-        if (src){
-          img += '<img class="embed-img" src="'+esc(src)+'" alt="'+esc(im.alt||'')+'" loading="lazy">';
+      var media = collectMedia(post.embed);
+      var mediaHtml = '';
+      media.forEach(function(m){
+        if (m.type === 'video'){
+          mediaHtml += '<video class="embed-video" controls playsinline preload="metadata"'
+            + (m.thumbnail ? ' poster="'+esc(m.thumbnail)+'"' : '')
+            + ' data-hls-src="'+esc(m.playlist)+'"></video>';
+        } else {
+          mediaHtml += '<img class="embed-img" src="'+esc(m.thumb)+'" alt="'+esc(m.alt||'')+'" loading="lazy">';
         }
       });
       return '<article class="post">'
            + '<div class="text">'+esc(text)+'</div>'
-           + img
+           + mediaHtml
            + '<div class="translation" style="display:none"></div>'
            + '<div class="date"><span>'+fmtDate(rec.createdAt)+'</span>'
            + '<button class="tbtn" onclick="translatePost('+idx+', this)">翻译 / Translate</button></div>'
            + '</article>';
     }
 
+    // Attach playback to any newly-inserted <video data-hls-src> that hasn't
+    // been wired up yet. Safari gets native HLS; everyone else gets hls.js.
+    function setupVideos(container){
+      var vids = container.querySelectorAll('video[data-hls-src]:not([data-hls-init])');
+      vids.forEach(function(v){
+        v.setAttribute('data-hls-init', '1');
+        var src = v.getAttribute('data-hls-src');
+        if (v.canPlayType('application/vnd.apple.mpegurl')) {
+          v.src = src;
+        } else if (window.Hls && Hls.isSupported()) {
+          var hls = new Hls();
+          hls.loadSource(src);
+          hls.attachMedia(v);
+        }
+      });
+    }
+
     function appendPosts(items){
       var html = '';
       items.forEach(function(it){ html += postHTML(it); });
-      document.getElementById('feed').insertAdjacentHTML('beforeend', html);
+      var feed = document.getElementById('feed');
+      feed.insertAdjacentHTML('beforeend', html);
+      setupVideos(feed);
     }
 
     function translatePost(idx, btn){
@@ -322,8 +381,6 @@
           }
           loading = false;
           setStatus('');
-          // if the sentinel is still near the viewport (content didn't fill
-          // the screen), keep loading — the observer alone won't re-fire.
           if (nearBottom()) loadMore();
         }).catch(function(){
           loading = false;
@@ -333,7 +390,6 @@
       pull();
     }
 
-    // trigger when the sentinel scrolls into view
     if ('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
         if (entries[0].isIntersecting) loadMore();
@@ -344,7 +400,7 @@
         if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) loadMore();
       });
     }
-    loadMore();  // first page
+    loadMore();
   </script>
 </body>
 </html>
