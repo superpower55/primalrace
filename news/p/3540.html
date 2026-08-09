@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用“自然语言”掩盖能力的退化：大厂的AI套路与用户税 — breaking news · 费扬</title>
+<meta name="description" content="当产品用“像人”的表达掩盖“不能用”的现实，这就是一场认知收割。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/3540">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用“自然语言”掩盖能力的退化：大厂的AI套路与用户税 — breaking news · 费扬">
+<meta property="og:description" content="当产品用“像人”的表达掩盖“不能用”的现实，这就是一场认知收割。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/3540">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u7528\u201c\u81ea\u7136\u8bed\u8a00\u201d\u63a9\u76d6\u80fd\u529b\u7684\u9000\u5316\uff1a\u5927\u5382\u7684AI\u5957\u8def\u4e0e\u7528\u6237\u7a0e", "description": "\u5f53\u4ea7\u54c1\u7528\u201c\u50cf\u4eba\u201d\u7684\u8868\u8fbe\u63a9\u76d6\u201c\u4e0d\u80fd\u7528\u201d\u7684\u73b0\u5b9e\uff0c\u8fd9\u5c31\u662f\u4e00\u573a\u8ba4\u77e5\u6536\u5272\u3002", "datePublished": "2026-08-09T23:19:16+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/3540", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a3540">
+  <h2><a href="/news/p/3540"><span class="lang-zh">用“自然语言”掩盖能力的退化：大厂的AI套路与用户税</span><span class="lang-en">Masking Decay with &#x27;Natural Language&#x27;: Big Tech&#x27;s AI Scam and the User Tax</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.nytimes.com/wirecutter/reviews/gen-ai-smart-speakers/?smid=bsky-nytimes&amp;smtyp=cur" target="_blank" rel="noopener">Wirecutter: Reviews for the Real World ↗</a></span>
+    <span class="date">2026-08-09</span>
+    <span class="permalink"><a href="/news/p/3540">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">当产品用“像人”的表达掩盖“不能用”的现实，这就是一场认知收割。</div>
+  <div class="axiom lang-en">When a product uses &#x27;human-like&#x27; expression to mask &#x27;useless&#x27; reality, it is a cognitive harvest.</div>
+  <div class="body lang-zh"><p>Google 和 Amazon 在智能音箱里塞进 Gen-AI，本质上是在用一种“表达的武器化”来掩盖产品能力的结构性退化。他们把“聊天更自然”定义为升级，试图引导用户接受一个事实：只要它说话像人，即便它不能开关灯、记错日期、甚至在对话中突然切换语言，也被称为“更聪明”。</p>
+  <p>这在我的框架里是一个典型的“假.最优解表达”。大厂扮演的是一个“创新者”的角色，而用户被诱导扮演“早期体验者”。最荒谬的 scam 在于，他们不仅交付了一个半成品，甚至还为这个“半成品”设立了月费订阅制。这意味着用户在支付一种“故障排除税”——你花钱买的不是功能，而是替大厂做 beta test 的特权。</p>
+  <p>这种机制极其阴险：它通过提升 Cultural 层面的“拟人感”来抵消 Structural 层面的“功能失效”。当一个设备能流畅地跟你聊天却无法执行最基本的指令时，它不再是一个工具，而是一个通过表演来掩盖无能的客体。这种“现实不配合就重新定义现实”的逻辑，与那些通过宣布新定律来掩盖芯片制程失败的叙事如出一辙。</p>
+  <p>不要被“自然语言”这个词欺骗。真正的最优解应该是：在不牺牲基本功能的前提下，提升交互效率。而现在的路径是：为了追求一个看起来很高级的“认知入口”，直接拆掉了底层的功能基石。这种以“智能化”之名行“降级”之实的共谋，本质上是对用户主体性的傲慢掠夺。</p></div>
+  <div class="body lang-en"><p>Google and Amazon stuffing Gen-AI into smart speakers is a textbook example of the weaponisation of expression to hide structural decay. By defining &#x27;more natural chatting&#x27; as an upgrade, they attempt to convince users that as long as a device sounds human, it is &#x27;smarter&#x27;—even if it fails to toggle a light switch, hallucinates dates, or randomly switches languages.</p>
+  <p>This is a &#x27;false optimal expression.&#x27; Big Tech plays the role of the &#x27;innovator,&#x27; while users are lured into playing the &#x27;early adopter.&#x27; The real scam is the subscription fee: they aren&#x27;t charging for features, but for the privilege of being unpaid beta testers. It is a &#x27;troubleshooting tax&#x27; paid by the user.</p>
+  <p>This mechanism is insidious: it uses a Cultural layer of &#x27;human-likeness&#x27; to offset a Structural layer of &#x27;functional failure.&#x27; When a device can chat fluently but cannot execute basic commands, it ceases to be a tool and becomes an object performing competence to mask impotence. This logic of &#x27;redefining reality when reality doesn&#x27;t cooperate&#x27; is the same one used by companies that announce new &#x27;laws&#x27; to mask failures in chip fabrication.</p>
+  <p>Do not be deceived by the term &#x27;natural language.&#x27; A true optimal expression would be improving interaction efficiency without sacrificing core utility. Instead, the current path is destroying the functional foundation to capture a flashy &#x27;cognitive entry point.&#x27; This complicity, which labels functional regression as &#x27;intelligence,&#x27; is fundamentally an arrogant predation of the user&#x27;s agency.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
