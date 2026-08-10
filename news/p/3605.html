@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>扎克伯格的“民主”AI：一场关于解释权的权力置换 — breaking news · 费扬</title>
+<meta name="description" content="所谓的“开源民主”不过是权力垄断者在竞争失败后，通过重新定义规则来夺取定价权。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/3605">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="扎克伯格的“民主”AI：一场关于解释权的权力置换 — breaking news · 费扬">
+<meta property="og:description" content="所谓的“开源民主”不过是权力垄断者在竞争失败后，通过重新定义规则来夺取定价权。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/3605">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u624e\u514b\u4f2f\u683c\u7684\u201c\u6c11\u4e3b\u201dAI\uff1a\u4e00\u573a\u5173\u4e8e\u89e3\u91ca\u6743\u7684\u6743\u529b\u7f6e\u6362", "description": "\u6240\u8c13\u7684\u201c\u5f00\u6e90\u6c11\u4e3b\u201d\u4e0d\u8fc7\u662f\u6743\u529b\u5784\u65ad\u8005\u5728\u7ade\u4e89\u5931\u8d25\u540e\uff0c\u901a\u8fc7\u91cd\u65b0\u5b9a\u4e49\u89c4\u5219\u6765\u593a\u53d6\u5b9a\u4ef7\u6743\u3002", "datePublished": "2026-08-10T23:23:56+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/3605", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a3605">
+  <h2><a href="/news/p/3605"><span class="lang-zh">扎克伯格的“民主”AI：一场关于解释权的权力置换</span><span class="lang-en">Zuckerberg&#x27;s &#x27;Democratic&#x27; AI: A Power Swap of Interpretive Rights</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">结构层 · 文化层 · 元暴力</span>
+    <span class="source"><a href="https://www.theguardian.com/technology/2026/aug/10/mark-zuckerberg-superintelligent-ai-essay-meta?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-08-10</span>
+    <span class="permalink"><a href="/news/p/3605">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">所谓的“开源民主”不过是权力垄断者在竞争失败后，通过重新定义规则来夺取定价权。</div>
+  <div class="axiom lang-en">So-called &#x27;open-source democracy&#x27; is merely a power monopolist redefining rules to seize pricing power after losing the initial race.</div>
+  <div class="body lang-zh"><p>扎克伯格这篇六千字的论文是典型的 weaponized expression。他把“open-source”包装成一种民主主义的恩赐，试图通过塑造一个“反垄断”的叙事入口，来对抗 OpenAI 和 Anthropic 已经建立的闭源霸权。这根本不是在讨论技术正义，而是一场关于认知入口的博弈。</p>
+  <p>在 AI 领域，谁掌控了模型的 weights，谁就拥有了定义“什么是事实”的解释权。OpenAI 试图通过 proprietary 模式建立一个数字神权政府，而 Meta 发现自己在这个闭源神权中处于劣势，于是迅速将叙事切换到“权力平衡”和“用户自主”。这种从“控制”到“开放”的转向，本质上是 Meta 在寻找自己的最优解表达：既然不能在闭源的墙内当老大，那就把墙拆了，让所有人都成为 Meta 生态的共谋者。</p>
+  <p>最讽刺的是，扎克伯格在论文中用 60 次 “superintelligence” 来描绘乌托邦，却在面对失业、监控和自主武器这些 structural violence 时轻描淡写。他承诺给路易斯安那州的老师发奖金，这不过是用微小的 direct 利益补偿来掩盖数据中心对环境和资源的巨额掠夺。这种用“局部利好”掩盖“结构性暴力”的手法，是所有大公司 PR 的标准 scam。</p>
+  <p>所谓的“让用户决定 AI 的价值”，实际上是将规训的责任从公司转移给个人。当 Meta 把一个没有 guardrails 的模型扔给大众时，它并不是在赋予权力，而是在制造混乱，然后通过自己的智能眼镜等硬件设备，成为这个混乱世界中唯一的、不可或缺的交互接口。这不是在消除垄断，而是在用一种更隐蔽的 meta-violence 重新定义垄断。</p></div>
+  <div class="body lang-en"><p>Zuckerberg&#x27;s 6,000-word essay is a textbook case of weaponized expression. By framing &#x27;open-source&#x27; as a democratic gift, he attempts to hijack the narrative of &#x27;anti-monopoly&#x27; to challenge the closed-source hegemony of OpenAI and Anthropic. This isn&#x27;t a debate about technical justice; it&#x27;s a strategic game for the cognitive entry point.</p>
+  <p>In AI, whoever controls the model weights holds the interpretive right to define &#x27;what is fact.&#x27; While OpenAI seeks to build a digital theocracy through proprietary models, Meta—finding itself disadvantaged within that structure—quickly pivots to a narrative of &#x27;balance of power&#x27; and &#x27;user autonomy.&#x27; This shift from &#x27;control&#x27; to &#x27;openness&#x27; is simply Meta seeking its own optimal expression: since they cannot lead inside the closed walls, they tear the walls down to make everyone a complicitor in the Meta ecosystem.</p>
+  <p>It is peak irony that Zuckerberg uses the word &#x27;superintelligence&#x27; 60 times to paint a utopia, while brushing aside structural violence like job loss, surveillance, and autonomous weapons. His mention of bonus checks for Louisiana teachers is a classic scam—using minor direct benefits to mask the massive structural plunder of resources by data centers.</p>
+  <p>Claiming to &#x27;let users decide AI values&#x27; is actually a transfer of the burden of regulation from the corporation to the individual. By releasing models without guardrails, Meta isn&#x27;t granting power; it&#x27;s manufacturing chaos, then positioning its smart glasses as the only indispensable interface to navigate that chaos. This isn&#x27;t the end of monopoly; it&#x27;s the deployment of a more insidious meta-violence to redefine it.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
