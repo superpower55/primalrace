@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>用电子纸模拟纸笔：一场关于“触感”的商业 scam — breaking news · 费扬</title>
+<meta name="description" content="当技术试图通过模拟“阻尼感”来贩卖情怀，它在剥夺表达的真实性。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/3725">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用电子纸模拟纸笔：一场关于“触感”的商业 scam — breaking news · 费扬">
+<meta property="og:description" content="当技术试图通过模拟“阻尼感”来贩卖情怀，它在剥夺表达的真实性。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/3725">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u7528\u7535\u5b50\u7eb8\u6a21\u62df\u7eb8\u7b14\uff1a\u4e00\u573a\u5173\u4e8e\u201c\u89e6\u611f\u201d\u7684\u5546\u4e1a scam", "description": "\u5f53\u6280\u672f\u8bd5\u56fe\u901a\u8fc7\u6a21\u62df\u201c\u963b\u5c3c\u611f\u201d\u6765\u8d29\u5356\u60c5\u6000\uff0c\u5b83\u5728\u5265\u593a\u8868\u8fbe\u7684\u771f\u5b9e\u6027\u3002", "datePublished": "2026-08-12T17:13:33+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/3725", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a3725">
+  <h2><a href="/news/p/3725"><span class="lang-zh">用电子纸模拟纸笔：一场关于“触感”的商业 scam</span><span class="lang-en">Simulating Pen and Paper: A Commercial Scam of &#x27;Tactile Feel&#x27;</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">文化层</span>
+    <span class="source"><a href="https://www.nytimes.com/wirecutter/reviews/best-digital-notebooks/?smid=bsky-nytimes&amp;smtyp=cur" target="_blank" rel="noopener">Wirecutter: Reviews for the Real World ↗</a></span>
+    <span class="date">2026-08-12</span>
+    <span class="permalink"><a href="/news/p/3725">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">当技术试图通过模拟“阻尼感”来贩卖情怀，它在剥夺表达的真实性。</div>
+  <div class="axiom lang-en">When tech sells nostalgia via &#x27;friction,&#x27; it strips the authenticity from expression.</div>
+  <div class="body lang-zh"><p>Wirecutter 这篇评测把数字笔记本（Digital Notebooks）描述成一种“现代化且不牺牲快感”的升级。但从表达（Expression）的维度看，这简直是个巨大的 scam。所谓的“纸感”体验，本质上是厂商在玻璃屏幕上覆盖一层塑料或涂层，通过制造物理阻尼来模拟笔尖在纸上的 scratch。这种对“触感”的拟合，其实是对真实表达的一种拙劣替代。</p>
+  <p>真正的纸笔写作，其快感来自生物墙与物理世界的直接碰撞：墨水的渗透、纸张的纤维、甚至是由于压力导致纸张变形的不可逆性。而这些数字设备在做一件极其矛盾的事：它们一边通过 E Ink 试图逃离数字世界的干扰（distraction-free），一边又通过云同步、AI 聊天机器人和可搜索性将你重新拽回那个被算法定义的效率系统。这种“模拟纸笔”的表达，实际上是一种假.最优解表达——它让你扮演一个“热爱手写”的文人，同时又不能放弃作为“数字公民”的检索效率。代价是主体性的稀释：你的思考不再是与纸张的私密共谋，而成了随时准备被转化为 Word 或 PDF 的预制品。</p>
+  <p>最讽刺的是 reMarkable 这种产品，它把“极简”包装成一种高端审美，然后通过月费订阅（Connect subscription）来锁定你的云存储和转换功能。这哪里是回归纯粹，这分明是把“思考的自由”重新定价，并将其变成一种订阅制服务。当一个设备需要通过模拟“阻尼”来让你觉得自己在思考时，这种思考本身就已经被武器化成了消费符号。</p></div>
+  <div class="body lang-en"><p>Wirecutter frames digital notebooks as a &#x27;modernization without sacrificing pleasure.&#x27; From the perspective of Expression, this is a total scam. The so-called &#x27;paper-like feel&#x27; is merely a layer of plastic or coating on glass, manufacturing physical friction to mimic the scratch of a pen. This拟合 of tactile experience is a clumsy substitute for authentic expression.</p>
+  <p>True handwriting is a direct collision between the biological wall and the physical world: the seepage of ink, the grain of the fiber, and the irreversible deformation of paper under pressure. These devices perform a contradictory act: they use E Ink to escape digital distractions, yet drag you back into an efficiency system defined by cloud syncing, AI chatbots, and searchability. This is a fake optimal expression—allowing you to perform the role of a &#x27;pen-and-paper lover&#x27; while remaining a &#x27;digital citizen&#x27; obsessed with retrieval. The cost is the dilution of subjectivity; your thoughts are no longer a private complicity with the page, but pre-products waiting to be converted into Word or PDF.</p>
+  <p>It is peak irony that reMarkable packages &#x27;minimalism&#x27; as a high-end aesthetic, only to lock cloud storage and conversion behind a monthly Connect subscription. This isn&#x27;t a return to purity; it&#x27;s the re-pricing of &#x27;freedom of thought&#x27; as a subscription service. When a device must simulate &#x27;friction&#x27; to make you feel like you&#x27;re thinking, that thinking has already been weaponized into a consumer symbol.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
