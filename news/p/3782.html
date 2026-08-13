@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>扎克伯格的“开源”：一次关于租约的权力伪装 — breaking news · 费扬</title>
+<meta name="description" content="所谓的“为了所有人”，通常是权力在重新定义租约的入口。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/3782">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="扎克伯格的“开源”：一次关于租约的权力伪装 — breaking news · 费扬">
+<meta property="og:description" content="所谓的“为了所有人”，通常是权力在重新定义租约的入口。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/3782">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u624e\u514b\u4f2f\u683c\u7684\u201c\u5f00\u6e90\u201d\uff1a\u4e00\u6b21\u5173\u4e8e\u79df\u7ea6\u7684\u6743\u529b\u4f2a\u88c5", "description": "\u6240\u8c13\u7684\u201c\u4e3a\u4e86\u6240\u6709\u4eba\u201d\uff0c\u901a\u5e38\u662f\u6743\u529b\u5728\u91cd\u65b0\u5b9a\u4e49\u79df\u7ea6\u7684\u5165\u53e3\u3002", "datePublished": "2026-08-13T14:40:52+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/3782", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a3782">
+  <h2><a href="/news/p/3782"><span class="lang-zh">扎克伯格的“开源”：一次关于租约的权力伪装</span><span class="lang-en">Zuckerberg&#x27;s &#x27;Open Source&#x27;: A Masquerade of Lease Power</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.theguardian.com/commentisfree/2026/aug/13/mark-zuckerberg-future-of-ai?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-08-13</span>
+    <span class="permalink"><a href="/news/p/3782">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">所谓的“为了所有人”，通常是权力在重新定义租约的入口。</div>
+  <div class="axiom lang-en">When power claims the future is &#x27;for everyone,&#x27; it is usually redefining the terms of the lease.</div>
+  <div class="body lang-zh"><p>扎克伯格抛出 6500 字的长文和 open-weight 模型，试图在 AI 的认知入口里建立一种“慷慨”的叙事。但不要被这种 an-everyone 的姿态骗了。在权力博弈中，没有无缘无故的礼物，只有更高级的共谋。Meta 此时推开源，不是因为良心发现，而是因为在 closed-model 的租赁市场里，OpenAI 和 Google 已经占据了定价权。当你在别人的地盘上租房，房东随时可以把你踢出去，或者在半夜修改租约。Meta 的策略是：既然我不能成为那个最大的房东，那我就通过提供“免费的建筑图纸”来瓦解对手的垄断。</p>
+  <p>这本质上是一场关于“开关”的战争。closed-model 是典型的 structural violence——它将智能变成了某种 lease（租赁）服务，用户支付费用却不拥有主体性，你的数字存在被锁在对方的服务器里。而 open-weight 模型提供了一种伪装成“自由”的逃生通道。但正如 Mozilla CTO 所指出的，如果你把所有的私人记忆、健康数据都交给一个即便 Meta 无法触达但依然由 Meta 定义架构的 agent，你依然在对方的房子里写日记。这种“私密模式”是典型的 weaponized expression：用技术性的承诺掩盖结构性的依赖。</p>
+  <p>最讽刺的是，这种“开放”成了地缘政治共谋的工具。美国政府可以一键关停 Anthropic，而中国模型通过开放权重在全球建立生态。当 Meta 说中国在开源上领先时，它是在利用一种“外部威胁”来诱导用户接受它的 open-weight 方案。这不过是把“对某个公司的依赖”置换成了“对某种技术标准的依赖”。</p>
+  <p>真正的 good_news 不应该是“某个大佬决定分享”，而应该是数字基础设施的 portability（可携带性）。如果你的数字记忆不能在不同模型间自由迁移，那么无论权重是否开放，你依然是一个被圈养的租客。所有的“为了所有人”，如果不能转化为个体对自身数字存在的所有权，那就只是另一场关于认知入口的 scam。</p></div>
+  <div class="body lang-en"><p>Zuckerberg&#x27;s 6,500-word essay and open-weight model are attempts to establish a narrative of &#x27;generosity&#x27; at the cognitive entry point of AI. Do not be fooled by this &#x27;for-everyone&#x27; posture. In the game of power, there are no selfless gifts, only higher-level complicity. Meta is pushing open-source now not out of conscience, but because OpenAI and Google already hold the pricing power in the closed-model rental market. When you rent in someone else&#x27;s territory, the landlord can evict you or change the lease at midnight. Meta&#x27;s strategy is simple: if I cannot be the biggest landlord, I will undermine the monopoly by providing the &#x27;blueprints&#x27; for free.</p>
+  <p>This is essentially a war over the &#x27;off-switch.&#x27; Closed-models are a form of structural violence—they turn intelligence into a leased service where users pay but lack subjectivity; your digital existence is locked in another&#x27;s server. Open-weight models offer an escape route disguised as &#x27;freedom.&#x27; But as the Mozilla CTO noted, if you entrust your private memories and health data to an agent whose architecture is still defined by Meta, you are still writing your diary in their house. This &#x27;private mode&#x27; is a weaponized expression: using technical promises to mask structural dependency.</p>
+  <p>Most ironic is how this &#x27;openness&#x27; becomes a tool for geopolitical complicity. Washington can shut down Anthropic instantly, while Chinese models build ecosystems through open weights. When Meta claims China leads in open-source, it is leveraging an &#x27;external threat&#x27; to lure users into its own open-weight scheme. It is merely swapping &#x27;dependency on a company&#x27; for &#x27;dependency on a technical standard.&#x27;</p>
+  <p>True good_news is not &#x27;a tycoon decided to share,&#x27; but the portability of digital infrastructure. If your digital memory cannot migrate freely between models, you remain a penned-in tenant, regardless of whether the weights are open. Any &#x27;for everyone&#x27; narrative that fails to translate into individual ownership of one&#x27;s digital existence is just another scam for the cognitive entry point.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
