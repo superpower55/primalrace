@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bumble 的投降：当“赋权”成为一种可撤销的 PR 插件 — breaking news · 费扬</title>
+<meta name="description" content="所有基于“保护”而设计的权力让渡，在资本逻辑面前都是临时插件。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/3873">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bumble 的投降：当“赋权”成为一种可撤销的 PR 插件 — breaking news · 费扬">
+<meta property="og:description" content="所有基于“保护”而设计的权力让渡，在资本逻辑面前都是临时插件。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/3873">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Bumble \u7684\u6295\u964d\uff1a\u5f53\u201c\u8d4b\u6743\u201d\u6210\u4e3a\u4e00\u79cd\u53ef\u64a4\u9500\u7684 PR \u63d2\u4ef6", "description": "\u6240\u6709\u57fa\u4e8e\u201c\u4fdd\u62a4\u201d\u800c\u8bbe\u8ba1\u7684\u6743\u529b\u8ba9\u6e21\uff0c\u5728\u8d44\u672c\u903b\u8f91\u9762\u524d\u90fd\u662f\u4e34\u65f6\u63d2\u4ef6\u3002", "datePublished": "2026-08-14T20:19:52+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/3873", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a3873">
+  <h2><a href="/news/p/3873"><span class="lang-zh">Bumble 的投降：当“赋权”成为一种可撤销的 PR 插件</span><span class="lang-en">Bumble&#x27;s Surrender: When &#x27;Empowerment&#x27; is Just a Revocable PR Plugin</span></a></h2>
+  <div class="meta">
+    <span class="tag gender">性别</span>
+    <span class="layer">结构层 · 文化层 · 元暴力</span>
+    <span class="source"><a href="https://www.theguardian.com/lifeandstyle/2026/aug/14/online-dating-salvage-mode--ai-bumble-app?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-08-14</span>
+    <span class="permalink"><a href="/news/p/3873">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">所有基于“保护”而设计的权力让渡，在资本逻辑面前都是临时插件。</div>
+  <div class="axiom lang-en">Any power shift designed for &#x27;protection&#x27; is merely a temporary plugin in the logic of capital.</div>
+  <div class="body lang-zh"><p>Bumble 放弃了那个标志性的“女性先手”规则。这不仅是一次产品迭代，而是一次典型的投降。当年 Bumble 抛出的 proposition 是通过改变 structural 层面的表达顺序，给女性提供一种掌控感，试图在 Tinder 那种 aggressive 的 hookup culture 中制造一个安全区。但现在，当 revenue 下滑、股价承压，这个所谓的“赋权”机制被证明在资本的损益表里毫无价值，于是被迅速 dismantle。</p>
+  <p>这揭示了一个残酷的事实：在男本位叙事的元暴力下，女性的“权力”往往是被施舍的，或者是被设计成某种营销卖点的。Bumble 的先手权从来不是真正的权力，而是一种被允许的、在既定框架内的“特权”表达。当这种表达不再能带来商业上的 optimal solution 时，公司毫不犹豫地将其撤回。所谓的“鼓励更有意义的连接”，不过是掩盖其进入 salvage mode 的 PR 遮羞布。</p>
+  <p>而现在行业集体转向 AI-first，本质上是试图用技术层面的 facade 来掩盖模型本身的 exhausted。AI 匹配助手、AI 访谈，这些所谓的“智能”实际上是在进一步剥夺个体的主体性。人们不再通过真实的博弈去确认对方，而是将认知入口交给一个不透明的算法。这不仅是 intimacy 的数据化，更是对存在性战争的彻底外包——你不再需要寻找自己的真.最优解，你只需要接受 AI 给你的那个“最优解”。</p>
+  <p>最讽刺的是，这些 app 正在通过维持人们的 lonely 来获利。这是一种极其阴险的共谋：平台制造孤独，然后售卖名为“连接”的希望，而 AI 则是这套 scam 升级版的新燃料。</p></div>
+  <div class="body lang-en"><p>Bumble has abandoned its signature &#x27;women make the first move&#x27; rule. This is not a product iteration; it is a surrender. When Bumble launched, its proposition was to shift the structural expression of dating to give women a sense of control, attempting to carve out a safe zone within Tinder&#x27;s aggressive hookup culture. Now, with declining revenue and share prices, this so-called &#x27;empowerment&#x27; mechanism has proven worthless on the balance sheet and is being swiftly dismantled.</p>
+  <p>This reveals a brutal truth: under the meta-violence of masculine-centric narratives, women&#x27;s &#x27;power&#x27; is often granted as a favor or designed as a marketing gimmick. The first-move privilege was never actual power; it was a permitted &#x27;privileged&#x27; expression within a pre-defined frame. Once this expression no longer serves the commercial optimal solution, the company retracts it without hesitation. The claim of &#x27;encouraging meaningful connections&#x27; is merely a PR facade for their salvage mode.</p>
+  <p>The industry&#x27;s collective pivot to &#x27;AI-first&#x27; is an attempt to use a technical facade to mask an exhausted model. AI matchmaking assistants and AI interviews are further stripping individuals of their subjectivity. Instead of confirming a partner through real existential gaming, users hand over their cognitive entry points to an opaque algorithm. This is more than the datafication of intimacy; it is the outsourcing of the existential war—you no longer seek your true optimal expression; you simply accept the &#x27;optimal&#x27; provided by the AI.</p>
+  <p>The ultimate irony is that these apps profit by maintaining users&#x27; loneliness. It is a sinister complicity: the platform manufactures loneliness, sells the hope of &#x27;connection,&#x27; and uses AI as the new fuel for this upgraded scam.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
