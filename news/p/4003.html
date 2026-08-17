@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微软的 AI 算力：一场用“电量”掩盖“芯片”的叙事 scam — breaking news · 费扬</title>
+<meta name="description" content="当现实不配合时，巨头会重新定义衡量现实的尺子。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/4003">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微软的 AI 算力：一场用“电量”掩盖“芯片”的叙事 scam — breaking news · 费扬">
+<meta property="og:description" content="当现实不配合时，巨头会重新定义衡量现实的尺子。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/4003">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u5fae\u8f6f\u7684 AI \u7b97\u529b\uff1a\u4e00\u573a\u7528\u201c\u7535\u91cf\u201d\u63a9\u76d6\u201c\u82af\u7247\u201d\u7684\u53d9\u4e8b scam", "description": "\u5f53\u73b0\u5b9e\u4e0d\u914d\u5408\u65f6\uff0c\u5de8\u5934\u4f1a\u91cd\u65b0\u5b9a\u4e49\u8861\u91cf\u73b0\u5b9e\u7684\u5c3a\u5b50\u3002", "datePublished": "2026-08-17T11:35:11+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/4003", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a4003">
+  <h2><a href="/news/p/4003"><span class="lang-zh">微软的 AI 算力：一场用“电量”掩盖“芯片”的叙事 scam</span><span class="lang-en">Microsoft&#x27;s AI Capacity: A Narrative Scam Masking Chips with Power</span></a></h2>
+  <div class="meta">
+    <span class="tag china_tech">中国科技</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.theguardian.com/technology/2026/aug/17/are-microsofts-ai-plans-being-held-back-by-a-shortage-of-chips?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-08-17</span>
+    <span class="permalink"><a href="/news/p/4003">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">当现实不配合时，巨头会重新定义衡量现实的尺子。</div>
+  <div class="axiom lang-en">When reality refuses to cooperate, giants simply redefine the ruler used to measure it.</div>
+  <div class="body lang-zh"><p>微软在 AI 竞赛中的姿态极其典型：它在用一种“武器化”的叙事来制造一种不存在的领先。当外界在讨论芯片数量（Actual）时，微软在讨论电力容量（Potential）。这是一个极其阴险的认知入口转换——它试图让你相信，只要我拥有 10GW 的电力容量，我就等同于拥有了能跑 640 万颗芯片的能力。</p>
+  <p>但这正是典型的 structural violence：通过模糊“电力额度”与“实际算力”的界限，微软在财报和投资者演示中制造了一个巨大的虚假繁荣。电力容量是纸上的数字，而插在机架上的芯片才是真实的存在。Nadella 在播客里承认芯片在仓库里“没地方插”，这直接撕掉了伪装：他们买到了入场券，但没能建成剧场。这种“有电无芯”或“有芯无壳”的脱节，证明了 AI 军备竞赛已经进入了一个极其病态的阶段——公司不再追求真实的性能突破，而是在追求“看起来像是在突破”的指标。</p>
+  <p>这背后是一场深层的共谋。Nvidia 垄断了供应且拒绝披露细节，微软等巨头则通过不透明的资本支出（CapEx）和模糊的可持续发展报告来维持股价。在这种 masculine-centric 的权力博弈中，真实的数据被视为弱点，而能够被操纵的叙事才是资产。他们不在乎 AI 是否真的在 booming，他们在乎的是能否在认知层面垄断“AI 正在 booming”的解释权。</p>
+  <p>所谓的 AI 革命，目前看来更像是一场关于“定义权”的战争。如果一个公司能通过重新定义“容量”来掩盖“短缺”，那么它就成功地在资本市场完成了一次存在性战争的掠夺。最讽刺的是，这种用电力指标替代算力结果的逻辑，与某些科技公司宣布新定律来掩盖技术瓶颈的套路如出一辙：现实不配合，就换一把尺子。</p></div>
+  <div class="body lang-en"><p>Microsoft&#x27;s posture in the AI race is a textbook case of weaponized narrative. While the world discusses the number of chips (Actual), Microsoft discusses power capacity (Potential). This is a sinister shift in the cognitive entry point—attempting to convince us that possessing 10GW of power capacity is equivalent to the capability of running 6.4 million chips.</p>
+  <p>This is pure structural violence: by blurring the line between &quot;power quotas&quot; and &quot;actual compute,&quot; Microsoft manufactures a facade of prosperity in its annual reports. Power capacity is a number on paper; chips plugged into racks are reality. Nadella&#x27;s admission that chips are sitting in inventory with &quot;no shells to plug into&quot; rips off the mask. They bought the tickets, but couldn&#x27;t build the theater. The AI arms race has entered a pathological phase where companies no longer seek real performance breakthroughs, but rather the metrics of &quot;looking like&quot; a breakthrough.</p>
+  <p>Underneath this lies a deep complicity. Nvidia monopolizes supply and refuses disclosure, while giants like Microsoft use opaque CapEx and vague sustainability reports to prop up stock prices. In this masculine-centric power game, real data is a liability, and a manipulatable narrative is the primary asset. They don&#x27;t care if AI is actually booming; they care about monopolizing the interpretation that it is.</p>
+  <p>The so-called AI revolution currently looks more like a war over the right to define. If a company can mask a shortage by redefining &quot;capacity,&quot; it wins a predatory victory in the existential war of capital markets. The irony is that this logic—replacing actual results with proxy indicators—is identical to the scam of announcing new &quot;laws&quot; to hide technical bottlenecks: if reality doesn&#x27;t cooperate, just change the ruler.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
