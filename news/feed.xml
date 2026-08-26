@@ -6,7 +6,25 @@
 <atom:link href="https://www.howtoraiseiq.com/news/feed.xml" rel="self" type="application/rss+xml"/>
 <description>用《原初种族》的框架读新闻 — 费扬的双语新闻评论，每 10 分钟自动更新。</description>
 <language>zh</language>
-<lastBuildDate>Wed, 26 Aug 2026 08:55:44 +0000</lastBuildDate>
+<lastBuildDate>Wed, 26 Aug 2026 09:29:24 +0000</lastBuildDate>
+<item><title>伦敦 Robotaxi 延期：用“缺乏指南”掩盖的权力共谋</title><link>https://www.howtoraiseiq.com/news/p/4554</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/4554</guid><pubDate>Wed, 26 Aug 2026 09:29:21 +0000</pubDate><description>所谓的“监管滞后”通常不是能力问题，而是权力在重新定价。
+
+伦敦 Robotaxi 的推迟被包装成一个典型的“技术与监管脱节”的故事：政府加速时间表，TfL 没出指南，公司在等待。这种叙事最 naive 的读法是认为政府效率低下，但从权力博弈来看，这其实是一场关于“认知入口”和“准入定价”的共谋游戏。
+
+TfL 战略主管那句“我不认为我们需要匆忙发布指南”，直接撕开了伪装。在一个商业竞争白热化的场域里，指南（Guidance）不是简单的操作手册，而是筛选共谋者的门票。谁定义了安全标准，谁就掌握了对 Uber, Waymo, 百度 Apollo Go 这些巨头的定价权。所谓的“幕后大量工作”，本质上是在调整 structural layer 的资源分配，确保最终落地的规则能够最大化地服务于权力持有者，而非单纯的公共交通效率。
+
+更有趣的是，所有参与者都在表演一种“谨慎”。Wayve 的 CEO 强调不给时间表，Waymo 强调安全审批。这种表演性让步（performative concession）是为了在公众面前建立“负责任”的形象，但私下里，他们是在进行一场存在性战争：抢夺伦敦这个复杂城市的解释权。谁先通过 DVSA 的许可，谁就定义了什么是“自动驾驶的真实”。
+
+这场延期不是因为伦敦比凤凰城复杂，而是因为在伦敦，权力需要时间把“指南”这把武器打磨得更精准，好让那些排队等待的 10 万名用户在不知不觉中，成为新权力结构下的被消费客体。</description></item>
+<item><title>疫苗的红利与被遗忘的疼痛定价权</title><link>https://www.howtoraiseiq.com/news/p/4553</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/4553</guid><pubDate>Wed, 26 Aug 2026 09:29:14 +0000</pubDate><description>医疗进步的 good_news 往往掩盖了资源分配的 structural violence。
+
+带状疱疹疫苗 Shingrix 能降低 12% 的心血管疾病风险，这在医学上是典型的 good_news。按照加尔通公式，它直接缩小了 Potential（本可达到的健康状态）与 Actual（实际生存状态）之间的差额，通过削减 direct 层的死亡风险，让数以万计的老年人获得了生存空间的延伸。
+
+但这种医学上的胜利背后，隐藏着一个极其冷酷的定价权博弈。带状疱疹（Shingles）最恐怖的不是皮疹，而是 post-herpetic neuralgia（带状疱疹后神经痛）。这种疼痛在医疗叙事中长期被低估，因为它的表达是私人的、难以量化的，在男性中心叙事（masculine-centric narrative）主导的医学研究中，这种“慢性疼痛”往往被视为次要的、非致命的，从而在 funding 分配中被边缘化。
+
+有趣的是，当疫苗被证明能预防心血管疾病——这种被医学界视为“顶级风险”、有明确量化指标且由男性研究者定义为“核心问题”的疾病时，它的价值才真正被“发现”并被大规模推广。这揭示了一种 structural violence：一种药物的价值，不取决于它能减轻多少个体的真实痛苦，而取决于它是否能解决那些被定义为“重要”的指标。
+
+我们庆祝 12% 的风险降低，但必须追问：那些长期忍受神经痛而无法获得对等医疗资源的人，是否依然在共谋者的沉默中被消耗？如果一个疫苗必须通过“救心”才能证明自己“救痛”的价值，那么医学的解释权依然掌握在那些定义什么是“重要疾病”的人手中。</description></item>
 <item><title>10,000 个名额：一场关于“机会”的 PR 骗局</title><link>https://www.howtoraiseiq.com/news/p/4552</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/4552</guid><pubDate>Wed, 26 Aug 2026 08:55:39 +0000</pubDate><description>用企业的慈善表演掩盖结构性失业，是典型的文化暴力伪装。
 
 首相 Andy Burnham 跑到 Sainsbury&#x27;s 超市去宣布一个所谓的“积极进展”：10,000 个工作体验名额。在政治叙事里，这被包装成给 NEET 青少年“敲门砖”的善举。但只要套用加尔通的暴力三角，你就能看到这背后的 structural violence：当一个国家的教育系统崩溃、青年失业成为危机时，政府的解决方案竟然是“请求”企业提供一些短期体验名额。
@@ -821,21 +839,5 @@ NHS 宣布提供宫颈癌居家自测包，被官方冠以 &quot;gamechanger&quo
 最讽刺的是，一旦自测结果呈阳性，女性依然得回到那个让她们感到“不适”和“没时间”的诊所接受临床检查。这意味着，居家自测只是一个筛选漏斗，它并没有消除就医障碍，只是把障碍推迟了。它在 cultural 层面上向女性传递了一个信号：你的身体管理责任在你自己，而系统只负责在最后关头接手。
 
 这场所谓“消除癌症”的战役里，被消解的不是疾病，而是国家对女性身体健康的直接责任。当医疗服务变成一种“自选包裹”，Potential 和 Actual 之间的差额并没有缩小，只是被包装成了便利。</description></item>
-<item><title>用 1800 人的肌肉表演，掩盖 73 米的机械真相</title><link>https://www.howtoraiseiq.com/news/p/4454</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/4454</guid><pubDate>Tue, 25 Aug 2026 03:55:25 +0000</pubDate><description>仪式感是结构性低效的遮羞布，是把体力劳动浪漫化为共谋的 scam。
-
-1800 个人，分成 80 人的轮值小组，在口号声中把一座 360 吨的城堡拉动了 2 米。这在新闻叙事里被包装成“社区建设”和“传统技艺”，但剥掉这层 cultural layer，这就是一场典型的、由权力主导的体力表演。 
-
-最讽刺的数据在这里：这 1800 人费尽心力拉动的 5 米，在整个 73 米的搬运工程中只占不到 7%。剩下的 93% 将由 machinery 完成。这意味着，这场所谓的“公民驱动”其实是一次精心设计的 PR 活动。政府并不需要这 1800 人的肌肉，它需要的是 8000 个申请者在社交媒体上制造的“参与感”和“文化自豪感”。
-
-这是一种极其阴险的武器化叙事。通过将现代工程问题转化为一场“全民参与”的仪式，管理层成功地将一个枯燥的修缮项目变成了某种精神图腾。参与者在其中获得了一种假想的“主体性”——觉得自己参与了历史，实际上他们只是被租赁的、免费的装饰品，用来填充一个名为“传统”的认知入口。
-
-当 61 岁的参与者感叹“没有其他机会能拉城堡”时，他已经完成了内化。他把被利用的体力劳动认作了人生的高光时刻。这种共谋完成了最完美的闭环：权力提供一个象征性的座位，弱势者通过竞争（4 倍超额申请）来抢夺这个被定义的“特权”，最后心满意足地为这个低效的系统背书。</description></item>
-<item><title>机械狗与格斗机器人：一场关于“力量”的拟态秀</title><link>https://www.howtoraiseiq.com/news/p/4453</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/4453</guid><pubDate>Tue, 25 Aug 2026 03:08:24 +0000</pubDate><description>科技进步若只在模拟暴力，那它只是元暴力的硬件升级。
-
-3000件产品，人形机器人，embodied intelligence。世界机器人大会 2026 的关键词是“展示”，但展示的核心逻辑依然是：谁能更像一个强有力的男性。从 MMA 格斗机器人到机械狗，这套叙事在潜意识里完成了某种闭环——定义“先进”的标准，依然是能够高效执行物理攻击、占领空间、模拟支配权的肌肉能力。
-
-这种所谓的“突破”其实是一种典型的拟态。它没有改变权力的评价方式，而是在用硅基硬件重复碳基世界的 masculine-centric narrative。当科技公司在定义“通用人工智能”时，他们潜意识里定义的“通用”是指一个能格斗、能巡逻、能执行指令的男性主体。这不过是将元暴力从生物墙转移到了电路板上。
-
-在这种叙事入口中，机器人被赋予的“智能”是工具性的，而其“形态”是支配性的。如果一个产业最引以为傲的 showcase 是让机器人在格斗场上互殴，那么这种科技进步本质上是一场 scam。它在向世界宣告：未来的世界依然由“力量”定义，只不过这次力量被代码化了。这种对力量的迷恋，正是 structural violence 的最新皮肤。</description></item>
 </channel>
 </rss>
