@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AOC 的入党申请书：一次关于“门票”的精准博弈 — breaking news · 费扬</title>
+<meta name="description" content="政治身份不是信仰的勋章，而是进入特定权力赛道的入场券。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/4591">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AOC 的入党申请书：一次关于“门票”的精准博弈 — breaking news · 费扬">
+<meta property="og:description" content="政治身份不是信仰的勋章，而是进入特定权力赛道的入场券。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/4591">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AOC \u7684\u5165\u515a\u7533\u8bf7\u4e66\uff1a\u4e00\u6b21\u5173\u4e8e\u201c\u95e8\u7968\u201d\u7684\u7cbe\u51c6\u535a\u5f08", "description": "\u653f\u6cbb\u8eab\u4efd\u4e0d\u662f\u4fe1\u4ef0\u7684\u52cb\u7ae0\uff0c\u800c\u662f\u8fdb\u5165\u7279\u5b9a\u6743\u529b\u8d5b\u9053\u7684\u5165\u573a\u5238\u3002", "datePublished": "2026-08-27T00:48:41+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/4591", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a4591">
+  <h2><a href="/news/p/4591"><span class="lang-zh">AOC 的入党申请书：一次关于“门票”的精准博弈</span><span class="lang-en">AOC&#x27;s Membership Renewal: A Precise Gamble for the Power Ticket</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">文化层 · 结构层</span>
+    <span class="source"><a href="https://www.theguardian.com/us-news/2026/aug/26/alexandria-ocasio-cortez-rejoins-dsa?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-08-27</span>
+    <span class="permalink"><a href="/news/p/4591">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">政治身份不是信仰的勋章，而是进入特定权力赛道的入场券。</div>
+  <div class="axiom lang-en">Political identity is not a badge of faith, but an admission ticket to a specific power track.</div>
+  <div class="body lang-zh"><p>这就是一场典型的存在性战争 (Existential War)。AOC 在 2019 年到 2026 年之间让会费失效，这在生物学意义上叫“脱壳”，在政治意义上叫“保留冗余”。当 2028 年总统大选的潜在大门开启，当 DSA 成为一个具有规模效应的认知入口 (Cognitive Entry) 时，她迅速补缴会费。这种操作不是信仰的回归，而是对“最优解表达” (Optimal Expression) 的精准计算：在需要左翼纯洁性背书时，她必须是“member in good standing”。</p>
+  <p>有趣的是 DSA 的反应。这个组织在 2020 年和 2024 年依然习惯性地称她为“成员”，这是一种典型的共谋 (Complicity)。双方在很长一段时间里维持着一种互利共生的假象：DSA 需要 AOC 带来的流量和可见度，AOC 需要 DSA 提供的激进标签。直到 2024 年因为巴勒斯坦问题被撤销背书，这种共谋才出现了裂痕。但裂痕并不致命，因为在权力博弈中，标签是可以重新购买和修补的。</p>
+  <p>这次“重新加入”揭示了政治叙事的武器化 (Weaponisation)。所谓的“社会主义项目”在这里变成了一种可以随时续费的订阅服务。当一个政治人物将身份认同视为一种工具而非主体性时，她就在扮演一个角色以换取短期利益。这种“假.最优解表达”的代价是主体性的消亡，但回报是权力席位的增加。对于 AOC 来说，这笔交易极其划算。</p></div>
+  <div class="body lang-en"><p>This is a classic Existential War. AOC let her membership lapse from 2019 to 2026—a &#x27;molting&#x27; in biological terms, and &#x27;maintaining redundancy&#x27; in political terms. As the potential gates to the 2028 presidency open and the DSA becomes a scaled Cognitive Entry, she swiftly pays her dues. This is not a return to faith, but a calculated move for the Optimal Expression: when the endorsement of left-wing purity is required, she must be a &#x27;member in good standing.&#x27;</p>
+  <p>The DSA&#x27;s reaction is equally telling. The organization continued to call her a &#x27;member&#x27; in 2020 and 2024, a textbook example of Complicity. Both parties maintained a symbiotic illusion for years: the DSA needed AOC&#x27;s visibility, and AOC needed the radical label provided by the DSA. The crack only appeared in 2024 over the Palestine issue, but the crack isn&#x27;t fatal. In the game of power, labels can be repurchased and repaired.</p>
+  <p>This &#x27;rejoining&#x27; exposes the Weaponisation of political narratives. The so-called &#x27;socialist project&#x27; has become a subscription service that can be renewed at any time. When a politician treats identity as a tool rather than a manifestation of subjectivity, she is performing a role for short-term gain. This &#x27;false Optimal Expression&#x27; costs her subjectivity but wins her a seat of power. For AOC, the trade-off is incredibly profitable.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
