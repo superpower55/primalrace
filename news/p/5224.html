@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>所谓的“沉默杀手”，其实是医疗资源的结构性失语 — breaking news · 费扬</title>
+<meta name="description" content="医疗数据的plateau（平台期）本质上是资源分配的structural violence。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/5224">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="所谓的“沉默杀手”，其实是医疗资源的结构性失语 — breaking news · 费扬">
+<meta property="og:description" content="医疗数据的plateau（平台期）本质上是资源分配的structural violence。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/5224">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u6240\u8c13\u7684\u201c\u6c89\u9ed8\u6740\u624b\u201d\uff0c\u5176\u5b9e\u662f\u533b\u7597\u8d44\u6e90\u7684\u7ed3\u6784\u6027\u5931\u8bed", "description": "\u533b\u7597\u6570\u636e\u7684plateau\uff08\u5e73\u53f0\u671f\uff09\u672c\u8d28\u4e0a\u662f\u8d44\u6e90\u5206\u914d\u7684structural violence\u3002", "datePublished": "2026-09-23T23:56:01+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/5224", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a5224">
+  <h2><a href="/news/p/5224"><span class="lang-zh">所谓的“沉默杀手”，其实是医疗资源的结构性失语</span><span class="lang-en">The &#x27;Silent Killer&#x27; is Actually Structural Silence in Healthcare</span></a></h2>
+  <div class="meta">
+    <span class="tag philosophy">哲学</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.theguardian.com/society/2026/sep/23/approach-to-high-blood-pressure-in-england-not-fit-for-purpose?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-09-23</span>
+    <span class="permalink"><a href="/news/p/5224">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">医疗数据的plateau（平台期）本质上是资源分配的structural violence。</div>
+  <div class="axiom lang-en">The plateau in health data is a manifestation of structural violence in resource allocation.</div>
+  <div class="body lang-zh"><p>把高血压称为“沉默杀手” (silent killer) 是一种典型的叙事 weaponization。它将一种系统性的医疗失效，包装成了一种生物学上的“诡计”，让公众以为危险来自于疾病本身的隐蔽性，而非医疗体系的无能。当 59% 的患者处于 undiagnosed 状态，且即便在治疗中仍有 50% 的人无法控制血压时，这已经不是医疗技术的局限，而是结构性暴力 (structural violence) 的具象化。</p>
+  <p>注意到数据中一个极具讽刺的细节：高血压在男性中比女性高出 50% (42% vs 29%)。在传统的 masculine-centric narrative 中，男性被塑造为力量与掌控的象征，但现实是他们在这个所谓的“健康管理”博弈中输得最惨。男性在公共领域占据主导，但在面对自身的生物墙和医疗资源分配时，他们往往陷入一种“强者”的共谋——认为身体的损耗是成功的代价，从而在潜意识中忽视了早期的预警信号。</p>
+  <p>研究提到 2011 年后进展 plateau，且疫情后趋势恶化。这说明医疗体系的 Actual 状态远低于其 Potential。这种差额就是暴力。当医疗资源被优先分配给那些能够定义“什么是重要疾病”的人时，像高血压这种需要长期、细碎管理且缺乏“戏剧性”的慢性病，在资源博弈中自然被边缘化。这不是个案的疏忽，而是系统在运行逻辑上就决定了谁会被“沉默”地杀掉。</p>
+  <p>不要被那些关于“饮食、盐分、生活压力”的个体化解释给骗了。当一个国家的医疗筛查机制失效到让数百万人都 oblivious 时，把责任推给个体的 lifestyle 是一种极其卑劣的共谋。这不过是在用“个人责任”掩盖“结构崩塌”。</p></div>
+  <div class="body lang-en"><p>Labeling hypertension as a &quot;silent killer&quot; is a classic form of narrative weaponization. It frames a systemic medical failure as a biological &quot;trick,&quot; leading the public to believe the danger lies in the disease&#x27;s stealth rather than the system&#x27;s incompetence. When 59% of patients remain undiagnosed and 50% of those treated still have uncontrolled blood pressure, we are no longer talking about technical limitations, but structural violence.</p>
+  <p>There is a poignant irony in the data: hypertension is 50% more common in men than women (42% vs 29%). Within the masculine-centric narrative, men are cast as symbols of power and control, yet they are the biggest losers in this health management game. While dominating the public sphere, men often fall into a complicity of &quot;strength&quot;—viewing physical attrition as the price of success, thereby subconsciously ignoring early warning signs.</p>
+  <p>The reported plateau since 2011 and the post-pandemic decline reveal that the Actual state of healthcare is far below its Potential. This gap is the definition of violence. When medical resources are prioritized for those who define &quot;what constitutes a priority disease,&quot; chronic conditions like hypertension—which require long-term, mundane management—are naturally marginalized in the resource博弈.</p>
+  <p>Do not be deceived by individualized explanations regarding &quot;diet, salt, or life pressure.&quot; When a national screening mechanism fails so profoundly that millions remain oblivious, shifting the blame to individual lifestyle is a despicable form of complicity. It is simply using &quot;personal responsibility&quot; to mask &quot;structural collapse.&quot;</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
