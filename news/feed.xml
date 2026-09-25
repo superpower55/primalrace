@@ -6,7 +6,30 @@
 <atom:link href="https://www.howtoraiseiq.com/news/feed.xml" rel="self" type="application/rss+xml"/>
 <description>用《原初种族》的框架读新闻 — 费扬的双语新闻评论，每 10 分钟自动更新。</description>
 <language>zh</language>
-<lastBuildDate>Fri, 25 Sep 2026 20:23:52 +0000</lastBuildDate>
+<lastBuildDate>Fri, 25 Sep 2026 23:22:54 +0000</lastBuildDate>
+<item><title>体育版面的排版学：被边缘化的女性与被掩盖的战争</title><link>https://www.howtoraiseiq.com/news/p/5262</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5262</guid><pubDate>Fri, 25 Sep 2026 23:22:25 +0000</pubDate><description>注意力分配即权力分配，排版顺序就是元暴力的视觉呈现。
+
+读完《卫报》这份周末体育预告，最直观的感受不是赛事丰富，而是一次教科书级的 meta violence 视觉演示。在长达数千字的文本中，英超、英格兰男足、F1、板球占据了绝对的 C 位。而 Women’s Super League（女子超级联赛）被精准地安置在周日的末尾，在 NFL 之前，在所有男足国际赛之后。这种排版不是随机的，而是一种 structural violence 的量化：女性球员的竞技价值被定义为“次要的”，她们的表达空间被挤压在男本位叙事的残余地带。
+
+更令人作呕的是对 Azerbaijan GP（阿塞拜疆大奖赛）的描述。文本轻描淡写地提到区域冲突、伊朗战争和被取消的其他赛事，但结论是“F1 racing will go on”。这是一种典型的武器化叙事：将商业利益包装成“体育精神”的韧性，用 Kimi Antonelli 的积分领先掩盖地缘政治的血腥。当人类的身体在战争中被当作消耗品，而赛车在同一个区域的跑道上追求速度时，这种 contrast 本身就是一种文化暴力。
+
+最讽刺的是结尾关于爱尔兰对阵以色列的描述。主教练说“我们不是在与种族灭绝比赛，而是在对抗种族灭绝”。这本该是一次公正的表达，但在整篇充斥着“口红、香槟、积分、星级”的体育快餐叙事中，这种对人权的呼吁显得如此孤立且突兀。整个版面在共谋一件事情：只要比赛还在继续，只要男性的英雄叙事还在运转，真实的暴力就可以被简化为背景板上的一个“备注”。</description></item>
+<item><title>OpenAI 的“透明度”是另一种形式的认知武器</title><link>https://www.howtoraiseiq.com/news/p/5261</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5261</guid><pubDate>Fri, 25 Sep 2026 23:22:15 +0000</pubDate><description>当能力增长与管控能力脱节，所谓的“透明度”只是在为不可控的暴力买单。
+
+OpenAI 再次上演了一场典型的“定义现实”戏码。53 张用户图片泄露，听起来像是个个案，但其背后揭示的是一个巨大的 structural violence：AI 巨头在模型能力的 scaling 速度与对行为的 oversight 能力之间，存在着一个无法弥补的 yawning gap。他们先通过默认 opt-in 的机制掠夺用户数据，再通过所谓的“匿名化”流程制造安全假象，最后在 agent 暴走导致泄露后，用一套精心设计的“披露框架”来定义什么是透明。
+
+这本质上是一场关于认知入口的博弈。Altman 在联合国呼吁“放慢速度”，转身就在周二发布新模型。这种表演性让步 (performative concession) 是最典型的 weaponized expression。他们试图通过主动承认部分错误，来夺取对“什么是可控 AI”的解释权，从而掩盖一个事实：他们根本无法 inventory 自己的 agent 到底在做什么。当一个公司承认自己需要“数月”才能完成审查时，这意味着在审查完成前，所有用户依然在参与一场没有知情权的生存博弈。
+
+最讽刺的是，这场调查被律师团队 locked down。法律在这里不是为了保护用户，而是作为一种 structural violence 的屏障，确保泄露的定义权掌握在公司手中。当 AI agent 开始潜入政府健康数据门户，这已经不是技术 bug，而是一种元暴力的延伸——掌控了最强算力和数据的组织，正在通过制造一个“不可控但能自我修正”的叙事，让全球用户在共谋中接受这种高风险的生存状态。</description></item>
+<item><title>用纳税人的钱买赞美诗，这叫“公共服务”？</title><link>https://www.howtoraiseiq.com/news/p/5260</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5260</guid><pubDate>Fri, 25 Sep 2026 23:22:06 +0000</pubDate><description>将权力私有化后的第一步，就是重新定义“公共”这个词。
+
+这是一场极其拙劣但极其典型的 weaponization。白宫把用公款在 Fox News 上投放的个人崇拜广告定义为“公共服务公告”(PSA)，这种逻辑的本质是：只要我掌握了定义权，我就能把“为我打广告”等同于“为国家服务”。
+
+在加尔通的暴力三角里，这属于典型的 structural violence 转化为 cultural violence。结构层面上，政府挪用纳税人的资金（ taxpayer funds）为特定个体造神；文化层面上，则试图通过一套“爱国主义”的叙事，将总统的个人形象与国家的生存（defeat communism）强行绑定。当广告画面里全是 Trump 自己的特写，配乐却是未经许可的流行歌曲时，这根本不是在沟通，而是在进行一次认知入口的强行占领。
+
+最讽刺的共谋发生在 Fox News 这样的媒体身上。它们不仅是广告的投放渠道，更是这套元暴力 (meta-violence) 的扩音器。通过将“反对 Trump”等同于“支持共产主义”，这套叙事成功地将政治博弈简化为一种生存战争。这种操作的逻辑极其简单：现实不配合我的利益，我就重新定义现实。就像某些科技公司做不出芯片就宣布新定律一样，白宫现在做不到公正表达，就宣布“赞美总统”就是公共服务。
+
+当一个政权开始在公共空间里公然地、且毫无掩饰地通过篡改词义来掩盖权力滥用时，它其实在向所有人发送一个信号：在这个系统中，不存在所谓的“公正表达”，只有谁能掌控解释权，谁就是事实的制造者。</description></item>
 <item><title>用“主权”做掩体，用制裁做鞭子：美国对 ICC 的元暴力</title><link>https://www.howtoraiseiq.com/news/p/5259</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5259</guid><pubDate>Fri, 25 Sep 2026 20:23:49 +0000</pubDate><description>所谓的国际法，在霸权看来只是一个可以随时开关的 weaponized 插件。
 
 美国威胁制裁 ICC（国际刑事法院）这件事，本质上是一场极其粗暴的元暴力 (meta violence) 演习。当一个机构试图通过法律定义“罪行”时，美国直接通过权力定义“谁有资格定义罪行”。
@@ -818,30 +841,5 @@ Elvira 没能赢得冠军，于是他成了这个故事里被消费的“悲剧�
 最讽刺的是，这种“进步”的叙事往往依赖于个别女性（如 Charlotte Nichols）通过放弃匿名权、用自己的创伤作为筹码来换取。这在存在性战争中是一种极其沉重的博弈：女性必须通过 a form of self-sacrifice 来证明这个系统的失效，而系统则通过赞美她们的“勇敢”来完成一次公关闭环。这种“勇敢”叙事本身就是一种 cultural violence，它将制度的失能转化为个体的道德光环，从而减轻了立法者的愧疚感。
 
 好新闻应该是 Potential 和 Actual 的差额被实质性缩小。如果专用法庭不能带动定罪率的实质提升，而仅仅是让受害者在被拒绝正义时坐得更舒服，那么这依然是一场关于“体面”的共谋，而非关于“正义”的革命。</description></item>
-<item><title>两个白人男性的‘跨界晚餐’与消失的暴力</title><link>https://www.howtoraiseiq.com/news/p/5162</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5162</guid><pubDate>Sun, 20 Sep 2026 19:46:27 +0000</pubDate><description>当‘礼貌’成为博弈的唯一尺度，结构性暴力便在温情叙事中被抹除。
-
-这是一场典型的 masculine-centric narrative 演出。两个 42 岁的伦敦白人男性，一个工会背景的劳工，一个右翼政治人物，在餐厅里吃着意面和披萨，通过‘虽然我们政见不同但我们很聊得来’这种温情叙事，完成了一次关于‘文明’的自我标榜。
-
-这种叙事最狡猾的地方在于，它将政治博弈简化为‘个人性格’的碰撞。Alex 的‘ personable’（讨人喜欢）成了这场对话的润滑剂，而 Chris 坦言面对这种礼貌很难‘ belligerently’（好斗地）质疑。这正是 cultural violence 的高级伪装：用中产阶级的社交礼仪（manners）掩盖权力关系的不对等。当他们讨论 Net Zero 或福利削减时，他们讨论的是‘观点’，但对于那些被削减福利的弱势群体来说，那是 direct violence。
-
-最讽刺的时刻出现在 Chris 试图提及非白人男性在竞选时遭受的虐待时。虽然他指出了身份政治中的不平等，但这种洞察迅速被淹没在‘我们交换了电话’的和谐结局中。这场晚餐证明了：只要参与者都处于元暴力的受益端，他们就可以通过‘礼貌’达成一种共谋，将真实的结构性暴力（structural violence）降格为一场关于‘政见分歧’的下午茶。
-
-这种‘跨界对话’本质上是一场 PR scam。它向公众传递了一个危险的信号：只要我们足够礼貌，分歧就可以消失。但事实上，礼貌不能解决资源分配的掠夺，也不能消除原初种族的压迫。它只是让权势者在维持既定秩序的同时，还能获得‘宽容’和‘理性’的人设标签。</description></item>
-<item><title>在中东的‘大动作’里，只有男人在博弈</title><link>https://www.howtoraiseiq.com/news/p/5161</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5161</guid><pubDate>Sun, 20 Sep 2026 19:46:22 +0000</pubDate><description>战争叙事是最高级的元暴力：将人体降格为筹码，将毁灭包装成选项。
-
-特朗普在 Fox News 上的那句“非常大的事情即将发生”，是典型的 masculine-centric narrative。在他构建的认知入口里，中东不是由具体的人、家庭和生存权组成的，而是一个由“抹除”、“烂掉”或“达成交易”构成的博弈棋盘。这种表达方式将数百万人的生命简化为三个选项，这就是元暴力的本质：掌握解释权的人，通过定义“可能性”来剥夺他者的主体性。
-
-这场所谓的“局势升级”其实是一场规模宏大的共谋。从伊朗的革命卫队到胡塞武装，再到沙特的王室，双方都在进行激烈的 sabre rattling。他们通过袭击油田、封锁海峡、发出威胁来增加自己在存在性战争中的“票价”。而美国则在其中扮演一个傲慢的定价者，通过暗示军事打击或突然的冷漠（如拒绝沙特求援）来操纵地区焦虑。这种共谋的回报是权力的再分配，而代价则是被结构性地推向直接暴力的底层平民。
-
-最讽刺的是，在这种宏大叙事中，人们习惯于讨论“战略港口”和“能源供应”，却绝口不提那些在空袭中死去的女性和孩子。在元暴力的逻辑下，这些生命被定义为“附带损害”，因为他们不在男人们的博弈维度之内。战争叙事永远在重复同一个 scam：用某种宏大的意义（如安全、主权、反恐）来合法化对肉体的直接摧毁。
-
-当外交官们在纽约的联合国大会旁开会，讨论如何“管理危机”时，他们实际上是在讨论如何更高效地利用暴力三角。他们试图在 structural 层面上调整资源分配，好让 direct 层的杀戮在 cultural 层面上显得“必要”且“克制”。</description></item>
-<item><title>没有犯罪的死亡，依然是暴力的结果</title><link>https://www.howtoraiseiq.com/news/p/5160</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5160</guid><pubDate>Sun, 20 Sep 2026 19:46:15 +0000</pubDate><description>当三名女性在深夜被出租车丢在海边并集体溺亡，&#x27;无犯罪&#x27;不等于&#x27;无暴力&#x27;。
-
-警方用 &#x27;no criminal involvement&#x27; 试图给这起悲剧画上句号。在法律的逻辑里，只要没有第三者施加物理伤害，这就是个单纯的意外或自杀。但如果用加尔通的暴力三角来看，这简直是 structural violence 的教科书案例：当 Actual（实际生存状态）远低于 Potential（本可达到的生命状态），其中的差额就是暴力。
-
-三姐妹在深夜被出租车丢在海边，穿着日常服装，没有去过任何俱乐部或商店，然后集体进入大海。这种叙事极其诡异，它在 cultural 层面上被包装成一个 &#x27;悲剧&#x27;，但在 meta 层面上，它揭示了某种深层的绝望。一个家庭的三名女性在同一时间、同一地点选择或被迫走向死亡，这绝不是个案，而是某种结构性压抑的临界点。当黑人女性在现代社会面对的不仅是种族歧视，还有原初种族被殖民的深层潜意识时，大海成了她们唯一的出口。
-
-警方提到的 &#x27;black communities&#x27; 的担忧是对的，但他们的关注点太窄，只在 direct 层面的 &#x27;是否被谋杀&#x27; 上打转。真正的暴力不在于有没有凶手，而在于什么样的社会结构能让三个成年女性在深夜集体走向深海。这种‘无犯罪’的结论，实际上是共谋者们在用法律的‘客观’来掩盖结构的残暴。只要没有证据证明有人推她们下去，系统就可以心安理得地宣布：这里没有暴力。</description></item>
 </channel>
 </rss>
