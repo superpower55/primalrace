@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云端的神坛与地上的断电：Hyperscalers 的权力套利 — breaking news · 费扬</title>
+<meta name="description" content="技术垄断的本质是将系统性风险社会化，而将解释权私有化。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/5680">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云端的神坛与地上的断电：Hyperscalers 的权力套利 — breaking news · 费扬">
+<meta property="og:description" content="技术垄断的本质是将系统性风险社会化，而将解释权私有化。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/5680">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u4e91\u7aef\u7684\u795e\u575b\u4e0e\u5730\u4e0a\u7684\u65ad\u7535\uff1aHyperscalers \u7684\u6743\u529b\u5957\u5229", "description": "\u6280\u672f\u5784\u65ad\u7684\u672c\u8d28\u662f\u5c06\u7cfb\u7edf\u6027\u98ce\u9669\u793e\u4f1a\u5316\uff0c\u800c\u5c06\u89e3\u91ca\u6743\u79c1\u6709\u5316\u3002", "datePublished": "2026-10-20T20:11:37+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/5680", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a5680">
+  <h2><a href="/news/p/5680"><span class="lang-zh">云端的神坛与地上的断电：Hyperscalers 的权力套利</span><span class="lang-en">Altar in the Cloud, Blackout on the Ground: The Power Arbitrage of Hyperscalers</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">结构层 · 文化层 · 元暴力</span>
+    <span class="source"><a href="https://www.theguardian.com/uk-news/2026/oct/20/power-outage-google-datacentre-london-widespread-disruption?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-10-20</span>
+    <span class="permalink"><a href="/news/p/5680">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">技术垄断的本质是将系统性风险社会化，而将解释权私有化。</div>
+  <div class="axiom lang-en">The essence of tech monopoly is socializing systemic risk while privatizing the power of interpretation.</div>
+  <div class="body lang-zh"><p>这次 Google Cloud 的宕机再次撕开了数字世界的遮羞布：我们所谓的“云”，本质上只是分布在伦敦或弗吉尼亚州某些破旧机房里的物理电缆和散热风扇。当银行停摆、法院休庭、NHS 医疗应用崩溃时，人们习惯性地将其视为“技术故障”，但这在加尔通的暴力三角里是典型的 structural violence。这种暴力不在于电断了，而在于社会运行的底层逻辑被极少数 Hyperscalers 垄断，导致公共服务在面对私有公司的一次 power event 时毫无还手之力。</p>
+  <p>最讽刺的共谋发生在英国政府身上。明明知道将敏感数据托管在 Azure 或 Google Cloud 上会面临美国政府的窥探和系统性崩溃，但他们依然选择将 60% 的基础设施交给这些巨头。这不是因为没有替代方案，而是一种路径依赖的共谋：政府通过出让数字主权来换取短期内的运维便捷。这种共谋的回报是：当系统崩溃时，责任被推给“第三方设施”，而权力依然稳固在巨头手中。</p>
+  <p>更深层的 Meta Violence 隐藏在 AI 生成代码的叙事里。Google 宣布 75% 的新代码由 AI 生成，这在商业 PR 中被包装成“效率革命”，但在工程实践中，这实际上是在用算法的黑盒替代人类工程师的责任链。当 AWS 之前的崩溃被证实与 AI 工具相关时，我们看到的其实是另一种 weaponized expression：用“AI 驱动”来掩盖大规模裁员导致的专业能力坍塌。他们试图定义一种新现实——即 AI 可以替代人类维护基础设施。但现实的反馈是：代码可以由 AI 生成，但断电后的混乱必须由人类承担。</p>
+  <p>这场存在性战争的输家是每一个依赖数字化生存的普通人。我们的数字生命被托管在几个巨头的 zone 里，而这些巨头通过制造“Too big to fail”的既定事实，夺取了对社会运行权的定价权。下次宕机时，他们依然会发布一份礼貌的 status dashboard 分析报告，然后继续心安理得地收钱。</p></div>
+  <div class="body lang-en"><p>The Google Cloud outage has once again ripped off the veil of the digital world: our so-called &#x27;cloud&#x27; is nothing more than physical cables and cooling fans in some decrepit data centers in London or Virginia. When banks freeze, courts pause, and NHS apps glitch, people habitually dismiss it as a &#x27;technical failure.&#x27; In Galtung&#x27;s Violence Triangle, this is classic structural violence. The violence isn&#x27;t the power cut; it&#x27;s the fact that the underlying logic of social operation is monopolized by a few Hyperscalers, leaving public services defenseless against a single &#x27;power event&#x27; from a private corporation.</p>
+  <p>The most cynical complicity lies with the UK government. Despite knowing that hosting sensitive data on Azure or Google Cloud exposes them to US government surveillance and systemic crashes, they still outsource 60% of their infrastructure. This isn&#x27;t a lack of alternatives, but a complicity of path dependency: the government trades digital sovereignty for short-term operational convenience. The reward for this complicity is that when the system crashes, the blame is shifted to &#x27;third-party facilities&#x27; while power remains firmly in the hands of the giants.</p>
+  <p>A deeper Meta Violence is hidden in the narrative of AI-generated code. Google&#x27;s claim that 75% of new code is AI-generated is packaged as an &#x27;efficiency revolution&#x27; in PR, but in engineering, it&#x27;s the replacement of human accountability with an algorithmic black box. When AWS outages were linked to AI tooling, we witnessed a weaponized expression: using &#x27;AI-driven&#x27; to mask the collapse of professional expertise following mass layoffs. They are attempting to manufacture a reality where AI can maintain infrastructure. The actual reality? AI can write the code, but humans suffer the blackout.</p>
+  <p>The losers in this existential war are the ordinary people whose digital lives are hosted in a few corporate &#x27;zones.&#x27; These Hyperscalers have seized the pricing power over social operation by creating the &#x27;Too big to fail&#x27; fact. In the next outage, they will again post a polite status dashboard analysis, and then continue to collect their fees with total impunity.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
