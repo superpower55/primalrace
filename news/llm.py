@@ -1,7 +1,7 @@
 """LLM client abstraction.
 
 Three providers, chosen via PROVIDER env var (default "ollama"):
-  - "anthropic"  → Claude (Opus 4.7 by default), with prompt caching
+  - "anthropic"  → Claude (Fable 5.1 by default), with prompt caching
   - "ollama"     → Ollama Cloud or self-hosted Ollama (Gemma 4 31B by default)
   - "openai"     → any OpenAI-compatible endpoint (Google AI Studio, Groq, …)
 
@@ -16,29 +16,57 @@ import json
 import os
 import urllib.request
 
-PROVIDER = os.environ.get("PROVIDER", "ollama").lower()
+PROVIDER = (os.environ.get("PROVIDER") or "ollama").lower()
 
 
 # ============================================================================
 # Anthropic
 # ============================================================================
 
+# Fable thinks before answering and thinking counts against max_tokens, so
+# the callers' budgets (sized for the visible JSON) get this much headroom.
+ANTHROPIC_THINKING_HEADROOM = 14000
+
+
 def _anthropic_generate(system_blocks: list[dict], user_msg: str,
-                        max_tokens: int = 2000) -> dict:
+                        max_tokens: int = 2000,
+                        json_schema: dict | None = None) -> dict:
+    """Fable 5.1 notes: thinking is always on (no `thinking` param), sampling
+    params like temperature are rejected, and safety classifiers may decline
+    with stop_reason "refusal" — `fallbacks: "default"` reruns a declined
+    request on Anthropic's recommended fallback model inside the same call.
+
+      ANTHROPIC_MODEL   default claude-fable-5-1
+      ANTHROPIC_EFFORT  low | medium | high | xhigh | max (default medium)
+      ANTHROPIC_WORKSPACE_ID  needed only for keys not scoped to a workspace
+    """
     import anthropic
-    client = anthropic.Anthropic()
-    model = os.environ.get("ANTHROPIC_MODEL", "claude-opus-4-7")
-    resp = client.messages.create(
+    workspace = os.environ.get("ANTHROPIC_WORKSPACE_ID")
+    client = anthropic.Anthropic(
+        default_headers={"anthropic-workspace-id": workspace} if workspace else None,
+    )
+    model = os.environ.get("ANTHROPIC_MODEL") or "claude-fable-5-1"
+    effort = os.environ.get("ANTHROPIC_EFFORT") or "medium"
+    output_config = {"effort": effort}
+    if json_schema:
+        output_config["format"] = {"type": "json_schema", "schema": json_schema}
+    resp = client.beta.messages.create(
         model=model,
-        max_tokens=max_tokens,
+        max_tokens=max_tokens + ANTHROPIC_THINKING_HEADROOM,
         system=system_blocks,
         messages=[{"role": "user", "content": user_msg}],
+        output_config=output_config,
+        betas=["server-side-fallback-2026-07-01"],
+        fallbacks="default",
     )
+    if resp.stop_reason == "refusal":
+        category = resp.stop_details.category if resp.stop_details else None
+        raise RuntimeError(f"{resp.model} declined the request (category={category})")
     text = "".join(b.text for b in resp.content if b.type == "text")
     u = resp.usage
     return {
         "text": text,
-        "model": model,
+        "model": resp.model,  # differs from `model` when a fallback served it
         "input_tokens": u.input_tokens,
         "output_tokens": u.output_tokens,
         "cache_read_tokens": getattr(u, "cache_read_input_tokens", 0) or 0,
@@ -175,9 +203,11 @@ def _openai_generate(system_blocks: list[dict], user_msg: str,
 # ============================================================================
 
 def generate(system_blocks: list[dict], user_msg: str,
-             max_tokens: int = 2000) -> dict:
+             max_tokens: int = 2000, json_schema: dict | None = None) -> dict:
+    """json_schema: enforced via structured outputs on Anthropic; the other
+    providers rely on the prompt (Ollama additionally forces generic JSON)."""
     if PROVIDER == "anthropic":
-        return _anthropic_generate(system_blocks, user_msg, max_tokens)
+        return _anthropic_generate(system_blocks, user_msg, max_tokens, json_schema)
     if PROVIDER == "ollama":
         return _ollama_generate(system_blocks, user_msg, max_tokens)
     if PROVIDER == "openai":
@@ -188,7 +218,7 @@ def generate(system_blocks: list[dict], user_msg: str,
 
 def provider_label() -> str:
     if PROVIDER == "anthropic":
-        return f"anthropic/{os.environ.get('ANTHROPIC_MODEL', 'claude-opus-4-7')}"
+        return f"anthropic/{os.environ.get('ANTHROPIC_MODEL') or 'claude-fable-5-1'}"
     if PROVIDER == "ollama":
         host = os.environ.get("OLLAMA_BASE_URL", "https://ollama.com")
         return f"ollama@{host}/{os.environ.get('OLLAMA_MODEL', 'gemma4:31b-cloud')}"

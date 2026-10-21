@@ -26,7 +26,7 @@ import trafilatura                    # noqa: E402
 
 from db import connect                # noqa: E402
 from llm import generate as llm_generate, provider_label  # noqa: E402
-from prompts.system import build_system_blocks  # noqa: E402
+from prompts.system import OUTPUT_SCHEMA, build_system_blocks  # noqa: E402
 
 
 MAX_TOKENS = 2000
@@ -72,7 +72,9 @@ def fetch_article(url: str) -> dict:
                 "User-Agent": USER_AGENT,
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                 "Accept-Language": "en-US,en;q=0.9,zh;q=0.8",
-                "Accept-Encoding": "gzip, deflate, br",
+                # No "br": requests can't decode brotli unless the brotli package
+                # is installed, and sites that pick it come back as binary junk.
+                "Accept-Encoding": "gzip, deflate",
             },
             allow_redirects=True,
             timeout=25,
@@ -107,7 +109,7 @@ def _host(url: str) -> str:
 
 
 def _check_env() -> None:
-    provider = os.environ.get("PROVIDER", "ollama").lower()
+    provider = (os.environ.get("PROVIDER") or "ollama").lower()
     if provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
         sys.exit("PROVIDER=anthropic but ANTHROPIC_API_KEY not set in .env")
     if provider == "ollama":
@@ -126,17 +128,21 @@ def _strip_json_fence(s: str) -> str:
     return s.strip()
 
 
-def generate_commentary(article: dict) -> dict:
-    user_msg = (
+def build_user_msg(article: dict) -> str:
+    return (
         f"以下是今天要评论的一条新闻。\n"
         f"标题：{article['source_title']}\n"
         f"来源：{article['source']}\n"
         f"链接：{article['url']}\n\n"
         f"--- 正文 ---\n{article['raw_text']}\n--- 正文结束 ---\n\n"
-        f"按系统提示里的 JSON 格式输出你的评论。"
+        f"按系统提示里的格式输出你的评论。"
     )
 
-    result = llm_generate(build_system_blocks(), user_msg, max_tokens=MAX_TOKENS)
+
+def generate_commentary(article: dict) -> dict:
+    user_msg = build_user_msg(article)
+    result = llm_generate(build_system_blocks(), user_msg, max_tokens=MAX_TOKENS,
+                          json_schema=OUTPUT_SCHEMA)
     text = _strip_json_fence(result["text"])
     try:
         parsed = json.loads(text)

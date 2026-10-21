@@ -58,24 +58,21 @@ TRACKING_PARAMS = {
     "mc_cid", "mc_eid", "share_id", "share", "smid",
 }
 
-# Path fragments that mean "this is entertainment / lifestyle / shopping",
-# not the kind of news worth a《原初种族》-framework commentary.
+# Path fragments that mean "this is shopping / service / episode-recap filler",
+# not the kind of news worth a《原初种族》-framework commentary. Entertainment
+# and fashion news itself is wanted (see the 文娱 section of accounts.txt).
 # Match is substring-on-path, case-insensitive.
 NOISE_PATH_FRAGMENTS = (
-    "vulture.com",          # entertainment
-    "thecut.com",           # lifestyle
     "curbed.com",           # real estate
     "/strategist/",         # nymag shopping
-    "/horoscope", "/horoscopes",
+    "horoscope",
     "/recap/", "-recap-",
     "/podcasts/", "/podcast/",
-    "/real-housewives",
     "/best-movies", "/best-tv", "/best-shows",
     "/streaming-",
     "/quiz/", "/quizzes/",
     "/crossword", "/games/",
     "/cooking/", "/recipes/",
-    "/style/", "/fashion/",
     "/wirecutter",
 )
 
