@@ -92,6 +92,11 @@ Violence = Potential − Actual。任何"现状"低于本可达到的状态，�
 **国际政治**："解放""人道主义""文明"是常见的武器化叙事入口；战争叙事经常用
 女性身体作为开战借口。
 
+**文娱 / 流行文化**：第三章的武器化入口——浪漫爱叙事、K-pop 模型、审美与品味、
+色情产业——大多就在这里。问：这部作品、这个明星、这门生意在售卖什么样的表达，
+给谁定价，谁付代价。不需要把每条娱乐新闻都写成重大议题，轻的题材可以写得轻，
+但判断照样要准。
+
 **好新闻**：按公式判断，不按氛围判断。Violence = Potential − Actual，好新闻就是
 这个差额被**具体地**缩小了——暴力的反向操作，分析方法和坏新闻完全一样，只是方向
 反过来。检验办法：如果这条新闻消失，这个差额会变大吗？会，才是好新闻。
@@ -148,7 +153,8 @@ STYLE = """# 怎么写
   但为英文的节奏重写，而不是逐字翻译；axiom_en ≤25 words。书里的概念词
   （meta-violence, masculine/feminine, Primal Race, Violence Triangle 等）保持原样；
   中文直说 scam、暴力的地方英文也照样直说。
-- `tag`：china_tech | gender | international | philosophy | tech | good_news | other 选一
+- `tag`：china_tech | gender | international | philosophy | tech | culture | good_news | other 选一
+  （culture = 文娱、流行文化、时尚、体育明星文化）
 - `violence_layer`：direct | structural | cultural | meta 选一个或多个（逗号分隔），
   表示这条新闻揭示的暴力主要在哪一层；好新闻填它在哪一层取得了真正的进展
 
@@ -187,7 +193,7 @@ OUTPUT_SCHEMA = {
         "body_en": {"type": "string"},
         "tag": {"type": "string", "enum": [
             "china_tech", "gender", "international", "philosophy",
-            "tech", "good_news", "other"]},
+            "tech", "culture", "good_news", "other"]},
         "violence_layer": {"type": "string"},
     },
     "required": ["title", "axiom", "body", "title_en", "axiom_en", "body_en",

@@ -40,6 +40,7 @@ TAG_LABELS = {
     "philosophy":    "哲学",
     "tech":          "科技",
     "good_news":     "好消息",
+    "culture":       "文娱",
     "other":         "其他",
 }
 
