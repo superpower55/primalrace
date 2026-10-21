@@ -1,8 +1,8 @@
 name: News commentary (every 10 min)
 
 on:
-  # PAUSED: no new Gemma commentary while we switch to Claude Fable 5.1
-  # (fable-model branch). Restore the schedule block to resume.
+  # PAUSED: no new commentary for now (the site stays on Gemma; Fable is only
+  # used to build the LoRA training set). Restore the schedule block to resume.
   # schedule:
   #   - cron: '*/10 * * * *'     # every 10 minutes
   workflow_dispatch:           # manual trigger from the Actions tab
