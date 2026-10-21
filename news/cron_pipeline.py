@@ -7,12 +7,14 @@ Steps:
   3. Re-render news/index.html
   4. Commit + push news/index.html to GitHub (so Vercel rebuilds)
 
-Wired to Railway cron:
-  cron: '0 1 * * *'         # daily 01:00 UTC
-  startCommand: python cron_pipeline.py
+Run by GitHub Actions (.github/workflows/cron.yml) every 10 minutes. The
+workflow sets SKIP_PUSH=1 and does the commit + push itself.
 
-Required Railway env vars:
-  PROVIDER, OLLAMA_API_KEY, OLLAMA_MODEL  (LLM)
+Env vars:
+  PROVIDER           anthropic | ollama | openai (default ollama)
+  OLLAMA_API_KEY, OLLAMA_MODEL         (PROVIDER=ollama)
+  ANTHROPIC_API_KEY, ANTHROPIC_MODEL   (PROVIDER=anthropic)
+  OPENAI_BASE_URL, OPENAI_API_KEY, OPENAI_MODEL  (PROVIDER=openai)
   GITHUB_TOKEN       (PAT with `repo` scope — for the final git push)
   GITHUB_REPO        (e.g. yangfei0770-boop/primalrace)
   GIT_USER_EMAIL     (e.g. bot@howtoraiseiq.com)
@@ -45,7 +47,7 @@ AUTO_PUBLISH = os.environ.get("PUBLISH_NEW", "0") == "1"
 SKIP_CRAWL = os.environ.get("SKIP_CRAWL", "0") == "1"
 SKIP_PUSH = os.environ.get("SKIP_PUSH", "0") == "1"
 # Cap per cron run so we don't blow past the 30-min Actions timeout.
-# Remaining URLs stay in urls.txt for the next day.
+# Remaining URLs stay in urls.txt for the next run.
 MAX_PER_RUN = int(os.environ.get("MAX_PER_RUN", "20"))
 # Wall-clock cap — if Gemma is slow during peak, stop accepting new work after
 # this much time has elapsed. Remainder waits for next hour.
@@ -135,8 +137,8 @@ def main():
 def push_to_github() -> None:
     """Commit news/index.html (and optionally news.db) and push to the repo.
 
-    Runs in an ephemeral clone — Railway containers don't usually have the
-    git remote pre-configured. Cloning fresh each run keeps it simple.
+    Inside a git checkout (local dev) it commits in place; otherwise it
+    works in an ephemeral clone. Unused under GitHub Actions (SKIP_PUSH=1).
     """
     token = os.environ.get("GITHUB_TOKEN", "").strip()
     repo  = os.environ.get("GITHUB_REPO", "").strip()
@@ -149,7 +151,7 @@ def push_to_github() -> None:
         return
 
     # If the current working tree IS a git checkout of the right repo (local dev),
-    # just commit+push from here. Otherwise (Railway), clone fresh.
+    # just commit+push from here. Otherwise (no checkout), clone fresh.
     blog_root = NEWS_DIR.parent
     if (blog_root / ".git").exists():
         _git_commit_push_in_place(blog_root, token, repo, email, name, branch)

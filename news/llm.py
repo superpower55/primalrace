@@ -1,10 +1,11 @@
 """LLM client abstraction.
 
-Two providers, chosen via PROVIDER env var:
+Three providers, chosen via PROVIDER env var (default "ollama"):
   - "anthropic"  → Claude (Opus 4.7 by default), with prompt caching
-  - "ollama"     → Ollama Cloud or self-hosted Ollama (e.g. Gemma on Railway)
+  - "ollama"     → Ollama Cloud or self-hosted Ollama (Gemma 4 31B by default)
+  - "openai"     → any OpenAI-compatible endpoint (Google AI Studio, Groq, …)
 
-Both providers return a dict:
+All providers return a dict:
   {text, input_tokens, output_tokens, cache_read_tokens, cache_create_tokens, model}
 
 Caching tokens are 0 for Ollama (no caching there).

@@ -1,6 +1,6 @@
 """Tiny static server for news/index.html.
 
-Used by Railway (binds to $PORT) and for local preview (default :8766).
+For local preview (default :8766, or $PORT). Production is served by Vercel.
 Routes:
   /            → index.html
   /api/health  → 'ok'

@@ -1,11 +1,11 @@
-# Deploy: Vercel (static frontend) + GitHub Actions (daily cron)
+# Deploy: Vercel (static frontend) + GitHub Actions (cron every 10 min)
 
-零成本部署。GitHub Actions 每天跑 cron 生成评论 → commit → Vercel 自动 deploy。
+零成本部署。GitHub Actions 每 10 分钟跑一次 cron 生成评论 → commit → Vercel 自动 deploy。
 
 ```
 Bluesky 新闻账号
       ↓
-[GitHub Actions, daily 01:00 UTC]
+[GitHub Actions, every 10 min]
       ↓
 crawl → generate (Ollama Cloud) → render → commit
       ↓
@@ -49,7 +49,7 @@ Value: <你的 Ollama Cloud key>
 
 ### 2. 验证 workflow
 
-Actions tab → **Daily news commentary** → 右上角 **Run workflow** 手动触发一次。
+Actions tab → **News commentary (every 10 min)** → 右上角 **Run workflow** 手动触发一次。
 
 跑完 ~3-5 分钟，应该看到：
 - crawl 拿到新 URL
@@ -61,7 +61,8 @@ Vercel 检测到 push 后秒级 redeploy。
 
 ## C. 调度
 
-默认 `0 1 * * *`（每天 UTC 01:00）。改时间编辑 `.github/workflows/cron.yml` 的 cron 表达式。
+当前 `*/10 * * * *`（每 10 分钟）。每次最多处理 `MAX_PER_RUN`（10）条，剩下的留在 `urls.txt` 等下一轮。
+新文章 push 后会自动发到 Bluesky / X（`social_post.py`）。改频率编辑 `.github/workflows/cron.yml` 的 cron 表达式。
 
 ## D. 本地试跑
 
@@ -83,4 +84,4 @@ python3 render.py
 `news/news.db` 是 git 跟踪的——每次 GitHub Actions 跑完 commit 回 repo。
 本地 clone 下来就有完整数据，rollback 也能回到任何一天的状态。
 
-文件大概每天涨 5-10KB。半年后可以 squash history 控制 repo 大小。
+文件会随文章数持续增长（目前 5000+ 篇）。半年后可以 squash history 控制 repo 大小。

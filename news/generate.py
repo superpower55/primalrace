@@ -6,7 +6,7 @@ Usage:
   python3 generate.py --text-file path/to/article.txt --source "name" --url "tag:..."
   python3 generate.py --regen <article_id>     # regenerate commentary for an existing row
 
-Reads ANTHROPIC_API_KEY and MODEL from news/.env.
+LLM provider and keys come from news/.env (PROVIDER, see llm.py).
 """
 import argparse
 import json

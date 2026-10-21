@@ -1,13 +1,13 @@
-"""Single-process web server for the whole blog/ — used both locally and on Railway.
+"""Single-process web server for the whole site — for local preview.
+Production is served by Vercel (see vercel.json).
 
 Routes:
   /            → blog/index.html (book landing page)
   /news/       → blog/news/index.html (commentary site)
   /原初种族.pdf → PDF download
-  /api/health  → 'ok' (Railway healthcheck)
+  /api/health  → 'ok'
 
-Local:  python3 serve.py            (defaults to :8765)
-Railway: container PORT injected    (entrypoint.sh starts this)
+Local:  python3 serve.py            (defaults to :8765, or $PORT)
 """
 import os
 import sys

@@ -1,4 +1,4 @@
-name: Daily news commentary
+name: News commentary (every 10 min)
 
 on:
   schedule:
