@@ -36,6 +36,7 @@ jobs:
         env:
           PROVIDER:        ${{ vars.PROVIDER || 'anthropic' }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}  # only for keys not scoped to a workspace
           ANTHROPIC_MODEL:   ${{ vars.ANTHROPIC_MODEL || 'claude-fable-5-1' }}
           ANTHROPIC_EFFORT:  ${{ vars.ANTHROPIC_EFFORT || 'medium' }}
           OLLAMA_BASE_URL: https://ollama.com
