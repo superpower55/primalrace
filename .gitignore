@@ -7,3 +7,4 @@ news/urls.txt
 .claude/scheduled_tasks.lock
 news/.new_ids
 news/fable_trial/
+news/dataset/

@@ -126,8 +126,8 @@ def _strip_json_fence(s: str) -> str:
     return s.strip()
 
 
-def generate_commentary(article: dict) -> dict:
-    user_msg = (
+def build_user_msg(article: dict) -> str:
+    return (
         f"以下是今天要评论的一条新闻。\n"
         f"标题：{article['source_title']}\n"
         f"来源：{article['source']}\n"
@@ -136,6 +136,9 @@ def generate_commentary(article: dict) -> dict:
         f"按系统提示里的格式输出你的评论。"
     )
 
+
+def generate_commentary(article: dict) -> dict:
+    user_msg = build_user_msg(article)
     result = llm_generate(build_system_blocks(), user_msg, max_tokens=MAX_TOKENS,
                           json_schema=OUTPUT_SCHEMA)
     text = _strip_json_fence(result["text"])
