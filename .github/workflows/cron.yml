@@ -34,7 +34,7 @@ jobs:
 
       - name: Run pipeline
         env:
-          PROVIDER:        ${{ vars.PROVIDER || 'anthropic' }}
+          PROVIDER:        ${{ vars.PROVIDER || 'ollama' }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}  # only for keys not scoped to a workspace
           ANTHROPIC_MODEL:   ${{ vars.ANTHROPIC_MODEL || 'claude-fable-5-1' }}

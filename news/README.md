@@ -1,6 +1,6 @@
 # breaking news
 
-新闻评论站，自动从 Bluesky 抓主流媒体新闻，用 Claude Fable 5.1（Anthropic API）按
+新闻评论站，自动从 Bluesky 抓主流媒体新闻，用 Gemma 4 31B（Ollama Cloud）按
 《原初种族》(The Primal Race) 的哲学框架与费扬本人的写作风格生成中英双语评论。
 
 部署：GitHub Actions 每 10 分钟跑一次流水线并 commit 回仓库 → Vercel 自动部署到 howtoraiseiq.com/news

@@ -1,6 +1,6 @@
 """LLM client abstraction.
 
-Three providers, chosen via PROVIDER env var (default "anthropic"):
+Three providers, chosen via PROVIDER env var (default "ollama"):
   - "anthropic"  → Claude (Fable 5.1 by default), with prompt caching
   - "ollama"     → Ollama Cloud or self-hosted Ollama (Gemma 4 31B by default)
   - "openai"     → any OpenAI-compatible endpoint (Google AI Studio, Groq, …)
@@ -16,7 +16,7 @@ import json
 import os
 import urllib.request
 
-PROVIDER = (os.environ.get("PROVIDER") or "anthropic").lower()
+PROVIDER = (os.environ.get("PROVIDER") or "ollama").lower()
 
 
 # ============================================================================
