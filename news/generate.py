@@ -26,7 +26,7 @@ import trafilatura                    # noqa: E402
 
 from db import connect                # noqa: E402
 from llm import generate as llm_generate, provider_label  # noqa: E402
-from prompts.system import build_system_blocks  # noqa: E402
+from prompts.system import OUTPUT_SCHEMA, build_system_blocks  # noqa: E402
 
 
 MAX_TOKENS = 2000
@@ -133,10 +133,11 @@ def generate_commentary(article: dict) -> dict:
         f"来源：{article['source']}\n"
         f"链接：{article['url']}\n\n"
         f"--- 正文 ---\n{article['raw_text']}\n--- 正文结束 ---\n\n"
-        f"按系统提示里的 JSON 格式输出你的评论。"
+        f"按系统提示里的格式输出你的评论。"
     )
 
-    result = llm_generate(build_system_blocks(), user_msg, max_tokens=MAX_TOKENS)
+    result = llm_generate(build_system_blocks(), user_msg, max_tokens=MAX_TOKENS,
+                          json_schema=OUTPUT_SCHEMA)
     text = _strip_json_fence(result["text"])
     try:
         parsed = json.loads(text)

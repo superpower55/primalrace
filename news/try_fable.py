@@ -17,6 +17,7 @@ Usage:
   python3 try_fable.py -n 5 --budget 2
   python3 try_fable.py --ids 4512 4890 5011
   python3 try_fable.py --html-only                                # rebuild compare.html
+  python3 try_fable.py --out fable_trial/v2 --ids-from fable_trial  # same articles, new prompt
 """
 from __future__ import annotations
 
@@ -39,6 +40,13 @@ from db import DB_PATH  # noqa: E402
 OUT_DIR = Path(__file__).parent / "fable_trial"
 RESULTS = OUT_DIR / "results.jsonl"
 COMPARE = OUT_DIR / "compare.html"
+
+
+def set_out_dir(path: Path) -> None:
+    global OUT_DIR, RESULTS, COMPARE
+    OUT_DIR = path
+    RESULTS = OUT_DIR / "results.jsonl"
+    COMPARE = OUT_DIR / "compare.html"
 
 # Claude Fable 5.1, USD per million tokens. A fallback model, if one serves a
 # request, is cheaper — so these prices give an upper bound.
@@ -220,7 +228,14 @@ def main() -> None:
     ap.add_argument("--ids", type=int, nargs="+", help="specific article ids instead of a sample")
     ap.add_argument("--seed", type=int, default=7, help="sampling seed")
     ap.add_argument("--html-only", action="store_true", help="only rebuild compare.html")
+    ap.add_argument("--out", type=Path, help="output dir (default news/fable_trial)")
+    ap.add_argument("--ids-from", type=Path, help="reuse the article ids of an earlier output dir")
     args = ap.parse_args()
+    if args.ids_from:
+        prev = args.ids_from / "results.jsonl"
+        args.ids = [json.loads(l)["id"] for l in prev.read_text(encoding="utf-8").splitlines() if l.strip()]
+    if args.out:
+        set_out_dir(args.out)
 
     if not args.html_only:
         if not os.environ.get("ANTHROPIC_API_KEY"):

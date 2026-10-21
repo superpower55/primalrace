@@ -29,7 +29,8 @@ ANTHROPIC_THINKING_HEADROOM = 14000
 
 
 def _anthropic_generate(system_blocks: list[dict], user_msg: str,
-                        max_tokens: int = 2000) -> dict:
+                        max_tokens: int = 2000,
+                        json_schema: dict | None = None) -> dict:
     """Fable 5.1 notes: thinking is always on (no `thinking` param), sampling
     params like temperature are rejected, and safety classifiers may decline
     with stop_reason "refusal" — `fallbacks: "default"` reruns a declined
@@ -46,12 +47,15 @@ def _anthropic_generate(system_blocks: list[dict], user_msg: str,
     )
     model = os.environ.get("ANTHROPIC_MODEL") or "claude-fable-5-1"
     effort = os.environ.get("ANTHROPIC_EFFORT") or "medium"
+    output_config = {"effort": effort}
+    if json_schema:
+        output_config["format"] = {"type": "json_schema", "schema": json_schema}
     resp = client.beta.messages.create(
         model=model,
         max_tokens=max_tokens + ANTHROPIC_THINKING_HEADROOM,
         system=system_blocks,
         messages=[{"role": "user", "content": user_msg}],
-        output_config={"effort": effort},
+        output_config=output_config,
         betas=["server-side-fallback-2026-07-01"],
         fallbacks="default",
     )
@@ -199,9 +203,11 @@ def _openai_generate(system_blocks: list[dict], user_msg: str,
 # ============================================================================
 
 def generate(system_blocks: list[dict], user_msg: str,
-             max_tokens: int = 2000) -> dict:
+             max_tokens: int = 2000, json_schema: dict | None = None) -> dict:
+    """json_schema: enforced via structured outputs on Anthropic; the other
+    providers rely on the prompt (Ollama additionally forces generic JSON)."""
     if PROVIDER == "anthropic":
-        return _anthropic_generate(system_blocks, user_msg, max_tokens)
+        return _anthropic_generate(system_blocks, user_msg, max_tokens, json_schema)
     if PROVIDER == "ollama":
         return _ollama_generate(system_blocks, user_msg, max_tokens)
     if PROVIDER == "openai":
