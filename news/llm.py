@@ -37,9 +37,13 @@ def _anthropic_generate(system_blocks: list[dict], user_msg: str,
 
       ANTHROPIC_MODEL   default claude-fable-5-1
       ANTHROPIC_EFFORT  low | medium | high | xhigh | max (default medium)
+      ANTHROPIC_WORKSPACE_ID  needed only for keys not scoped to a workspace
     """
     import anthropic
-    client = anthropic.Anthropic()
+    workspace = os.environ.get("ANTHROPIC_WORKSPACE_ID")
+    client = anthropic.Anthropic(
+        default_headers={"anthropic-workspace-id": workspace} if workspace else None,
+    )
     model = os.environ.get("ANTHROPIC_MODEL") or "claude-fable-5-1"
     effort = os.environ.get("ANTHROPIC_EFFORT") or "medium"
     resp = client.beta.messages.create(
