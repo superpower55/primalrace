@@ -2,7 +2,8 @@
 
 Three providers, chosen via PROVIDER env var (default "ollama"):
   - "anthropic"  → Claude (Opus 4.7 by default), with prompt caching
-  - "ollama"     → Ollama Cloud or self-hosted Ollama (Gemma 4 31B by default)
+  - "ollama"     → Ollama Cloud or self-hosted Ollama (Gemma 4 31B by default;
+                   Gemma 4 12B on an Oracle Cloud VM, see news/oracle/)
   - "openai"     → any OpenAI-compatible endpoint (Google AI Studio, Groq, …)
 
 All providers return a dict:
@@ -53,10 +54,20 @@ def _anthropic_generate(system_blocks: list[dict], user_msg: str,
 def _ollama_generate(system_blocks: list[dict], user_msg: str,
                      max_tokens: int = 2000) -> dict:
     """Call /api/chat. Combines the multi-block system prompt into one string —
-    Ollama has no caching so the structure doesn't matter to it."""
-    base_url = os.environ.get("OLLAMA_BASE_URL", "https://ollama.com").rstrip("/")
+    Ollama has no prompt-caching API, but a self-hosted server reuses the KV
+    cache for an identical prefix, so the system prompt still goes first.
+
+    Self-hosted (CPU) servers need two extra knobs:
+      OLLAMA_NUM_CTX   context window; the system prompt alone is ~25k tokens
+                       and Ollama silently truncates past its default
+      OLLAMA_TIMEOUT   seconds to wait for one response (CPU is slow)
+    """
+    # `or` so an empty env var (unset GitHub repo variable) still gets the default
+    base_url = (os.environ.get("OLLAMA_BASE_URL") or "https://ollama.com").rstrip("/")
     api_key = os.environ.get("OLLAMA_API_KEY", "")
-    model = os.environ.get("OLLAMA_MODEL", "gemma4:31b-cloud")
+    model = os.environ.get("OLLAMA_MODEL") or "gemma4:31b-cloud"
+    num_ctx = int(os.environ.get("OLLAMA_NUM_CTX") or 0)
+    timeout = int(os.environ.get("OLLAMA_TIMEOUT") or 180)
 
     system_text = "\n\n".join(b["text"] for b in system_blocks)
 
@@ -71,6 +82,7 @@ def _ollama_generate(system_blocks: list[dict], user_msg: str,
         "options": {
             "temperature": 0.7,
             "num_predict": max_tokens,
+            **({"num_ctx": num_ctx} if num_ctx else {}),
         },
     }
 
@@ -83,7 +95,7 @@ def _ollama_generate(system_blocks: list[dict], user_msg: str,
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=180) as r:
+    with urllib.request.urlopen(req, timeout=timeout) as r:
         data = json.loads(r.read().decode("utf-8"))
 
     text = data.get("message", {}).get("content", "")
@@ -190,8 +202,8 @@ def provider_label() -> str:
     if PROVIDER == "anthropic":
         return f"anthropic/{os.environ.get('ANTHROPIC_MODEL', 'claude-opus-4-7')}"
     if PROVIDER == "ollama":
-        host = os.environ.get("OLLAMA_BASE_URL", "https://ollama.com")
-        return f"ollama@{host}/{os.environ.get('OLLAMA_MODEL', 'gemma4:31b-cloud')}"
+        host = os.environ.get("OLLAMA_BASE_URL") or "https://ollama.com"
+        return f"ollama@{host}/{os.environ.get('OLLAMA_MODEL') or 'gemma4:31b-cloud'}"
     if PROVIDER == "openai":
         host = os.environ.get("OPENAI_BASE_URL", "?")
         return f"openai@{host}/{os.environ.get('OPENAI_MODEL', '?')}"

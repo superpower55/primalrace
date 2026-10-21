@@ -30,6 +30,9 @@ from prompts.system import build_system_blocks  # noqa: E402
 
 
 MAX_TOKENS = 2000
+# Optional cap on article text sent to the model (0 = no cap). Small/CPU-hosted
+# models need it to stay inside OLLAMA_NUM_CTX; raw_text in the db stays full.
+MAX_ARTICLE_CHARS = int(os.environ.get("MAX_ARTICLE_CHARS") or 0)
 
 # Browser-like UA — most news sites and link shorteners (nyti.ms, reut.rs,
 # bloom.bg, n.pr, aje.news, theatln.tc, …) refuse plain-python user agents.
@@ -127,12 +130,15 @@ def _strip_json_fence(s: str) -> str:
 
 
 def generate_commentary(article: dict) -> dict:
+    raw_text = article["raw_text"]
+    if MAX_ARTICLE_CHARS and len(raw_text) > MAX_ARTICLE_CHARS:
+        raw_text = raw_text[:MAX_ARTICLE_CHARS] + "\n[……正文过长，已截断]"
     user_msg = (
         f"以下是今天要评论的一条新闻。\n"
         f"标题：{article['source_title']}\n"
         f"来源：{article['source']}\n"
         f"链接：{article['url']}\n\n"
-        f"--- 正文 ---\n{article['raw_text']}\n--- 正文结束 ---\n\n"
+        f"--- 正文 ---\n{raw_text}\n--- 正文结束 ---\n\n"
         f"按系统提示里的 JSON 格式输出你的评论。"
     )
 
