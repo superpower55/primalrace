@@ -1,8 +1,10 @@
 name: News commentary (every 10 min)
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'     # every 10 minutes
+  # PAUSED: no new Gemma commentary while we switch to Claude Fable 5.1
+  # (fable-model branch). Restore the schedule block to resume.
+  # schedule:
+  #   - cron: '*/10 * * * *'     # every 10 minutes
   workflow_dispatch:           # manual trigger from the Actions tab
 
 # allow the workflow to push commits back to the repo
