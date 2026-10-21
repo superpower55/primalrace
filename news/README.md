@@ -27,6 +27,7 @@ news/
 ├── compare_models.py     # Gemma vs Gemini output comparison
 │
 ├── cron_pipeline.py      # crawl → generate → render (GitHub Actions, every 10 min)
+├── oracle/              # self-hosted Gemma 4 12B on Oracle Cloud (setup.sh + guide)
 ├── social_post.py        # post new articles to Bluesky + X
 ├── bsky_post.py          # Bluesky posting helpers
 ├── bsky_delete_all.py    # delete all Bluesky posts (manual workflow)
