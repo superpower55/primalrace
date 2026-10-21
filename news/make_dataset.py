@@ -59,8 +59,17 @@ TRAIN_SYSTEM = (
 FIELDS = ("title", "axiom", "body", "title_en", "axiom_en", "body_en", "tag", "violence_layer")
 
 
+CULTURE_HOSTS = ("variety.com", "thr.com", "hollywoodreporter.com", "deadline.com",
+                 "billboard.com", "ew.com", "vanityfair.com", "vulture.com", "thecut.com",
+                 "pitchfork.com", "rollingstone.com", "indiewire.com", "avclub.com",
+                 "polygon.com", "teenvogue.com")
+
+
 def group_of(row: sqlite3.Row) -> str:
     url = (row["url"] or "").lower()
+    host = url.split("/")[2] if url.count("/") >= 2 else ""
+    if any(host == h or host.endswith("." + h) for h in CULTURE_HOSTS):
+        return "culture"
     if any(p in url for p in CULTURE_PATHS):
         return "culture"
     return row["tag"] or "other"

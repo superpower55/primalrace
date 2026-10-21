@@ -65,7 +65,7 @@ TRACKING_PARAMS = {
 NOISE_PATH_FRAGMENTS = (
     "curbed.com",           # real estate
     "/strategist/",         # nymag shopping
-    "/horoscope", "/horoscopes",
+    "horoscope",
     "/recap/", "-recap-",
     "/podcasts/", "/podcast/",
     "/best-movies", "/best-tv", "/best-shows",

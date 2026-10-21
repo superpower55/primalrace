@@ -49,9 +49,12 @@ inthesetimes.com
 
 # === 文娱 / 流行文化 ===
 # 第三章的武器化入口（浪漫爱、K-pop、审美、色情产业）大多在这里。
-# 这些 handle 还没逐个 curl 验证；不存在的账号爬虫会报 [error] 并跳过。
 variety.com
-hollywoodreporter.com
+thr.com
+deadline.com
+billboard.com
+ew.com
+vanityfair.com
 vulture.com
 thecut.com
 pitchfork.com
