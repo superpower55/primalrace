@@ -107,7 +107,7 @@ def _host(url: str) -> str:
 
 
 def _check_env() -> None:
-    provider = os.environ.get("PROVIDER", "ollama").lower()
+    provider = (os.environ.get("PROVIDER") or "anthropic").lower()
     if provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
         sys.exit("PROVIDER=anthropic but ANTHROPIC_API_KEY not set in .env")
     if provider == "ollama":

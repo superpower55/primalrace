@@ -1,7 +1,7 @@
 """LLM client abstraction.
 
-Three providers, chosen via PROVIDER env var (default "ollama"):
-  - "anthropic"  → Claude (Opus 4.7 by default), with prompt caching
+Three providers, chosen via PROVIDER env var (default "anthropic"):
+  - "anthropic"  → Claude (Fable 5.1 by default), with prompt caching
   - "ollama"     → Ollama Cloud or self-hosted Ollama (Gemma 4 31B by default)
   - "openai"     → any OpenAI-compatible endpoint (Google AI Studio, Groq, …)
 
@@ -16,29 +16,49 @@ import json
 import os
 import urllib.request
 
-PROVIDER = os.environ.get("PROVIDER", "ollama").lower()
+PROVIDER = (os.environ.get("PROVIDER") or "anthropic").lower()
 
 
 # ============================================================================
 # Anthropic
 # ============================================================================
 
+# Fable thinks before answering and thinking counts against max_tokens, so
+# the callers' budgets (sized for the visible JSON) get this much headroom.
+ANTHROPIC_THINKING_HEADROOM = 14000
+
+
 def _anthropic_generate(system_blocks: list[dict], user_msg: str,
                         max_tokens: int = 2000) -> dict:
+    """Fable 5.1 notes: thinking is always on (no `thinking` param), sampling
+    params like temperature are rejected, and safety classifiers may decline
+    with stop_reason "refusal" — `fallbacks: "default"` reruns a declined
+    request on Anthropic's recommended fallback model inside the same call.
+
+      ANTHROPIC_MODEL   default claude-fable-5-1
+      ANTHROPIC_EFFORT  low | medium | high | xhigh | max (default medium)
+    """
     import anthropic
     client = anthropic.Anthropic()
-    model = os.environ.get("ANTHROPIC_MODEL", "claude-opus-4-7")
-    resp = client.messages.create(
+    model = os.environ.get("ANTHROPIC_MODEL") or "claude-fable-5-1"
+    effort = os.environ.get("ANTHROPIC_EFFORT") or "medium"
+    resp = client.beta.messages.create(
         model=model,
-        max_tokens=max_tokens,
+        max_tokens=max_tokens + ANTHROPIC_THINKING_HEADROOM,
         system=system_blocks,
         messages=[{"role": "user", "content": user_msg}],
+        output_config={"effort": effort},
+        betas=["server-side-fallback-2026-07-01"],
+        fallbacks="default",
     )
+    if resp.stop_reason == "refusal":
+        category = resp.stop_details.category if resp.stop_details else None
+        raise RuntimeError(f"{resp.model} declined the request (category={category})")
     text = "".join(b.text for b in resp.content if b.type == "text")
     u = resp.usage
     return {
         "text": text,
-        "model": model,
+        "model": resp.model,  # differs from `model` when a fallback served it
         "input_tokens": u.input_tokens,
         "output_tokens": u.output_tokens,
         "cache_read_tokens": getattr(u, "cache_read_input_tokens", 0) or 0,
@@ -188,7 +208,7 @@ def generate(system_blocks: list[dict], user_msg: str,
 
 def provider_label() -> str:
     if PROVIDER == "anthropic":
-        return f"anthropic/{os.environ.get('ANTHROPIC_MODEL', 'claude-opus-4-7')}"
+        return f"anthropic/{os.environ.get('ANTHROPIC_MODEL') or 'claude-fable-5-1'}"
     if PROVIDER == "ollama":
         host = os.environ.get("OLLAMA_BASE_URL", "https://ollama.com")
         return f"ollama@{host}/{os.environ.get('OLLAMA_MODEL', 'gemma4:31b-cloud')}"

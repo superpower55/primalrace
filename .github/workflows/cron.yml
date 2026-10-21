@@ -34,7 +34,10 @@ jobs:
 
       - name: Run pipeline
         env:
-          PROVIDER:        ${{ vars.PROVIDER || 'ollama' }}
+          PROVIDER:        ${{ vars.PROVIDER || 'anthropic' }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_MODEL:   ${{ vars.ANTHROPIC_MODEL || 'claude-fable-5-1' }}
+          ANTHROPIC_EFFORT:  ${{ vars.ANTHROPIC_EFFORT || 'medium' }}
           OLLAMA_BASE_URL: https://ollama.com
           OLLAMA_API_KEY:  ${{ secrets.OLLAMA_API_KEY }}
           OLLAMA_MODEL:    gemma4:31b-cloud
