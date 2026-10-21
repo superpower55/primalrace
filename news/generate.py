@@ -72,7 +72,9 @@ def fetch_article(url: str) -> dict:
                 "User-Agent": USER_AGENT,
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                 "Accept-Language": "en-US,en;q=0.9,zh;q=0.8",
-                "Accept-Encoding": "gzip, deflate, br",
+                # No "br": requests can't decode brotli unless the brotli package
+                # is installed, and sites that pick it come back as binary junk.
+                "Accept-Encoding": "gzip, deflate",
             },
             allow_redirects=True,
             timeout=25,
