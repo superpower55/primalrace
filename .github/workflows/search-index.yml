@@ -6,6 +6,11 @@ name: Build search index
 # stop it early — just run it again, it continues where it left off.
 on:
   workflow_dispatch:
+  # Also runs when .github/search-rebuild changes, so a commit can start a
+  # rebuild without the Actions UI.
+  push:
+    branches: [main]
+    paths: ['.github/search-rebuild']
 
 permissions:
   contents: write
