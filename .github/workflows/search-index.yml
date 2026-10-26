@@ -66,6 +66,9 @@ jobs:
             exit 0
           fi
           git commit -m "auto: build search index"
+          # render.py also touched article pages/feed; drop those so a
+          # rebase onto newer commits is possible
+          git checkout -- .
           for i in 1 2 3; do
             git push && exit 0
             git pull --rebase -X ours origin main || git rebase --abort
