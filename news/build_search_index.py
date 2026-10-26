@@ -26,6 +26,7 @@ import hashlib
 import json
 import math
 import os
+import signal
 import sys
 import time
 import urllib.error
@@ -47,6 +48,7 @@ DIMS = 768
 BATCH = 50
 BODY_CHARS = 1500     # enough to capture the argument; keeps token use low
 SNIPPET_CHARS = 90
+SAVE_EVERY = 120      # seconds between checkpoints
 
 
 def doc_text(r) -> str:
@@ -98,6 +100,28 @@ def load_previous() -> dict[tuple[int, str], bytes]:
     return {(m["id"], m["h"]): raw[i * DIMS:(i + 1) * DIMS] for i, m in enumerate(meta)}
 
 
+def write_index(entries: list, model: str) -> int:
+    """Write every entry that has a vector. Called periodically and at the end,
+    so a cancelled or timed-out run keeps what it embedded."""
+    ready = [e for e in entries if e[2] is not None]
+    OUT_DIR.mkdir(exist_ok=True)
+    files = {
+        VECTORS: b"".join(e[2] for e in ready),
+        META: json.dumps([e[0] for e in ready], ensure_ascii=False,
+                         separators=(",", ":")).encode("utf-8"),
+        INFO: json.dumps({
+            "model": model, "dims": DIMS, "count": len(ready),
+            "built_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        }).encode("utf-8"),
+    }
+    # write all three first, then swap them in, so vectors and meta never disagree
+    for path, data in files.items():
+        path.with_suffix(path.suffix + ".tmp").write_bytes(data)
+    for path in files:
+        path.with_suffix(path.suffix + ".tmp").replace(path)
+    return len(ready)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--max-minutes", type=float, default=20, help="stop embedding after this long")
@@ -132,12 +156,25 @@ def main() -> None:
     todo = [e for e in entries if e[2] is None]
     print(f"{len(rows)} published, {len(rows) - len(todo)} reused, {len(todo)} to embed ({model})")
 
+    def on_term(*_):
+        raise KeyboardInterrupt
+    signal.signal(signal.SIGTERM, on_term)  # Actions sends SIGINT, then SIGTERM
+    try:
+        embed_all(todo, entries, model, key, args.max_minutes)
+    except KeyboardInterrupt:  # workflow cancelled: keep what we have
+        print("interrupted; saving progress")
+    n = write_index(entries, model)
+    print(f"index: {n} of {len(rows)} articles searchable")
+
+
+def embed_all(todo: list, entries: list, model: str, key: str, max_minutes: float) -> int:
     started = time.time()
     done = 0
     batch_size = BATCH
     failures = 0
+    last_save = time.time()
     while done < len(todo):
-        if time.time() - started > args.max_minutes * 60:
+        if time.time() - started > max_minutes * 60:
             print(f"time limit reached; {len(todo) - done} left for the next run")
             break
         batch = todo[done:done + batch_size]
@@ -162,17 +199,11 @@ def main() -> None:
             e[2] = quantize(v)
         done += len(batch)
         print(f"  embedded {done}/{len(todo)}")
-
-    ready = [e for e in entries if e[2] is not None]
-    OUT_DIR.mkdir(exist_ok=True)
-    VECTORS.write_bytes(b"".join(e[2] for e in ready))
-    META.write_text(json.dumps([e[0] for e in ready], ensure_ascii=False, separators=(",", ":")),
-                    encoding="utf-8")
-    INFO.write_text(json.dumps({
-        "model": model, "dims": DIMS, "count": len(ready),
-        "built_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-    }), encoding="utf-8")
-    print(f"index: {len(ready)} of {len(rows)} articles searchable")
+        if time.time() - last_save > SAVE_EVERY:
+            n = write_index(entries, model)
+            last_save = time.time()
+            print(f"  saved checkpoint: {n} articles in the index")
+    return done
 
 
 if __name__ == "__main__":

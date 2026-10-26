@@ -45,10 +45,13 @@ jobs:
           python -u build_search_index.py --max-minutes 300
 
       - name: Render (adds the search box once an index exists)
+        # also after a cancel/timeout, so a partial index is kept
+        if: always()
         working-directory: news
         run: python render.py
 
       - name: Commit
+        if: always()
         run: |
           git config user.email "bot@howtoraiseiq.com"
           git config user.name "breaking-news-bot"

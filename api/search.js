@@ -21,6 +21,7 @@ function loadIndex() {
   const meta = JSON.parse(readFileSync(path.join(dir, 'meta.json'), 'utf8'));
   const buf = readFileSync(path.join(dir, 'vectors.bin'));
   const vectors = new Int8Array(buf.buffer, buf.byteOffset, buf.byteLength);
+  if (vectors.length !== meta.length * info.dims) throw new Error('index files disagree');
   index = { info, meta, vectors };
   return index;
 }
