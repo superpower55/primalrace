@@ -518,6 +518,14 @@ def write_sitemap(published_rows) -> None:
 
 SEARCH_INFO = Path(__file__).parent / "search" / "info.json"
 
+
+def search_ready(published: int) -> bool:
+    try:
+        count = json.loads(SEARCH_INFO.read_text(encoding="utf-8"))["count"]
+    except (OSError, ValueError, KeyError):
+        return False
+    return published > 0 and count >= 0.9 * published
+
 # Index-page search box; talks to api/search.js. Kept out of PAGE_TEMPLATE
 # (which goes through str.format) so the CSS/JS needs no brace escaping.
 SEARCH_BLOCK = """<style>
@@ -647,9 +655,10 @@ def main():
         og_image=OG_IMAGE,
         site=SITE,
         extra_head="",
-        # The search box only appears once build_search_index.py has made an index.
+        # The search box appears once the index covers (nearly) every article;
+        # a half-built index would make readers think articles are missing.
         crumbs=(SEARCH_BLOCK.replace("__TAG_LABELS__", json.dumps(TAG_LABELS, ensure_ascii=False))
-                if SEARCH_INFO.exists() else ""),
+                if search_ready(len(published_rows)) else ""),
         articles='<div id="feed">' + ("\n".join(parts) if parts
                 else '<article><div class="body"><p>暂无评论。</p></div></article>') + '</div>',
         footer_line=f"共 {len(rows)} 条 &nbsp;·&nbsp; 更新于 "

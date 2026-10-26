@@ -104,6 +104,8 @@ def write_index(entries: list, model: str) -> int:
     """Write every entry that has a vector. Called periodically and at the end,
     so a cancelled or timed-out run keeps what it embedded."""
     ready = [e for e in entries if e[2] is not None]
+    if not ready:
+        return 0  # nothing embedded yet: don't write an empty index
     OUT_DIR.mkdir(exist_ok=True)
     files = {
         VECTORS: b"".join(e[2] for e in ready),
