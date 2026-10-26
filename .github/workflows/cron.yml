@@ -15,6 +15,10 @@ jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # shared with search-index.yml so the two never push over each other
+    concurrency:
+      group: news-site
+      cancel-in-progress: false
 
     steps:
       - name: Checkout
@@ -53,11 +57,18 @@ jobs:
         working-directory: news
         run: python cron_pipeline.py
 
+      - name: Update search index
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        working-directory: news
+        # embeds only the new articles; a failure keeps the previous index
+        run: python build_search_index.py --max-minutes 5 || echo "search index not updated"
+
       - name: Commit if changed
         run: |
           git config user.email "bot@howtoraiseiq.com"
           git config user.name "breaking-news-bot"
-          git add news/index.html news/news.db news/urls.txt news/p news/feed.xml sitemap.xml 2>/dev/null || true
+          git add news/index.html news/news.db news/urls.txt news/p news/feed.xml news/search sitemap.xml 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "no changes — skipping commit"
             exit 0

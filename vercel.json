@@ -6,12 +6,26 @@
     {
       "source": "/news/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=600" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, s-maxage=600"
+        }
       ]
     }
   ],
   "rewrites": [
-    { "source": "/news", "destination": "/news/index.html" },
-    { "source": "/news/", "destination": "/news/index.html" }
-  ]
+    {
+      "source": "/news",
+      "destination": "/news/index.html"
+    },
+    {
+      "source": "/news/",
+      "destination": "/news/index.html"
+    }
+  ],
+  "functions": {
+    "api/search.js": {
+      "includeFiles": "news/search/**"
+    }
+  }
 }

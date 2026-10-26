@@ -1,0 +1,65 @@
+name: Build search index
+
+# Run once by hand (Actions tab → Build search index → Run workflow) to embed
+# every published article; afterwards cron.yml keeps the index up to date.
+# Needs the GEMINI_API_KEY repository secret. On a free-tier key the quota may
+# stop it early — just run it again, it continues where it left off.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    concurrency:
+      group: news-site
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r news/requirements.txt
+
+      - name: Embed articles
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        working-directory: news
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::Add the GEMINI_API_KEY repository secret first"
+            exit 1
+          fi
+          python build_search_index.py --max-minutes 300
+
+      - name: Render (adds the search box once an index exists)
+        working-directory: news
+        run: python render.py
+
+      - name: Commit
+        run: |
+          git config user.email "bot@howtoraiseiq.com"
+          git config user.name "breaking-news-bot"
+          git add news/search news/index.html
+          if git diff --cached --quiet; then
+            echo "no changes"
+            exit 0
+          fi
+          git commit -m "auto: build search index"
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase -X ours origin main || git rebase --abort
+          done
+          exit 1

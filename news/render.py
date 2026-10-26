@@ -516,6 +516,112 @@ def write_sitemap(published_rows) -> None:
     )
 
 
+SEARCH_INFO = Path(__file__).parent / "search" / "info.json"
+
+# Index-page search box; talks to api/search.js. Kept out of PAGE_TEMPLATE
+# (which goes through str.format) so the CSS/JS needs no brace escaping.
+SEARCH_BLOCK = """<style>
+.search { margin: 0 0 2rem; }
+.search form { display: flex; gap: 0.5rem; }
+.search input {
+  flex: 1; min-width: 0; font: inherit; font-size: 1rem; padding: 0.55rem 0.8rem;
+  border: 1px solid var(--border); background: #fffdf8; color: var(--ink);
+}
+.search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.search button {
+  font: inherit; padding: 0.55rem 1rem; border: 1px solid var(--accent);
+  background: var(--accent); color: #fff; cursor: pointer;
+}
+.search-status { margin-top: 0.8rem; color: var(--muted); font-size: 0.9rem; }
+.search-status a { color: var(--accent); }
+.search-results { list-style: none; margin-top: 1rem; }
+.search-results li { padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.search-results a.t { color: var(--ink); font-size: 1.15rem; font-weight: bold; text-decoration: none; }
+.search-results a.t:hover { color: var(--accent); }
+.search-results .ax { margin-top: 0.3rem; font-style: italic; color: var(--accent); }
+.search-results .m { margin-top: 0.3rem; font-size: 0.8rem; color: var(--muted); }
+</style>
+<div class="search">
+  <form id="search-form" role="search">
+    <input id="search-q" type="search" name="q" maxlength="200" autocomplete="off"
+           placeholder="搜索评论，可以按意思搜 · search the commentary" aria-label="搜索评论 search">
+    <button type="submit"><span class="lang-zh">搜索</span><span class="lang-en">Search</span></button>
+  </form>
+  <div id="search-status" class="search-status" hidden></div>
+  <ol id="search-results" class="search-results" hidden></ol>
+</div>
+<script>
+(function () {
+  var TAGS = __TAG_LABELS__;
+  var form = document.getElementById('search-form');
+  var input = document.getElementById('search-q');
+  var status = document.getElementById('search-status');
+  var list = document.getElementById('search-results');
+  // #feed comes after this script in the page, so look it up when needed
+  function feed() { return document.getElementById('feed'); }
+
+  function bi(zh, en) {
+    var w = document.createElement('span');
+    var a = document.createElement('span'); a.className = 'lang-zh'; a.textContent = zh;
+    var b = document.createElement('span'); b.className = 'lang-en'; b.textContent = en || zh;
+    w.appendChild(a); w.appendChild(b);
+    return w;
+  }
+  function setStatus(zh, en, withClear) {
+    status.innerHTML = '';
+    status.appendChild(bi(zh, en));
+    if (withClear) {
+      var c = document.createElement('a');
+      c.href = '/news/'; c.style.marginLeft = '0.8rem';
+      c.appendChild(bi('清除搜索', 'clear'));
+      c.addEventListener('click', function (e) { e.preventDefault(); clear(); });
+      status.appendChild(c);
+    }
+    status.hidden = false;
+  }
+  function clear() {
+    input.value = ''; list.hidden = true; status.hidden = true;
+    if (feed()) feed().hidden = false;
+    history.replaceState(null, '', location.pathname);
+  }
+  function run(q) {
+    q = q.trim();
+    if (!q) { clear(); return; }
+    history.replaceState(null, '', location.pathname + '?q=' + encodeURIComponent(q));
+    setStatus('搜索中…', 'Searching…', false);
+    fetch('/api/search?q=' + encodeURIComponent(q))
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (data) {
+        list.innerHTML = '';
+        data.results.forEach(function (it) {
+          var li = document.createElement('li');
+          var a = document.createElement('a'); a.className = 't'; a.href = it.url;
+          a.appendChild(bi(it.title, it.title_en));
+          li.appendChild(a);
+          if (it.axiom || it.axiom_en) {
+            var ax = document.createElement('div'); ax.className = 'ax';
+            ax.appendChild(bi(it.axiom, it.axiom_en)); li.appendChild(ax);
+          }
+          var m = document.createElement('div'); m.className = 'm';
+          m.textContent = it.date + (it.tag ? ' · ' + (TAGS[it.tag] || it.tag) : '');
+          li.appendChild(m);
+          list.appendChild(li);
+        });
+        list.hidden = false;
+        if (feed()) feed().hidden = true;
+        if (data.results.length) setStatus('与「' + q + '」相关的评论', 'Commentary related to “' + q + '”', true);
+        else setStatus('没有找到相关评论', 'Nothing found', true);
+      })
+      .catch(function () { setStatus('搜索暂时不可用，请稍后再试', 'Search is unavailable right now', true); });
+  }
+  form.addEventListener('submit', function (e) { e.preventDefault(); run(input.value); });
+  var q0 = new URLSearchParams(location.search).get('q');
+  if (q0) { input.value = q0; run(q0); }
+})();
+</script>
+"""
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--drafts", action="store_true", help="include unpublished drafts")
@@ -541,9 +647,11 @@ def main():
         og_image=OG_IMAGE,
         site=SITE,
         extra_head="",
-        crumbs="",
-        articles="\n".join(parts) if parts
-                else '<article><div class="body"><p>暂无评论。</p></div></article>',
+        # The search box only appears once build_search_index.py has made an index.
+        crumbs=(SEARCH_BLOCK.replace("__TAG_LABELS__", json.dumps(TAG_LABELS, ensure_ascii=False))
+                if SEARCH_INFO.exists() else ""),
+        articles='<div id="feed">' + ("\n".join(parts) if parts
+                else '<article><div class="body"><p>暂无评论。</p></div></article>') + '</div>',
         footer_line=f"共 {len(rows)} 条 &nbsp;·&nbsp; 更新于 "
                     + datetime.now().strftime("%Y-%m-%d %H:%M"),
     )
