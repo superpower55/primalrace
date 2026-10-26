@@ -42,7 +42,7 @@ jobs:
             echo "::error::Add the GEMINI_API_KEY repository secret first"
             exit 1
           fi
-          python build_search_index.py --max-minutes 300
+          python -u build_search_index.py --max-minutes 300
 
       - name: Render (adds the search box once an index exists)
         working-directory: news

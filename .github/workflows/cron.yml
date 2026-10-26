@@ -62,7 +62,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         working-directory: news
         # embeds only the new articles; a failure keeps the previous index
-        run: python build_search_index.py --max-minutes 5 || echo "search index not updated"
+        run: python -u build_search_index.py --max-minutes 5 || echo "search index not updated"
 
       - name: Commit if changed
         run: |
