@@ -6,6 +6,12 @@ name: Build search index
 # stop it early — just run it again, it continues where it left off.
 on:
   workflow_dispatch:
+  # Daily, after the Gemini free-tier quota resets (midnight Pacific is 07:00
+  # or 08:00 UTC depending on DST). Each run embeds what the quota allows and
+  # resumes from the last one; once the index covers 90% of the articles the
+  # render step adds the search box. After that a run only embeds new articles.
+  schedule:
+    - cron: '37 8 * * *'
   # Also runs when .github/search-rebuild changes, so a commit can start a
   # rebuild without the Actions UI.
   push:
