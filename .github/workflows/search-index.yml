@@ -10,8 +10,10 @@ on:
   # or 08:00 UTC depending on DST). Each run embeds what the quota allows and
   # resumes from the last one; once the index covers 90% of the articles the
   # render step adds the search box. After that a run only embeds new articles.
+  # GitHub sometimes skips scheduled runs; the second time is a backup (a run
+  # with no quota left stops on its own within minutes).
   schedule:
-    - cron: '37 8 * * *'
+    - cron: '37 8,14 * * *'
   # Also runs when .github/search-rebuild changes, so a commit can start a
   # rebuild without the Actions UI.
   push:
