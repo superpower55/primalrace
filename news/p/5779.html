@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推人不是新闻，道歉才是 — breaking news · 费扬</title>
+<meta name="description" content="元暴力把一桩推搡变成一场程序纠纷 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/5779">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推人不是新闻，道歉才是 — breaking news · 费扬">
+<meta property="og:description" content="元暴力把一桩推搡变成一场程序纠纷">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/5779">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u63a8\u4eba\u4e0d\u662f\u65b0\u95fb\uff0c\u9053\u6b49\u624d\u662f", "description": "\u5143\u66b4\u529b\u628a\u4e00\u6869\u63a8\u6421\u53d8\u6210\u4e00\u573a\u7a0b\u5e8f\u7ea0\u7eb7", "datePublished": "2026-10-29T14:41:06+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/5779", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a5779">
+  <h2><a href="/news/p/5779"><span class="lang-zh">推人不是新闻，道歉才是</span><span class="lang-en">A Shove Isn&#x27;t the Story. The Apology Is.</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">直接层 · 元暴力</span>
+    <span class="source"><a href="https://www.theguardian.com/politics/2026/oct/29/nigel-farage-accused-shoving-female-lib-dem-parliament?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-10-29</span>
+    <span class="permalink"><a href="/news/p/5779">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">元暴力把一桩推搡变成一场程序纠纷</div>
+  <div class="axiom lang-en">Meta-violence turns a shove into a procedural dispute.</div>
+  <div class="body lang-zh"><p>一个男人在议会里把女议员推开，这件事本身没什么可分析的——直接暴力，有施暴者，有动作，有承受的人。真正值得拆的是它被处理成了什么。</p>
+  <p>法拉奇的说法是：那天他和另一位议员发生了&quot;肢体冲突&quot;，所以他决定给预算演讲一个&quot;wide berth&quot;，避免冲突。注意这个句式的转换。他把自己从被指控的一方，改写成主动退让、维护秩序的一方。推人这件事在叙述里消失了，剩下的是一位政治家为了议会的体面选择缺席。这是典型的认知入口操作：不是否认事实，是把事实替换成一个对自己有利的框架，然后让所有人开始讨论那个框架。</p>
+  <p>紧接着的第二层替换是程序。他的座位被撤掉了，因为预约单上没有盖对日期戳。于是整件事的焦点滑向议会座位规则、员工操作、谁有资格坐哪里。一个身体动作变成了一份文书问题。这种滑移不是偶然的——制度越复杂，暴力就越容易在其中找到藏身处。</p>
+  <p>库珀的表述很克制：她不在场，她没有亲眼看见，她说的是&quot;我的理解是&quot;。一个副党魁在电视上指认本党女议员被人推开，同时三次声明自己没看见。这不是她胆小，这是这个场域对女性证词的定价——说重了是炒作，说轻了是不存在。</p>
+  <p>而沃登本人的话是整篇报道里最锋利的一句：&quot;你我都知道那不是真的，对吧，奈杰尔？&quot;她没有描述发生了什么，她直接对着一个否认者说话，并且要求他履行一项已经被要求过的义务——写道歉信。这句话里有一样东西是库珀的转述里没有的：她知道他欠她什么，而且她知道他知道。</p>
+  <p>然后是詹里克。他被问到这件事，回答是&quot;我受够了这些可悲的威斯敏斯特争论&quot;，说自己更关心这个国家真正的问题，不愿意&quot;去回应、去抬举库珀说的那些胡话&quot;。这是一次教科书式的元层操作：把一起针对女性的身体侵犯，重新归类为&quot;圈内人的无聊争吵&quot;，然后把自己放在圈外、放在更高的位置——关心国家的人，不关心这种事的人。谁被推开了不重要，重要的是谈论这件事的人显得很小。</p>
+  <p>改革党的消息源走的是另一条路：&quot;完全是自由民主党议员对奈杰尔有攻击性&quot;，加上&quot;典型的自由民主党不诚实&quot;。受害者变成挑衅者，指控变成抹黑。这一招之所以有效，是因为它不需要证据，只需要把水搅浑，让旁观者觉得两边都在吵架，然后转身走开。</p>
+  <p>这里没有人真的在维护什么秩序。一个男人推了一个女人，然后他谈程序，他的同僚谈格局，他的党谈对方撒谎。三层叙事叠在一起，把那一下推搡埋得干干净净。这不是掩盖，这是共谋——每个人都在自己的位置上做对自己最有利的表达，合起来的效果是：她要求的那封道歉信，可能永远不会来。</p>
+  <p>沃登说她不会屏息以待。这句话是判断，不是修辞。</p></div>
+  <div class="body lang-en"><p>A man pushed a woman MP in parliament. There is nothing to analyze in the push itself — direct violence, a visible actor, a visible action, a body that received it. What deserves taking apart is what it got processed into.</p>
+  <p>Farage&#x27;s version: he had a &quot;physical altercation&quot; with another MP that day, so he chose to give the budget speech a wide berth and avoid conflict. Watch the grammar shift. He moves himself from the accused to the one who steps back, the one protecting decorum. The shove disappears from the sentence, and what remains is a statesman skipping a speech for parliament&#x27;s sake. This is the cognitive entrance in its purest form: not denying the fact, but swapping it for a frame that favors you, then getting everyone to argue inside that frame.</p>
+  <p>Then the second substitution: procedure. His seat reservation was removed because it lacked the proper date stamp. The story slides toward seating rules, staff error, who may sit where. A physical act becomes a paperwork problem. This slippage is not accidental — the more elaborate the institution, the easier violence finds a place to hide inside it.</p>
+  <p>Cooper is careful: she wasn&#x27;t there, she didn&#x27;t see it, what she has is an understanding. A deputy party leader names, on television, that one of her female MPs was shoved, while stating three times that she did not witness it. That is not cowardice. That is the going rate for women&#x27;s testimony in this arena — say it too firmly and it&#x27;s grandstanding, say it too softly and it didn&#x27;t happen.</p>
+  <p>And Voaden&#x27;s own words are the sharpest line in the piece: &quot;We both know that&#x27;s not true Nigel don&#x27;t we?&quot; She does not describe what happened. She addresses a denier directly and demands he fulfill an obligation already imposed on him — write the apology. There is something in that sentence absent from Cooper&#x27;s relay: she knows what he owes her, and she knows that he knows.</p>
+  <p>Then Jenrick. Asked about it, he says he is sick to death of these pathetic Westminster debates, that he cares about the country&#x27;s real problems, that he won&#x27;t dignify Cooper&#x27;s nonsense with a response. This is textbook meta-level work: reclassify an assault on a woman&#x27;s body as an insider squabble, then place yourself outside and above it — the person who cares about the nation, not about this. Who got shoved is irrelevant. What matters is that anyone discussing it looks small.</p>
+  <p>The Reform source takes the other road: it was the Lib Dem MPs being aggressive toward Nigel, plus typical Lib Dem dishonesty. Victim becomes aggressor, accusation becomes smear. This works because it needs no evidence — only enough mud to make onlookers conclude that both sides are fighting, and walk away.</p>
+  <p>Nobody here is actually defending order. A man pushed a woman, and then he talked procedure, his colleague talked stature, his party talked lying. Three layers of narrative stacked on top of each other, and the shove is buried clean. This is not cover-up. This is complicity — each person making the expression most advantageous to himself in his own position, and the combined effect is that the apology she asked for may never arrive.</p>
+  <p>Voaden says she won&#x27;t hold her breath. That is a judgment, not a figure of speech.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
