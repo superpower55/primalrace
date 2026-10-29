@@ -38,8 +38,10 @@ jobs:
 
       - name: Run pipeline
         env:
-          # DeepSeek by default (OpenAI-compatible); repo variables override.
-          PROVIDER:        ${{ vars.PROVIDER || 'openai' }}
+          # DeepSeek (OpenAI-compatible). The old PROVIDER repo variable is set
+          # to 'ollama', so it is deliberately not read here; set NEWS_PROVIDER
+          # to switch providers.
+          PROVIDER:        ${{ vars.NEWS_PROVIDER || 'openai' }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}  # only for keys not scoped to a workspace
           ANTHROPIC_MODEL:   ${{ vars.ANTHROPIC_MODEL || 'claude-fable-5-1' }}
