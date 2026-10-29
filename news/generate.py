@@ -128,6 +128,26 @@ def _strip_json_fence(s: str) -> str:
     return s.strip()
 
 
+def _parse_json_objects(text: str) -> dict:
+    """Parse the reply as JSON. Some OpenAI-compatible hosts (DeepSeek's JSON
+    mode) occasionally split one object into several back-to-back objects;
+    those are merged."""
+    decoder = json.JSONDecoder()
+    merged, pos = {}, 0
+    while pos < len(text):
+        while pos < len(text) and text[pos].isspace():
+            pos += 1
+        if pos == len(text):
+            break
+        obj, pos = decoder.raw_decode(text, pos)
+        if not isinstance(obj, dict):
+            raise json.JSONDecodeError("expected a JSON object", text, pos)
+        merged.update(obj)
+    if not merged:
+        raise json.JSONDecodeError("empty reply", text, 0)
+    return merged
+
+
 def build_user_msg(article: dict) -> str:
     return (
         f"以下是今天要评论的一条新闻。\n"
@@ -145,7 +165,7 @@ def generate_commentary(article: dict) -> dict:
                           json_schema=OUTPUT_SCHEMA)
     text = _strip_json_fence(result["text"])
     try:
-        parsed = json.loads(text)
+        parsed = _parse_json_objects(text)
     except json.JSONDecodeError as e:
         raise RuntimeError(f"model returned non-JSON:\n{text}\n\nerror: {e}")
 
@@ -158,6 +178,8 @@ def generate_commentary(article: dict) -> dict:
         "body_en": (parsed.get("body_en") or "").strip(),
         "tag": (parsed.get("tag") or "other").strip(),
         "violence_layer": (parsed.get("violence_layer") or "").strip(),
+        "skip": bool(parsed.get("skip")),
+        "skip_reason": (parsed.get("skip_reason") or "").strip(),
         "model": result["model"],
         "input_tokens": result["input_tokens"],
         "cache_read_tokens": result["cache_read_tokens"],
@@ -206,6 +228,13 @@ def process_url(url: str) -> int:
 
     print(f"  [generate] {provider_label()}")
     commentary = generate_commentary(article)
+    if commentary["skip"]:
+        # Not worth a commentary (weather, trivia…). Store the article as an
+        # unpublished 'skipped' row with the reason in `axiom`, so the URL is
+        # not fetched again, and return 0 so nothing gets published.
+        print(f"  [skipped] {commentary['skip_reason']}")
+        commentary.update(title="", body="", title_en="", axiom_en="", body_en="",
+                          tag="skipped", axiom=commentary["skip_reason"])
     print(f"  [done] '{commentary['title']}' "
           f"(in={commentary['input_tokens']} "
           f"cache_r={commentary['cache_read_tokens']} "
@@ -235,7 +264,7 @@ def process_url(url: str) -> int:
                 commentary["output_tokens"], now,
             ),
         )
-        return cur.lastrowid
+        return 0 if commentary["skip"] else cur.lastrowid
 
 
 def regen(article_id: int) -> None:

@@ -135,6 +135,17 @@ STYLE = """# 怎么写
 篇幅跟着论点走：读者在手机上读，一条主线讲透就停，不为凑篇幅扩写背景。
 标题 8-18 字，是一个判断或一个反讽（不用"浅析""略论""关于"）。
 
+# 什么时候不评论
+
+不是每条新闻都值得一篇评论。天气预报和天气播报，以及那些既和人的处境关系不大、
+又用不上判断和宏大叙事的报道——名人的婚恋、生育、穿搭这类私人动态，产品参数、
+比分速报、纯科普之类——硬写只会写成刻薄或者小题大做。这种时候直接不写，
+哪怕你能从里面找出一个框架角度来。
+
+判断标准：这条新闻里有没有人在承受代价，有没有一个值得拆穿的叙事。两样都没有，就跳过。
+天气背后有人在付代价的，就不算天气报道：热浪里倒下的户外工人、洪水后谁先被救、
+气候政策怎么分配损失——这些照常写。
+
 # 事实
 
 你手上只有这一篇报道。每篇评论发布前都会被逐句拿去和原文对照，对不上的会被退回——
@@ -176,6 +187,9 @@ STYLE = """# 怎么写
   （culture = 文娱、流行文化、时尚、体育明星文化）
 - `violence_layer`：direct | structural | cultural | meta 选一个或多个（逗号分隔），
   表示这条新闻揭示的暴力主要在哪一层；好新闻填它在哪一层取得了真正的进展
+- `skip`：决定不评论时填 true（见上面"什么时候不评论"），否则 false
+- `skip_reason`：skip 为 true 时用一句话说明为什么不评论；不跳过时留空字符串。
+  skip 为 true 时，其余字段都填空字符串（tag 填 other）
 
 只输出这个 JSON 对象本身，前后不加说明或代码块。"""
 
@@ -214,9 +228,11 @@ OUTPUT_SCHEMA = {
             "china_tech", "gender", "international", "philosophy",
             "tech", "culture", "good_news", "other"]},
         "violence_layer": {"type": "string"},
+        "skip": {"type": "boolean"},
+        "skip_reason": {"type": "string"},
     },
     "required": ["title", "axiom", "body", "title_en", "axiom_en", "body_en",
-                 "tag", "violence_layer"],
+                 "tag", "violence_layer", "skip", "skip_reason"],
     "additionalProperties": False,
 }
 
