@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: '*/10 * * * *'     # every 10 minutes
   workflow_dispatch:           # manual trigger from the Actions tab
+  push:                        # or change .github/news-run to start a run
+    branches: [main]
+    paths: ['.github/news-run']
 
 # allow the workflow to push commits back to the repo
 permissions:
