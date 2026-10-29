@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>算法定价只是把旧暴力换了张脸 — breaking news · 费扬</title>
+<meta name="description" content="定价权从来不在算法手里，在谁手里才是问题 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/5756">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法定价只是把旧暴力换了张脸 — breaking news · 费扬">
+<meta property="og:description" content="定价权从来不在算法手里，在谁手里才是问题">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/5756">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u7b97\u6cd5\u5b9a\u4ef7\u53ea\u662f\u628a\u65e7\u66b4\u529b\u6362\u4e86\u5f20\u8138", "description": "\u5b9a\u4ef7\u6743\u4ece\u6765\u4e0d\u5728\u7b97\u6cd5\u624b\u91cc\uff0c\u5728\u8c01\u624b\u91cc\u624d\u662f\u95ee\u9898", "datePublished": "2026-10-29T12:33:21+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/5756", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a5756">
+  <h2><a href="/news/p/5756"><span class="lang-zh">算法定价只是把旧暴力换了张脸</span><span class="lang-en">Algorithmic Pricing Is Old Violence in a New Coat</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.theguardian.com/us-news/2026/oct/29/delta-uber-ftc-pricing?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-10-29</span>
+    <span class="permalink"><a href="/news/p/5756">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">定价权从来不在算法手里，在谁手里才是问题</div>
+  <div class="axiom lang-en">Pricing power was never in the algorithm. Ask who holds it.</div>
+  <div class="body lang-zh"><p>FTC 让九家公司交出算法定价的数据，媒体把它写成一次针对&quot;监视定价&quot;的执法行动。但真正在动的那一层不是算法，是定价权本身——谁有资格给同一样东西对不同的人标不同的价，这个资格从哪来。算法只是把这件事做得更细、更隐蔽、更快。</p>
+  <p>Uber、Lyft 给司机按&quot;个人历史&quot;派不同的单，Delta、United 给乘客按购买记录收不同的价。同一份劳动、同一张票，价格随人浮动。这不是技术故障，这是把&quot;你是谁&quot;直接换算成&quot;你值多少&quot;。第一章讲表达决定你是谁，这里反过来用：你的浏览记录、你的位置、你参不参加会员计划，被拿来定义你的支付能力上限，然后按这个上限收费。表达被读取，被定价，被反过来用在你身上。</p>
+  <p>结构层很清楚：这不是某个坏员工多收了几块钱，是一整套把个人信息变成价格歧视依据的机制。报道里写得很直白——FTC 对航空公司根本没有罚款和立规的权力，因为航空业被划在它的管辖之外。也就是说，被点名的九家里有三家航空，调查可以问，罚不了。立法层面，几个州开始提法案禁止监视定价和电子价签，但那是&quot;开始提出&quot;，不是&quot;已经执行&quot;。</p>
+  <p>所以这条新闻的性质要先说清楚：它是一次信息索取，不是一次惩罚。FTC 主席说要用这些数据&quot;审视&quot;那些不透明的方法，前 FTC 委员 Chopra 的话更值得记住——到目前为止，这类研究没有产出过能导向实际规则改变的像样报告。这句话是整篇报道里最锋利的一句，它说的是：调查本身可以是一场表演。</p>
+  <p>文化层在这里也有一份。&quot;个性化&quot;&quot;会员专享&quot;&quot;智能推荐&quot;这些词把价格歧视包装成服务升级，让被多收钱的人以为自己被优待了。这和浪漫爱叙事、和&quot;松弛感&quot;被定价成高级审美是同一个手法——给一个盘剥动作配一个听起来对你好的名字。你付得更多，你被告知你被更懂你。</p>
+  <p>谁付代价？报道里点到的是被通胀压着的家庭预算，是被&quot;宰&quot;的消费者，是按个人历史拿不同报酬的零工司机。谁的名字没出现？那些设计这套系统、从差价里分成的公司高管和股东，报道里一个都没写。他们不在被调查名单上，他们在名单的另一头。</p>
+  <p>结尾只剩一个还没被回答的问题：如果调查结束、报告出炉、然后什么规则都没变，这九家公司交出去的数据，会不会反过来成为下一轮更精准定价的原料。</p></div>
+  <div class="body lang-en"><p>The FTC is ordering nine companies to hand over data on algorithmic pricing, and the press is framing it as an enforcement action against &quot;surveillance pricing.&quot; The layer actually moving here isn&#x27;t the algorithm. It&#x27;s pricing power itself — who gets to charge different people different prices for the same thing, and where that right comes from. The algorithm just makes it finer, quieter, faster.</p>
+  <p>Uber and Lyft pay drivers different fares based on their &quot;personal histories.&quot; Delta and United charge passengers different prices based on their buying histories. Same labor, same ticket, price floats with the person. This isn&#x27;t a technical glitch. It&#x27;s converting &quot;who you are&quot; directly into &quot;what you&#x27;re worth.&quot; Chapter one says expression determines who you are. Here it runs in reverse: your browsing history, your location, whether you joined the loyalty program, get read to define your ceiling, and then you get charged up to that ceiling. Expression gets harvested, priced, and turned back on you.</p>
+  <p>The structural layer is plain: this isn&#x27;t one bad employee overcharging by a few dollars, it&#x27;s an entire mechanism that turns personal data into grounds for price discrimination. And the report says it outright — the FTC has no power to fine or regulate the airlines named, because airlines sit outside its jurisdiction. Three of the nine are airlines. The agency can ask questions. It cannot punish. Several states have begun introducing bills to ban surveillance pricing and electronic shelf labels, but &quot;begun introducing&quot; is not &quot;enforcing.&quot;</p>
+  <p>So name what this is: a demand for information, not a penalty. The FTC chair says the data will be used to &quot;scrutinize&quot; opaque methods. Former commissioner Rohit Chopra&#x27;s line is the sharpest in the piece — so far these studies have not produced meaningful reports that lead to any rule-making changes. That sentence says the inquiry itself can be a performance.</p>
+  <p>The cultural layer has its share too. &quot;Personalized,&quot; &quot;member exclusive,&quot; &quot;smart recommendations&quot; — these words dress price discrimination as service upgrade, so the person being overcharged believes they&#x27;re being favored. Same move as romance narratives, same move as &quot;effortless chic&quot; getting priced into high taste: attach a name that sounds good for you to an act of extraction. You pay more, and you&#x27;re told you&#x27;re better understood.</p>
+  <p>Who pays? The report names family budgets already squeezed by inflation, consumers being gouged, gig drivers paid different wages based on personal history. Whose names are missing? The executives and shareholders who designed this system and take a cut of the spread — not one of them appears. They&#x27;re not on the list being investigated. They&#x27;re on the other end of it.</p>
+  <p>One question the piece leaves open: if the inquiry ends, a report comes out, and no rule changes, does the data these nine companies hand over become the raw material for the next, more precise round of pricing?</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
