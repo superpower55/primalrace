@@ -102,7 +102,8 @@ def main():
                 break
             try:
                 aid = process_url(url)
-                new_ids.append(aid)
+                if aid:  # 0 = already in db, muted or skipped: nothing to publish
+                    new_ids.append(aid)
             except Exception as e:
                 print(f"  [error] {url}: {e}", file=sys.stderr)
 

@@ -29,7 +29,8 @@ from llm import generate as llm_generate, provider_label  # noqa: E402
 from prompts.system import OUTPUT_SCHEMA, build_system_blocks  # noqa: E402
 
 
-MAX_TOKENS = 2000
+# Bilingual commentary runs ~1,000-1,700 output tokens on DeepSeek; leave room.
+MAX_TOKENS = 4000
 
 # Browser-like UA — most news sites and link shorteners (nyti.ms, reut.rs,
 # bloom.bg, n.pr, aje.news, theatln.tc, …) refuse plain-python user agents.
@@ -191,14 +192,17 @@ def generate_commentary(article: dict) -> dict:
 # ------------------------ orchestration --------------------------------------
 
 def process_url(url: str) -> int:
-    """Fetch + generate + insert. Returns the article id."""
+    """Fetch + generate + insert. Returns the new article's id, or 0 when
+    nothing new should be published (already in the db, muted, or skipped).
+    Returning an existing id would make the cron pipeline publish and re-post
+    it — including commentary-free rows added by fetch_articles.py."""
     with connect() as conn:
         existing = conn.execute(
             "SELECT id FROM articles WHERE url = ?", (url,)
         ).fetchone()
         if existing:
             print(f"  [skip] already in db as #{existing['id']}")
-            return existing["id"]
+            return 0
 
     # Honor admin deletions: if the URL or host has been muted via admin UI,
     # don't waste tokens generating commentary that'll just get deleted again.
@@ -223,7 +227,7 @@ def process_url(url: str) -> int:
             ).fetchone()
             if existing:
                 print(f"  [skip] resolved to existing #{existing['id']}: {article['url']}")
-                return existing["id"]
+                return 0
     print(f"  [extract] {len(article['raw_text'])} chars — {article['source_title'][:60]}")
 
     print(f"  [generate] {provider_label()}")

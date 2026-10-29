@@ -1,10 +1,8 @@
 name: News commentary (every 10 min)
 
 on:
-  # PAUSED: no new commentary for now (the site stays on Gemma; Fable is only
-  # used to build the LoRA training set). Restore the schedule block to resume.
-  # schedule:
-  #   - cron: '*/10 * * * *'     # every 10 minutes
+  schedule:
+    - cron: '*/10 * * * *'     # every 10 minutes
   workflow_dispatch:           # manual trigger from the Actions tab
 
 # allow the workflow to push commits back to the repo
@@ -40,7 +38,8 @@ jobs:
 
       - name: Run pipeline
         env:
-          PROVIDER:        ${{ vars.PROVIDER || 'ollama' }}
+          # DeepSeek by default (OpenAI-compatible); repo variables override.
+          PROVIDER:        ${{ vars.PROVIDER || 'openai' }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_WORKSPACE_ID: ${{ vars.ANTHROPIC_WORKSPACE_ID }}  # only for keys not scoped to a workspace
           ANTHROPIC_MODEL:   ${{ vars.ANTHROPIC_MODEL || 'claude-fable-5-1' }}
@@ -48,9 +47,9 @@ jobs:
           OLLAMA_BASE_URL: https://ollama.com
           OLLAMA_API_KEY:  ${{ secrets.OLLAMA_API_KEY }}
           OLLAMA_MODEL:    gemma4:31b-cloud
-          OPENAI_BASE_URL: ${{ vars.OPENAI_BASE_URL }}
-          OPENAI_API_KEY:  ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL:    ${{ vars.OPENAI_MODEL }}
+          OPENAI_BASE_URL: ${{ vars.OPENAI_BASE_URL || 'https://api.deepseek.com/v1' }}
+          OPENAI_API_KEY:  ${{ secrets.DEEPSEEK_API_KEY || secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL:    ${{ vars.OPENAI_MODEL || 'deepseek-chat' }}
           PUBLISH_NEW:     '1'
           SKIP_PUSH:       '1'   # we commit from the workflow step below
           MAX_PER_RUN:     '10'  # cap per hourly run, rest waits in urls.txt
