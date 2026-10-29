@@ -49,9 +49,9 @@ jobs:
           OLLAMA_BASE_URL: https://ollama.com
           OLLAMA_API_KEY:  ${{ secrets.OLLAMA_API_KEY }}
           OLLAMA_MODEL:    gemma4:31b-cloud
-          OPENAI_BASE_URL: ${{ vars.OPENAI_BASE_URL || 'https://api.deepseek.com/v1' }}
+          OPENAI_BASE_URL: ${{ vars.NEWS_OPENAI_BASE_URL || 'https://api.deepseek.com/v1' }}
           OPENAI_API_KEY:  ${{ secrets.DEEPSEEK_API_KEY || secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL:    ${{ vars.OPENAI_MODEL || 'deepseek-chat' }}
+          OPENAI_MODEL:    ${{ vars.NEWS_OPENAI_MODEL || 'deepseek-chat' }}
           PUBLISH_NEW:     '1'
           SKIP_PUSH:       '1'   # we commit from the workflow step below
           MAX_PER_RUN:     '10'  # cap per hourly run, rest waits in urls.txt
