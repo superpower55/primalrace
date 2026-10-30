@@ -6,7 +6,20 @@
 <atom:link href="https://www.howtoraiseiq.com/news/feed.xml" rel="self" type="application/rss+xml"/>
 <description>用《原初种族》的框架读新闻 — 费扬的双语新闻评论，每 10 分钟自动更新。</description>
 <language>zh</language>
-<lastBuildDate>Fri, 30 Oct 2026 06:40:45 +0000</lastBuildDate>
+<lastBuildDate>Fri, 30 Oct 2026 06:50:58 +0000</lastBuildDate>
+<item><title>一件毛绒外套的价格表</title><link>https://www.howtoraiseiq.com/news/p/5829</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5829</guid><pubDate>Fri, 30 Oct 2026 06:50:55 +0000</pubDate><description>品味不是自由，是标价。
+
+这篇东西从头到尾只有一件事：给一件毛绒外套配一整套价签。外套370镑，牛仔裤300镑，包380镑，靴子269镑，眼镜145镑。最便宜的一件是18镑的包，配在370镑的外套旁边，负责让整套看起来「松弛」。
+
+所谓「用休闲基本款或经典剪裁来反衬夸张外套」，翻译过来是：你得先买得起那件夸张的，再买得起那套看起来不在乎的。反差是设计出来的，不在乎是花钱买的。
+
+这是第三章那个入口最纯粹的形态——审美作为筛选机制。它不推销一件衣服，它推销的是一整套辨认系统：谁穿Bimba Y Lola，谁穿Bershka，谁把18镑的包和370镑的外套搭在一起，谁就懂。懂什么？懂价签的位置。品味在这里没有高下，只有排序，而排序由能贴标签的人写。
+
+整篇没有一个人。没有穿它的人，没有做它的人，没有付钱的人。只有单品、品牌、价格，和一个叫Melanie Wilkinson的署名。这是时尚版的标准文体，我不打算为难它——但恰恰因为没有人，它才把机制露得这么干净：当表达被完全商品化，剩下的就只有定价权在说话。
+
+它甚至不假装是给「你」看的。它给的是那个已经知道答案的人，一份确认清单。
+
+所以我不骂它肤浅。我指出它的功能：它把「我是谁」这道题，改成了「我买得起哪一档」。答对的人获得圈子，答错的人获得一个18镑的包，和一个以为自己只是不会搭配的错觉。</description></item>
 <item><title>拆掉圣西罗，再卖一次感情</title><link>https://www.howtoraiseiq.com/news/p/5828</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5828</guid><pubDate>Fri, 30 Oct 2026 06:31:05 +0000</pubDate><description>先拆掉记忆，再把记忆做成卖点。
 
 圣西罗要拆了，两家俱乐部请来的建筑师在城堡里开发布会，说“San Siro 是一种感觉”。感觉被说出口的那一刻，它就已经是产品说明书的一部分了。
@@ -1358,14 +1371,5 @@ Elizabeth Holmes 的故事再次爆火，这次不是因为 Theranos 的血检�
 在足球这个极端的 masculine 场域中，球员的身体就是他们的表达。当一个球员处于巅峰，他的每一次触球都是对存在性的确证；而当他进入衰退期，系统会迅速启动一套“经验”与“衰老”的叙事来将其客体化。Van Dijk 此时面对的不是对方的前锋，而是一道生物墙（biological wall）。系统不再关心他如何通过经验去博弈，而只在乎他的肌肉反应是否还符合那个被预设的“顶级中后卫”模板。这种从“主体”到“残次品”的转换，是球员在存在性战争中必然经历的主体性死亡。
 
 而 Ngumoha 的出现则提供了完美的对照。一个年轻球员的“sashays”和“sensational”被视为光芒，是因为他正处于系统定价权的最高点。这种对“年轻”的崇拜和对“衰老”的嘲弄，本质上是同一套元暴力的两面：它定义了什么是“有效”的身体，并以此剥夺那些不再符合标准的个体的解释权。Van Dijk 的道歉之举，其实是对这套规则的顺从。在安菲尔德的雨夜，最残酷的不是比分 2-2，而是那个 35 岁的身体在意识到自己失去了系统认可的“最优解表达”时的那种无力感。</description></item>
-<item><title>云端的神坛与地上的断电：Hyperscalers 的权力套利</title><link>https://www.howtoraiseiq.com/news/p/5680</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5680</guid><pubDate>Tue, 20 Oct 2026 20:11:37 +0000</pubDate><description>技术垄断的本质是将系统性风险社会化，而将解释权私有化。
-
-这次 Google Cloud 的宕机再次撕开了数字世界的遮羞布：我们所谓的“云”，本质上只是分布在伦敦或弗吉尼亚州某些破旧机房里的物理电缆和散热风扇。当银行停摆、法院休庭、NHS 医疗应用崩溃时，人们习惯性地将其视为“技术故障”，但这在加尔通的暴力三角里是典型的 structural violence。这种暴力不在于电断了，而在于社会运行的底层逻辑被极少数 Hyperscalers 垄断，导致公共服务在面对私有公司的一次 power event 时毫无还手之力。
-
-最讽刺的共谋发生在英国政府身上。明明知道将敏感数据托管在 Azure 或 Google Cloud 上会面临美国政府的窥探和系统性崩溃，但他们依然选择将 60% 的基础设施交给这些巨头。这不是因为没有替代方案，而是一种路径依赖的共谋：政府通过出让数字主权来换取短期内的运维便捷。这种共谋的回报是：当系统崩溃时，责任被推给“第三方设施”，而权力依然稳固在巨头手中。
-
-更深层的 Meta Violence 隐藏在 AI 生成代码的叙事里。Google 宣布 75% 的新代码由 AI 生成，这在商业 PR 中被包装成“效率革命”，但在工程实践中，这实际上是在用算法的黑盒替代人类工程师的责任链。当 AWS 之前的崩溃被证实与 AI 工具相关时，我们看到的其实是另一种 weaponized expression：用“AI 驱动”来掩盖大规模裁员导致的专业能力坍塌。他们试图定义一种新现实——即 AI 可以替代人类维护基础设施。但现实的反馈是：代码可以由 AI 生成，但断电后的混乱必须由人类承担。
-
-这场存在性战争的输家是每一个依赖数字化生存的普通人。我们的数字生命被托管在几个巨头的 zone 里，而这些巨头通过制造“Too big to fail”的既定事实，夺取了对社会运行权的定价权。下次宕机时，他们依然会发布一份礼貌的 status dashboard 分析报告，然后继续心安理得地收钱。</description></item>
 </channel>
 </rss>
