@@ -6,7 +6,24 @@
 <atom:link href="https://www.howtoraiseiq.com/news/feed.xml" rel="self" type="application/rss+xml"/>
 <description>用《原初种族》的框架读新闻 — 费扬的双语新闻评论，每 10 分钟自动更新。</description>
 <language>zh</language>
-<lastBuildDate>Sat, 31 Oct 2026 18:31:50 +0000</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 18:41:10 +0000</lastBuildDate>
+<item><title>选举夜卖的是数据还是戏</title><link>https://www.howtoraiseiq.com/news/p/6080</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/6080</guid><pubDate>Sat, 31 Oct 2026 18:41:05 +0000</pubDate><description>十几个小时的直播只是包装，解释权才是他们真正在争夺的东西
+
+选举夜不是新闻，是产品发布会。NBC 要播十三个小时，是这家电视台为中选夜准备过的最长时段；Fox 在应用里塞了个 AI 聊天机器人；MS NOW 办抽奖，奖品是一件限量版&quot;Velshi 背心&quot;。这些不是报道选举，这是把选举做成一场可以停留、可以点击、可以订阅的节目。
+
+所有人都在说同一句话：&quot;meeting viewers where they are&quot;。CBS 的 David Reiter 说得更老实——过去那种&quot;你做了节目，人就会来&quot;的假设已经不太成立了。于是每一家都在把观众圈进自己的流媒体、应用和社交账号里。这不是分发，这是圈地。观众被&quot;meet&quot;到的地方，是广告和订阅能够被计量的地方。
+
+真正值得看的是他们怎么处理&quot;还没出结果&quot;这段时间。CNN 要上线 Sightline，实时告诉你谁领先、为什么还不能宣布；CBS 有 FutureCast，随开票更新，但附一个误差范围的免责声明；ABC 有模拟器算概率。这些工具的功能是把&quot;不知道&quot;包装成&quot;正在知道&quot;。开票夜最稀缺的不是数据，是确定性，电视台卖的就是确定性的替代品。
+
+于是 Kalshi 这样的预测市场被请进了 CBS 的节目。CNN 的 David Chalian 说它&quot;entered the chat&quot;，但补了一句：它只是无数数据点之一。NewsNation 的 Chris Stirewalt 更直接：赌盘是滞后指标，不是领先指标，和 FanDuel、DraftKings 没有本质区别。同一晚，Fox 的 Bill Hemmer 说，他宁愿信自己团队拿到的数据，也不信一个他无法验证的外部预测。
+
+这些分歧不是技术分歧。谁有权在票数出来之前说&quot;这州归谁&quot;，谁就握着那一晚的解释权。Decision Desk HQ 同时服务 NewsNation 和 Chuck Todd、Chris Cillizza 的新节目 The Projection；SSRS 的 The Voter Poll 是 2016 年以来第一次被所有主要电视台共用。数据源在集中，解读的入口却在分裂——每家都要有一个自己的&quot;看板&quot;，因为看板本身就是品牌。
+
+最漂亮的一段是 ABC 的 Jenn Metz 谈投票流程：如果正在发生的是正常的，就告诉观众这是正常的，这是投票如何运作的样子，&quot;我们正在实时看着民主上演&quot;。安抚观众被写进了节目单。同一晚，NewsNation 的 Stirewalt 说，如果你需要被选举夜报道安抚，不想听坏消息，总有地方会告诉你你想听的。两种说法摆在一起，电视网自己已经把这一晚的性质说清楚了：不是报道，是服务。
+
+C-SPAN 把 The Young Turks 和 PBD Podcast 搬上 C-SPAN2 和 C-SPAN3，CEO Sam Feist 称之为&quot;传统媒体遇见新媒体&quot;。这句话听着像开放，其实是收编：创作者被请进旧机构的两条备用频道，代价是他们的观众被导入 C-SPAN。与此同时，The Bulwark、Jubilee、Piers Morgan 都在做自己的直播。注意力在分散，但解释权的争夺没有分散，只是换了一批人站在同一个位置上。
+
+这一晚真正被报道的东西，是投票的人怎么投、为什么这么投。The Voter Poll 覆盖 45 个有参议员或州长选举的州，比过去只在摇摆州取样更宽。这是实在的进步：更多人的处境被纳入统计。但统计的用途是让电视台在开票前就摆好叙事框架——&quot;选民偏移&quot;往哪边、哪个州意外胶着。人被采访，然后被折算</description></item>
 <item><title>一张脸，两种定价</title><link>https://www.howtoraiseiq.com/news/p/6079</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/6079</guid><pubDate>Sat, 31 Oct 2026 18:31:46 +0000</pubDate><description>扮演得越像，越说明那张脸是产品。
 
 万圣节最诚实的节目，是名人互相扮演名人。Lisa Rinna 扮 Kylie Jenner，扮到 Jenner 本人在评论区说“以为这是我”。一篇娱乐版的小稿，写得很轻快，但里面有一套完整的定价机制在运转。
@@ -1461,20 +1478,5 @@ Ballot stacking 的机制很简单：不改变任何人的立场，只改变选�
 报道最后列了印度和肯尼迪 1946 年的例子，证明这招有时灵有时不灵。但“灵不灵”不是重点。重点是：当一个系统需要靠同名来争夺席位时，它已经承认了选票本身是可以被制造的，而不是被表达的。
 
 阿拉斯加这一局谁赢还不知道。但有一件事已经定了：那两个 Dan Sullivan 里，有一个人的名字从此不再只属于他自己。</description></item>
-<item><title>墙里长出个Hugging Face</title><link>https://www.howtoraiseiq.com/news/p/5971</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/5971</guid><pubDate>Sat, 31 Oct 2026 14:21:29 +0000</pubDate><description>被封锁逼出来的替代品，不是竞争，是收容。
-
-先把这条新闻的账面数字摆清楚：Hugging Face 上托管着三百多万个开放模型，ModelScope 十七万，MoArk 两万。这不是三家在同一个赛道上赛跑，这是一个人被关进院子之后，院子里自己长出来的两棵树。报道说得很直白——2023 年监管把 Hugging Face 封了，才打开了一个国内市场。所以这两家平台的起点不是产品比 Hugging Face 好，是用户没得选。
-
-OSChina 的 CEO 徐勇那句话值得单独拎出来看：不是所有人都能一直用 VPN。这句话是整篇报道里最诚实的一句，也是它最不诚实的一句。诚实在于它承认了墙的存在和墙的成本；不诚实在于它把墙的成本包装成了创业的机会。一个昆明开发者说得更直接：Hugging Face 和 GitHub 是开源世界的默认选项，它们提供更多样的东西，国内平台得先说服我们为什么要用。这就是真实的市场态度——不是不需要，是被挡住。
-
-报道里最有意思的结构在这里：政府一边封 Hugging Face，一边默许 AI 实验室绕过封锁把中国模型传到墙外去。封的是入口，放的是出口。这不是矛盾，这是精确的算计——国内用户不能看外面的，但中国的模型必须让外面看见。同一堵墙，对内是筛子，对外是喇叭。
-
-这套操作的本质是控制认知入口，而不是建设生态。ModelScope 办黑客松、在杭州开联合办公空间、MoArk 派工程师把模型适配到国产芯片上——这些都是真实的投入，我不否认。但它们的驱动力不是“我们能做出更好的东西”，而是“美国随时可能掐断我们”。报道里 Nvidia 在收购 Hugging Face 的监管文件里就明确标了风险：监管可能禁止中国模型在该平台分享。Mercator 的研究员 Arcesati 说得清楚，中国政府的理想状态是整个 AI 技术栈尽可能国产化。国产化在这里不是技术目标，是安全目标——安全的对象不是用户，是政权自己。
-
-所以这条新闻的正确读法不是“中国有了自己的 Hugging Face”，而是“中国在给自己造一个不会被人关掉的门”。门后面的人以为自己有了选择，其实选择早在 2023 年就被替他们做完了。
-
-真正的问题在于：一个靠封锁获得用户的平台，没有动力去赢得用户。Hugging Face 要跟全球开发者竞争，ModelScope 只要比 VPN 稳定就行。这不是说 ModelScope 做不出好东西——十七万个模型是实打实的产出——而是说它的成功标准被墙重新定义了。墙在，它就是必需品；墙没了，它就得回答那个昆明开发者的问题：凭什么用你。
-
-最后一个细节：报道说 GitHub 2013 年被短暂封锁，程序员抗议，后来恢复了。Hugging Face 封了三年，没恢复，也没听说有大规模抗议。不是程序员变顺从了，是他们学会了用 VPN，然后把这件事当成日常。这才是最彻底的胜利——不是让人用不了，是让人习惯用不了。</description></item>
 </channel>
 </rss>
