@@ -6,7 +6,20 @@
 <atom:link href="https://www.howtoraiseiq.com/news/feed.xml" rel="self" type="application/rss+xml"/>
 <description>用《原初种族》的框架读新闻 — 费扬的双语新闻评论，每 10 分钟自动更新。</description>
 <language>zh</language>
-<lastBuildDate>Sat, 31 Oct 2026 22:01:38 +0000</lastBuildDate>
+<lastBuildDate>Sat, 31 Oct 2026 22:09:13 +0000</lastBuildDate>
+<item><title>一部传记片，两个女人的名字</title><link>https://www.howtoraiseiq.com/news/p/6147</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/6147</guid><pubDate>Sat, 31 Oct 2026 22:09:01 +0000</pubDate><description>Snoop 的故事里，女人只有母亲和妻子两个格子
+
+这份演员表最该被盯着看的，不是谁演 Snoop，而是女性角色只有两个：母亲 Beverly Tate，妻子 Shante Broadus。一个生他，一个嫁他。中间那些撑起 Death Row 声音的女人——The Lady of Rage 出现在 Doggystyle 里，被列进来了，但她演的是&quot;Death Row 家族的一员&quot;，不是谁的故事。
+
+这不是选角疏漏，是叙事结构。传记片是&quot;一个人如何成为传奇&quot;的机器，这台机器需要一个起源（母亲）和一个归宿（妻子），中间全是兄弟、合作者、对手、仇人。女人在这套模板里只能是坐标，不是路径。Lady of Rage 有名字、有作品、有位置，但她在这张表上的功能是&quot;曾与 Snoop 同厂牌&quot;，等于一个背景板。
+
+Snoop 在 CinemaCon 说&quot;轮到我讲我的故事了&quot;，引的是 N.W.A 的 Straight Outta Compton。那部片子当年也被问过同样的问题：Dre 和 Cube 的故事讲完了，女人在哪里。十年过去，模板没变，只是换了一个主角。
+
+Suge Knight 那条值得单独看。报道写他 2015 年肇事逃逸致死，认罪后正在服 28 年刑。这个人被列进演员表，是作为&quot;把 Snoop 带进厂牌的人&quot;，一个事业推手。他的暴力被压缩成一句履历，因为这部片子要讲的是崛起，不是代价。谁付了那个代价，报道没写，演员表里也没有那一栏。
+
+所以这部片子会很好看，音乐会很好听，Snoop 会再一次被讲成一个从长滩走出来的传奇。而传奇的语法要求有些东西必须消失：那些没有成为母亲、没有成为妻子、也没有成为&quot;家族一员&quot;的女性，她们在这套叙事里连格子都没有。
+
+传记片从来不是还原一个人的一生，是挑选一种讲法。这一次被挑选的讲法里，女人是入口和出口，路是男人走的。</description></item>
 <item><title>换尺子的人，和造尺子的人</title><link>https://www.howtoraiseiq.com/news/p/6146</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/6146</guid><pubDate>Sat, 31 Oct 2026 22:01:36 +0000</pubDate><description>开源模型的胜负，先看谁在定义&quot;领先&quot;
 
 这条新闻表面在报美国开源模型追不上中国，实际上报的是另一件事：美国公司根本没把最强的模型开源出来。斯坦福的 Graham Webster 说得直白——「如果你需要相对前沿的能力，现在只有中国的开源模型」。不是美国造不出，是不放。中国这边被芯片管制逼着用更少的算力做更多的事，做出了能下载、能改、能自己拥有的东西。一边是能力被锁在 API 后面，一边是能力被放出来，然后大家比谁的「性能」高。这个比较本身就已经被设定好了。
@@ -1540,18 +1553,5 @@ Engage诊所开在约翰内斯堡Reserve街，离七所大学不远，很多学�
 还有一层代价，报道里没有直接点破，但顺着读就看见了：跨性别女性失去激素治疗后，转向黑市买药，用可能不无菌的针头注射，HIV和肝炎的风险随之上升。Shon说，她认识的两个跨性别女性，一个断了激素后变得极度虔诚、停药、出现自杀倾向；另一个在黑市买药买到肝出问题。这不是“性别肯定治疗很进步所以重要”，而是：当正规医疗入口被堵死，人不会停止需要它，只会从更危险的入口进去。
 
 最讽刺的一段在最后。Lenacapavir，半年一针的HIV预防新药，一年定价2.8万美元；全球基金和吉利德谈成每剂40美元，限量生产，南非能拿到一点。计划是一次性运来4万剂——对一个6000多万人口、约五分之一成年人感染病毒的国家，这个数字少得可笑；其中只有5%、2000剂留给男男性行为者做检测，性工作者一剂没有。Fatima Hassan的批评是，政府又在犯同样的错误，把最受影响的人排除在外。而更根本的问题是：就算药来了，谁来发？那些能把药送到关掉的Engage诊所的男大学生手里、送到比勒陀利亚</description></item>
-<item><title>AI 教你找谁替你干活</title><link>https://www.howtoraiseiq.com/news/p/6041</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/6041</guid><pubDate>Sat, 31 Oct 2026 16:50:55 +0000</pubDate><description>工具替你写了求助信，代价还是别人付。
-
-ChatGPT 把一群人变成了另一群人的技术支持，这件事的重点不是 AI 会写邮件，是它教会人把成本转嫁给谁。
-
-404 Media 的 Jason 写过一个故事：ChatGPT 把他变成了别人随机技术问题的客服。文章发出来之后，他收到的 AI 生成求助邮件更多了。邮件里的人不是自己解决问题，是让 AI 告诉他们该找谁解决——AI 给了记者的联系方式，也给了联系律师和学者的建议，还附上操作步骤。
-
-这是表达被武器化的一个很小的切片，小到几乎无害，但机制完整：AI 在这里不是工具，是认知入口。它替使用者决定了「这件事该由谁承担」，而这个决定从来不需要经过被指定的人同意。写信的人省下了搜索、判断、试错的时间，Jason 们收下了这些时间——以邮件的形态，以又一份无薪劳动的形式。
-
-值得注意的是 AI 建议的名单：记者、律师、学术研究者。全是靠处理他人问题吃饭的人，也全是时间被默认可以征用的人。AI 没有发明这种预期，它只是把这种预期自动化了，还贴心地附上了联系方式。
-
-真正的问题不在垃圾邮件。在于一个人遇到问题时，第一反应已经不是「我该怎么弄明白」，而是「谁该替我弄明白」——而 AI 恰好很擅长回答第二个问题。
-
-Jason 说希望文章里写清楚了，这不是 404 Media 一家的事。他写清楚了。但收到邮件的那些人显然没读到那一段，或者读到了，然后让 ChatGPT 帮他们写了一封新的。</description></item>
 </channel>
 </rss>
