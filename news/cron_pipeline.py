@@ -37,7 +37,7 @@ from typing import Optional
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent / ".env")
 
-from db import connect                                # noqa: E402
+from db import connect, given_up_urls, record_failure  # noqa: E402
 from generate import process_url, _check_env         # noqa: E402
 
 NEWS_DIR = Path(__file__).parent
@@ -88,6 +88,7 @@ def main():
         # Skip URLs already in the db so the MAX_PER_RUN cap counts only real work.
         with connect() as conn:
             seen = {r["url"] for r in conn.execute("SELECT url FROM articles")}
+        seen |= given_up_urls()
         pending = [u for u in urls if u not in seen]
         print(f"{len(urls)} URLs in queue, {len(pending)} new "
               f"(processing up to {MAX_PER_RUN} this run)")
@@ -106,6 +107,7 @@ def main():
                     new_ids.append(aid)
             except Exception as e:
                 print(f"  [error] {url}: {e}", file=sys.stderr)
+                record_failure(url, str(e))
 
         if AUTO_PUBLISH and new_ids:
             with connect() as conn:

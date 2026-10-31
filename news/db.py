@@ -39,6 +39,16 @@ CREATE TABLE IF NOT EXISTS articles (
 
 CREATE INDEX IF NOT EXISTS idx_articles_published_at
   ON articles(published, generated_at DESC);
+
+-- URLs that failed (paywall, 403, extraction, LLM error). After
+-- MAX_URL_FAILURES tries the crawler and pipeline stop picking them up, so
+-- they no longer take the per-run slots.
+CREATE TABLE IF NOT EXISTS failed_urls (
+  url        TEXT PRIMARY KEY,
+  tries      INTEGER NOT NULL DEFAULT 1,
+  last_error TEXT,
+  last_at    TEXT
+);
 """
 
 
@@ -48,6 +58,25 @@ def connect() -> sqlite3.Connection:
     conn.executescript(SCHEMA)
     return conn
 
+
+MAX_URL_FAILURES = 2
+
+
+def record_failure(url: str, error: str) -> None:
+    from datetime import datetime, timezone
+    with connect() as conn:
+        conn.execute(
+            """INSERT INTO failed_urls (url, tries, last_error, last_at) VALUES (?, 1, ?, ?)
+               ON CONFLICT(url) DO UPDATE SET tries = tries + 1,
+                 last_error = excluded.last_error, last_at = excluded.last_at""",
+            (url, error[:300], datetime.now(timezone.utc).isoformat()),
+        )
+
+
+def given_up_urls() -> set[str]:
+    with connect() as conn:
+        return {r["url"] for r in conn.execute(
+            "SELECT url FROM failed_urls WHERE tries >= ?", (MAX_URL_FAILURES,))}
 
 if __name__ == "__main__":
     with connect() as c:

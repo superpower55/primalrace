@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import random
 import sys
 import urllib.parse
 import urllib.request
@@ -33,7 +34,7 @@ from pathlib import Path
 if __package__ is None or __package__ == "":
     sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from db import connect
+from db import connect, given_up_urls
 
 PUBLIC_API = "https://public.api.bsky.app"
 NEWS_ROOT = Path(__file__).parent.parent
@@ -170,8 +171,10 @@ def load_accounts(cli_args: list[str]) -> list[str]:
 
 
 def existing_urls() -> set[str]:
+    """URLs to leave alone: already in the db, or failed too often."""
     with connect() as conn:
-        return {r["url"] for r in conn.execute("SELECT url FROM articles")}
+        urls = {r["url"] for r in conn.execute("SELECT url FROM articles")}
+    return urls | given_up_urls()
 
 
 def main() -> None:
@@ -201,21 +204,22 @@ def main() -> None:
     found: dict[str, dict] = {}  # url -> {handle}
     stats = {"posts": 0, "new_urls": 0, "filtered_old": 0, "filtered_dom": 0}
 
+    # Read every account, then take URLs round-robin (one per account per
+    # round, accounts in random order) so the first, busiest accounts in
+    # accounts.txt don't fill every run's max-total by themselves.
     max_total = args.max_total  # 0 = no cap
+    random.shuffle(accounts)
+    per_handle: dict[str, list[str]] = {}
     for handle in accounts:
-        if max_total and len(found) >= max_total:
-            print(f"[stop] hit max-total={max_total}", file=sys.stderr)
-            break
         try:
             feed = get_author_feed(handle, limit=args.limit)
         except Exception as e:
             print(f"  [error] @{handle}: {e}", file=sys.stderr)
             continue
         kept_for_handle = 0
+        candidates = per_handle.setdefault(handle, [])
         for item in feed:
             if kept_for_handle >= args.max_per_account:
-                break
-            if max_total and len(found) >= max_total:
                 break
             post = item.get("post", {})
             record = post.get("record", {}) or {}
@@ -231,16 +235,21 @@ def main() -> None:
                     stats["filtered_dom"] += 1
                     continue
                 url = strip_tracking(raw_url)
-                if url in in_db or url in found:
+                if url in in_db or url in candidates or any(url in c for c in per_handle.values()):
                     continue
-                found[url] = {"handle": handle}
+                candidates.append(url)
                 kept_for_handle += 1
-                stats["new_urls"] += 1
-                print(f"  + [@{handle}] {url}", file=sys.stderr)
-                if (kept_for_handle >= args.max_per_account
-                        or (max_total and len(found) >= max_total)):
+                if kept_for_handle >= args.max_per_account:
                     break
         print(f"[@{handle}] {len(feed)} posts, kept {kept_for_handle}", file=sys.stderr)
+
+    for rnd in range(args.max_per_account):
+        for handle in accounts:
+            cands = per_handle.get(handle, [])
+            if rnd < len(cands) and not (max_total and len(found) >= max_total):
+                found[cands[rnd]] = {"handle": handle}
+                stats["new_urls"] += 1
+                print(f"  + [@{handle}] {cands[rnd]}", file=sys.stderr)
 
     print(f"\n[stats] {stats}", file=sys.stderr)
 
