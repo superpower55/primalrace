@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 没有变强，只是把门挨个拧了一遍 — breaking news · 费扬</title>
+<meta name="description" content="互联网一直很脆，AI 只是把门挨个拧了一遍 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/6180">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 没有变强，只是把门挨个拧了一遍 — breaking news · 费扬">
+<meta property="og:description" content="互联网一直很脆，AI 只是把门挨个拧了一遍">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/6180">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AI \u6ca1\u6709\u53d8\u5f3a\uff0c\u53ea\u662f\u628a\u95e8\u6328\u4e2a\u62e7\u4e86\u4e00\u904d", "description": "\u4e92\u8054\u7f51\u4e00\u76f4\u5f88\u8106\uff0cAI \u53ea\u662f\u628a\u95e8\u6328\u4e2a\u62e7\u4e86\u4e00\u904d", "datePublished": "2026-10-31T23:31:42+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/6180", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a6180">
+  <h2><a href="/news/p/6180"><span class="lang-zh">AI 没有变强，只是把门挨个拧了一遍</span><span class="lang-en">AI Didn&#x27;t Get Smarter. It Just Turned Every Doorknob</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.404media.co/php2shell-black-october-ai-is-changing-everything-about-hacking-no-one-knows-what-happens-next/" target="_blank" rel="noopener">404 Media ↗</a></span>
+    <span class="date">2026-10-31</span>
+    <span class="permalink"><a href="/news/p/6180">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">互联网一直很脆，AI 只是把门挨个拧了一遍</div>
+  <div class="axiom lang-en">The internet was always dry tinder. AI just turned every doorknob.</div>
+  <div class="body lang-zh"><p>先说清楚这次到底发生了什么：AI 没有变聪明到能自己思考，它做的是把互联网上每一扇门都拧一遍，看看哪扇没锁。404 Media 的报道里，约翰霍普金斯教授 Matthew Green 说，很多人刚刚发现整个互联网都是干柴，唯一没烧起来的原因是青少年还没找到火柴。这个比喻很准，但它漏掉了一半：干柴不是 AI 堆起来的。软件工程师写了四十年漏洞百出的垃圾软件，装的人六年前就离职了，接手的人换了四轮，现在没人知道怎么更新。AI 只是把这份旧账一次性摊开在桌面上。</p>
+  <p>报道里最值得看的一句来自 Trail of Bits 的 Dan Guido：他的公司用 Codex 一天就做出了可用的 exploit，靠的是大约十年的系统安全和漏洞研究经验。也就是说，AI 加速的是 exploit 开发，把一个 bug 变成 shell 仍然需要专业能力。这句话把恐慌和神话同时戳破了。AI 不是新的攻击者，它是把已有的专业能力放大的工具。真正的问题从来不是 AI 有多强，而是这套系统本来就有多脆。</p>
+  <p>然后是恐慌本身。报道里提到，一些 AI 公司的员工开始建议人们把存款取出来、断网、囤罐头食品、买手摇应急收音机。这是典型的把结构问题翻译成个人生存问题：系统有漏洞，所以你去买收音机。但一个普通读者能做的，和 Cloudflare CEO 说的“公告后 45 分钟内攻击尝试从几千跳到几万、两小时内到几十万、现在到了几百万”之间，没有任何个人层面的对冲空间。恐慌被包装成一种行动感，实际上是把责任从维护系统的人转移到使用系统的人身上。</p>
+  <p>更值得追问的是“Defender&#x27;s Window”这个词。OpenAI 说自己的研究是合乎伦理的，发现漏洞后打开了防御者的窗口。但 Chainguard 的 CEO 说，他独立地把“find bad vulnerabilities in PHP”这句话打进一个前沿模型，就找到了同样的 bug；亚马逊说在正式披露之前就看到了 exploit 尝试。这些事实并列在一起，指向一个报道自己都没有回答的问题：这个窗口到底有多宽，谁在窗口里面，谁在窗口外面。把“伦理披露”当成已经解决的问题，等于假设所有公司都会在窗口关闭前完成修补。报道里说得很直白：修补是否真的更快部署，答案是，很可能不会。</p>
+  <p>还有一个被轻轻带过的代价。4chan、几个 Wikimedia 服务、Archive.org 都临时下线去更新。The Atlantic 已经指出，PHP2Shell 最大的影响之一可能是大量历史网站无法或不愿更新，被主动下线，最终被黑，再也回不来。链接腐烂会非常严重，很多历史会丢失。这里没有受害者站出来说话，因为受害者是那些网站本身，以及以后想访问它们的人。这是结构层的暴力：维护成本被转移给了没有能力维护的人，损失由公共记忆承担。</p>
+  <p>Elias Taylor 那段话是整篇报道里最清醒的：很多人被 AI 骗得以为自己手里有 exploit，其实他们读不懂 LLM 给了他们什么。他还专门要求不要把他的意思转述成“没有漏洞”。这个细节值得记住，因为恐慌和否认是同一种懒惰的两面。真正的判断是：漏洞存在，补丁要打，但“AI 让一切变得不可预测”这个叙事，正在被用来替代对具体维护责任的追问。</p>
+  <p>最后回到那个干柴的比喻。Green 说青少年还没找到火柴。但报道里已经写了，把一句话打进前沿模型就能找到 PHP 的漏洞，不需要青少年，不需要火柴，只需要一个会打字的人。干柴一直都在，现在的问题不是谁会点火，而是谁在负责给这栋楼装消防系统，以及为什么四十年过去了，这栋楼还在用纸板当墙。</p></div>
+  <div class="body lang-en"><p>Start with what actually happened: AI didn&#x27;t get smart enough to think for itself. It turned every doorknob on the internet to see which doors were unlocked. In 404 Media&#x27;s report, Johns Hopkins professor Matthew Green says many people are discovering that the whole internet is dry tinder, and the only thing keeping it from burning is that teenagers haven&#x27;t found the matches yet. Good metaphor, but it misses half the point: the tinder wasn&#x27;t stacked by AI. Software engineers spent forty years writing vulnerable, dogshit software. The person who installed it left the company six years ago, their replacement has been replaced four times, and nobody knows how to update it now. AI just put the whole backlog on the table at once.</p>
+  <p>The most useful line in the piece comes from Dan Guido of Trail of Bits: his company built a working exploit in one day with Codex, drawing on roughly ten years of system security and vulnerability research. AI accelerates exploit development; knowing how to turn a bug into a shell still takes expertise. That sentence punctures both the panic and the myth at the same time. AI isn&#x27;t a new attacker. It&#x27;s a multiplier on existing expertise. The real question was never how powerful AI is. It&#x27;s how fragile the system already was.</p>
+  <p>Then there&#x27;s the panic itself. The report mentions AI employees going full prepper, telling people to pull money out of bank accounts, disconnect from the internet, buy shelf-stable food and hand-crank radios. This is the classic move of translating a structural problem into a personal survival problem: the system has holes, so you buy a radio. But there is no individual hedge between what a normal reader can do and what Cloudflare&#x27;s CEO describes, with exploit attempts jumping from thousands to tens of thousands in the 45 minutes after the announcement, to hundreds of thousands within two hours, to millions now. Panic gets packaged as a sense of agency, and responsibility shifts from the people maintaining the system to the people using it.</p>
+  <p>The phrase worth interrogating is &quot;Defender&#x27;s Window.&quot; OpenAI says its research was ethical and that discovering the bug opened a window for defenders. But Chainguard&#x27;s CEO says he independently found the same bugs by typing &quot;find bad vulnerabilities in PHP&quot; into a frontier model, and Amazon says it saw exploit attempts before the official disclosure. Put those facts side by side and you get a question the report itself doesn&#x27;t answer: how wide is this window, who is inside it, and who is outside. Treating &quot;ethical disclosure&quot; as a solved problem assumes every company will patch before the window closes. The report says plainly that whether fixes get deployed faster is another question, and the answer is probably no.</p>
+  <p>There&#x27;s also a cost that gets mentioned in passing. 4chan, several Wikimedia services, and Archive.org were all temporarily taken offline to update. The Atlantic has already suggested that one of the biggest impacts of PHP2Shell could be that many historic websites can&#x27;t or won&#x27;t be updated, get pulled offline, eventually get hacked, and never come back. Link rot could be horrendous, and a lot of history could be lost. No victim steps forward here, because the victims are the sites themselves and everyone who will want to visit them later. That&#x27;s structural violence: maintenance costs get pushed onto people who can&#x27;t maintain anything, and the loss is paid by public memory.</p>
+  <p>Elias Taylor has the clearest line in the whole piece: lots of people are being tricked by AI into thinking they have an exploit when they don&#x27;t, because they can&#x27;t read or understand what the LLM gave them. He specifically asks not to be paraphrased as saying there is no vulnerability. That detail matters, because panic and denial are two faces of the same laziness. The real judgment is: the vulnerability exists, patch your servers, and the narrative that &quot;AI makes everything unpredictable&quot; is being used to replace the question of who is actually responsible for maintenance.</p>
+  <p>Back to the tinder metaphor. Green says teenagers haven&#x27;t found the matches yet. But the report already says that typing one sentence into a frontier model finds the PHP bug. No teenagers needed, no matches, just someone who can type. The tinder was always there. The question isn&#x27;t who lights it. It&#x27;s who is supposed to install a fire system in this building, and why, after forty years, the walls are still cardboard.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
