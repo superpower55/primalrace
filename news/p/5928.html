@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>共识机制就是共谋机制 — breaking news · 费扬</title>
+<meta name="description" content="设计成要所有人同意，就是设计成谁都能否决 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/5928">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="共识机制就是共谋机制 — breaking news · 费扬">
+<meta property="og:description" content="设计成要所有人同意，就是设计成谁都能否决">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/5928">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u5171\u8bc6\u673a\u5236\u5c31\u662f\u5171\u8c0b\u673a\u5236", "description": "\u8bbe\u8ba1\u6210\u8981\u6240\u6709\u4eba\u540c\u610f\uff0c\u5c31\u662f\u8bbe\u8ba1\u6210\u8c01\u90fd\u80fd\u5426\u51b3", "datePublished": "2026-10-31T10:11:16+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/5928", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a5928">
+  <h2><a href="/news/p/5928"><span class="lang-zh">共识机制就是共谋机制</span><span class="lang-en">Consensus Is the Con</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.theguardian.com/environment/2026/oct/31/cop17-reforms-fails-to-deliver-targets?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-10-31</span>
+    <span class="permalink"><a href="/news/p/5928">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">设计成要所有人同意，就是设计成谁都能否决</div>
+  <div class="axiom lang-en">A process built to need everyone&#x27;s yes is a process anyone can veto.</div>
+  <div class="body lang-zh"><p>巴拿马环境部长说 Cop 是“designed to fail”，他说对了一半。这个流程不是设计失败的，是设计成功了的——成功地让 34 年里没有一届达标，还让每一届都能开下一届。</p>
+  <p>共识制听起来最讲道理：所有国家都同意才算数。但“所有人都同意”在结构上等于“任何一方不同意都能拦住”。阿根廷、沙特、俄罗斯在最后文件里把环保措辞稀释掉，这就是共识制在正常工作。它不给多数人开路，它给最不愿意动的那个人一票否决权。把否决权平均发给 190 多个国家，看起来最公平，实际上是把权力交给了最没有动力改变现状的那一方。这不是 bug，这是这套制度唯一稳定产出的东西。</p>
+  <p>再看钱。目标是把每年 300 亿的生物多样性资金凑出来，数字基金到现在筹了 1 万多美元。英国 23 个目标里预计只能完成 3 个。这些数字放在一起，不需要什么理论：承诺本身已经变成了一种产出——签了字、发了言、拍了合影，任务就算“在推进中”。钱没到、林子没保住、物种还在掉，但会议记录是完整的。这是文化暴力最标准的运作方式：把“说了”当成“做了”，让缺口看起来像进度。</p>
+  <p>谁在为这个缺口付代价，报道里其实写得很清楚，只是写得很轻：本该流向原住民社区的份额，基金里连零头都没有。那些地方的人不是没等到钱，是等到了一轮又一轮的“重申目标”。而坐在会场里的富裕国家还在争论中国和几个海湾国家算不算发展中国家——争的是谁出钱，不是谁受损。</p>
+  <p>联合国环境规划署说现在的系统“在产出，只是太慢”。慢不是速度问题。一个机制连续 34 年不达标而照常运转，它产出的就不是保护，是合法性。各国需要这个场合来证明自己在乎，而不需要它真的管用。Cop 的共谋结构就在这里：所有参与者都从这个“我们正在努力”的叙事里拿到东西，代价由不在会场里的人承担。</p>
+  <p>真正的改革不是把四个 Cop 合并成一个，也不是改成多数决就完事。是问一句：如果一届大会什么协议都没达成，谁会被追究？现在没有人。所以下一届还会开，还会“重申”，还会有一份让所有人都不满意但所有人都签了的文件。</p>
+  <p>那个筹到 1 万多美元的基金，缺口不是 10 亿，是 10 亿减去 1 万。这个差额不会自己消失，它只会继续落在那些连会议室门都进不去的人身上。</p></div>
+  <div class="body lang-en"><p>Panama&#x27;s environment minister says the Cop process was &quot;designed to fail.&quot; He&#x27;s half right. It wasn&#x27;t designed to fail. It was designed to succeed — at producing 34 years without a single met target, and a next summit every time.</p>
+  <p>Consensus sounds like the fairest rule available: nothing passes unless everyone agrees. In practice, &quot;everyone agrees&quot; means &quot;anyone can block.&quot; Argentina, Saudi Arabia and Russia watered down the environmental language in the final text. That is consensus working exactly as built. It doesn&#x27;t clear a path for the majority; it hands a veto to whoever least wants to move. Spread that veto across more than 190 states and you have not distributed power fairly — you have handed it to the party with the strongest interest in the status quo. This is not a bug. It is the only thing the machine reliably produces.</p>
+  <p>Then the money. The goal is $30bn a year for biodiversity. The fund meant to mobilise it has raised just over $10,000. The UK expects to meet three of 23 targets. No theory needed here: the pledge itself has become the output. Sign, speak, pose, and the task is now &quot;in progress.&quot; The cash didn&#x27;t arrive, the forests didn&#x27;t hold, the species are still going — but the record is complete. This is cultural violence in its standard form: treating &quot;said&quot; as &quot;done,&quot; so the shortfall reads as momentum.</p>
+  <p>Who pays for the shortfall is in the report, just stated quietly: a significant share was supposed to reach Indigenous communities, and the fund holds barely a rounding error. Those people aren&#x27;t waiting on money. They&#x27;re waiting on another round of &quot;reaffirming targets.&quot; Meanwhile the wealthy governments argue over whether China and several Gulf states still count as developing countries — arguing about who contributes, not who is harmed.</p>
+  <p>UNEP says the system is delivering, just too slowly. Slow is not the problem. A mechanism that misses every target for 34 years and keeps running isn&#x27;t producing protection. It&#x27;s producing legitimacy. Governments need the venue to prove they care; they don&#x27;t need it to work. That is the co-conspirator structure of the Cop: everyone in the room gets something from the story of &quot;we are trying,&quot; and the cost lands on the people outside it.</p>
+  <p>Real reform isn&#x27;t merging four Cops into one, and it isn&#x27;t majority voting as a slogan. It&#x27;s asking: if a summit produced no agreement at all, who would be held accountable? Right now, no one. So there will be a next one, and another &quot;reaffirmation,&quot; and another document everyone dislikes and everyone signs.</p>
+  <p>The fund raised just over $10,000 against a $1bn target. The gap isn&#x27;t $1bn. It&#x27;s $1bn minus $10,000. That gap doesn&#x27;t close itself. It keeps landing on the people who never got into the room.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
