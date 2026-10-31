@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>估值是自己写的剧本 — breaking news · 费扬</title>
+<meta name="description" content="钱没少要，只是尺子换了。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/6112">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="估值是自己写的剧本 — breaking news · 费扬">
+<meta property="og:description" content="钱没少要，只是尺子换了。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/6112">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u4f30\u503c\u662f\u81ea\u5df1\u5199\u7684\u5267\u672c", "description": "\u94b1\u6ca1\u5c11\u8981\uff0c\u53ea\u662f\u5c3a\u5b50\u6362\u4e86\u3002", "datePublished": "2026-10-31T20:11:50+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/6112", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a6112">
+  <h2><a href="/news/p/6112"><span class="lang-zh">估值是自己写的剧本</span><span class="lang-en">The Valuation Is the Script</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">结构层 · 文化层</span>
+    <span class="source"><a href="https://www.cnbc.com/2026/10/31/openai-fundraising-20-billion-valuation.html?link_source=ta_bluesky_link&amp;taid=6ae6494153aa080001e56af3&amp;utm_campaign=trueanthem&amp;utm_content=main&amp;utm_medium=social&amp;utm_source=bluesky" target="_blank" rel="noopener">CNBC ↗</a></span>
+    <span class="date">2026-10-31</span>
+    <span class="permalink"><a href="/news/p/6112">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">钱没少要，只是尺子换了。</div>
+  <div class="axiom lang-en">The ask shrank; the ruler didn&#x27;t move.</div>
+  <div class="body lang-zh"><p>OpenAI 把这一轮的募资目标从最多 300 亿美元砍到最多 200 亿美元，砍掉三分之一。这不是融资失败，这是换了一把尺子。</p>
+  <p>上一轮它说 300 亿，这一轮它说 200 亿，同时 FT 报道它要的投后估值是 1.25 万亿美元。同一个故事，先报大数，数字被市场打回来，就报一个小一点的数，估值那一栏一个零都不动。声明出来的目标是可以改的，观察出来的估值才是市场真正愿意付的。这跟宣布一条新定律没有区别：现实不配合，就重新定义现实，然后说新定义才是真的。</p>
+  <p>钱从哪儿来，报道写得很清楚：阿联酋的投资人领投，Coatue 跟投。也就是说，这一轮的钱不是硅谷的退休基金、不是美国的中产储蓄，是主权基金。它买的不是现金流，是一个国家在 AI 叙事里的座位。而报道里唯一有名有姓的“人”，是一个要求匿名的知情人士——因为“没有被授权公开讨论细节”。一家要价 1.25 万亿美元的公司，账目细节由匿名者口述，由记者转述，由读者相信。</p>
+  <p>同一周，英特尔跌 25%，美光跌 5.5%，英伟达跌 4%，Alphabet 创下有史以来最差的交易日——它的搜索收入不及预期，而公司自己的说法是，AI Mode 内部的变现偏低。这句话值得多读一遍：它把 AI 做进了搜索，然后搜索赚的钱变少了。微软、谷歌、亚马逊三家的资本开支数字或预测，上周全都低于分析师预期。</p>
+  <p>这就是那个差额。数据中心、GPU、电费、水，都是真金白银花出去的，收入那一头在缩。花出去的是确定的，赚回来的是“未来”。加尔通的公式在这里很好用：本可达到的状态和实际达到的状态之间的差，就是暴力；而这一轮融资的调整，是把那个差额从报表上挪到了叙事里——目标从 300 亿改成 200 亿，差额还在，只是没人再提。</p>
+  <p>谁付这个差额？报道没写。报道里没有数据中心旁边的居民，没有为算力电价买单的用户，没有那些被“AI 将取代你”这句话重新定价了工资的人。它只写了投资人、估值、跌幅。缺席的部分不是报道的疏漏，是这门生意的结构：成本可以精确到小数点，代价则散在报表之外。</p>
+  <p>1.25 万亿美元的估值，和 200 亿美元的实际募资，中间那 1.23 万亿，是这个时代最诚实的一份自白——它承认自己卖的是可能性，不是利润。可能性不需要审计。</p></div>
+  <div class="body lang-en"><p>OpenAI cut its target for this round from up to $30 billion to up to $20 billion. That is not a failed raise. That is a different ruler.</p>
+  <p>Last round it said $30 billion. This round it says $20 billion, while the FT reports it wants a $1.25 trillion post-money valuation. Same story, bigger number first; when the market pushes back on the number, report a smaller number and leave the valuation column untouched. A declared target can be revised. An observed valuation is what someone will actually pay. This is how you announce a new law: reality doesn&#x27;t cooperate, so you redefine reality and call the redefinition the truth.</p>
+  <p>Where the money comes from, the report says plainly: investors from the UAE are leading, Coatue alongside. Not Silicon Valley pension funds, not American middle-class savings — sovereign capital. What it buys is not cash flow but a seat in the AI narrative for a state. And the only named human in the story is an unnamed person, because they were &quot;not authorized to discuss the details publicly.&quot; A company asking for $1.25 trillion has its books described by an anonymous source, relayed by a reporter, believed by a reader.</p>
+  <p>The same week: Intel down 25%, Micron down 5.5%, Nvidia down 4%, and Alphabet&#x27;s worst trading day ever — search revenue fell short, and the company&#x27;s own explanation is lower monetization inside AI Mode. Read that again: they put AI into search, and search started earning less. Microsoft, Google and Amazon all posted capex figures or forecasts last week below analyst estimates.</p>
+  <p>Here is the gap. Data centers, GPUs, power, water — all paid for in real money. The revenue side is contracting. What goes out is certain; what comes back is &quot;the future.&quot; Galtung&#x27;s formula fits: violence is the difference between the potential and the actual. This funding round&#x27;s adjustment moved that difference off the balance sheet and into the narrative — the target went from $30 billion to $20 billion, the gap is still there, nobody mentions it anymore.</p>
+  <p>Who pays the gap? The report doesn&#x27;t say. No residents next to the data centers, no users absorbing the electricity bill for compute, no one whose wage was repriced by the sentence &quot;AI will replace you.&quot; Only investors, valuations, percentage drops. The absence isn&#x27;t an oversight; it&#x27;s the structure of the business. Costs are itemized to the decimal. Consequences are scattered off the books.</p>
+  <p>The $1.23 trillion between a $1.25 trillion valuation and a $20 billion raise is the most honest confession of the era: it admits it is selling possibility, not profit. Possibility doesn&#x27;t need an audit.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
