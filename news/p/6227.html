@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>把国家拆成公司，把人拆成数据 — breaking news · 费扬</title>
+<meta name="description" content="技术威权不是新意识形态，是定价权的换手 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/6227">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把国家拆成公司，把人拆成数据 — breaking news · 费扬">
+<meta property="og:description" content="技术威权不是新意识形态，是定价权的换手">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/6227">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u628a\u56fd\u5bb6\u62c6\u6210\u516c\u53f8\uff0c\u628a\u4eba\u62c6\u6210\u6570\u636e", "description": "\u6280\u672f\u5a01\u6743\u4e0d\u662f\u65b0\u610f\u8bc6\u5f62\u6001\uff0c\u662f\u5b9a\u4ef7\u6743\u7684\u6362\u624b", "datePublished": "2026-11-01T04:11:29+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/6227", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a6227">
+  <h2><a href="/news/p/6227"><span class="lang-zh">把国家拆成公司，把人拆成数据</span><span class="lang-en">He Wants to Turn the State Into a Corporation</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">结构层 · 文化层 · 元暴力</span>
+    <span class="source"><a href="https://newrepublic.com/article/183971/jd-vance-weird-terrifying-techno-authoritarian-ideas?utm_medium=social&amp;utm_campaign=SF_TNR&amp;utm_source=Bluesky" target="_blank" rel="noopener">The New Republic ↗</a></span>
+    <span class="date">2026-11-01</span>
+    <span class="permalink"><a href="/news/p/6227">§ 链接</a></span>
+  </div>
+  <div class="axiom lang-zh">技术威权不是新意识形态，是定价权的换手</div>
+  <div class="axiom lang-en">Techno-authoritarianism isn&#x27;t a new ideology. It&#x27;s a change of ownership.</div>
+  <div class="body lang-zh"><p>Yarvin 那套东西的核心不是&quot;独裁&quot;，是**把主权拆成公司股权**。一个国家变成一个 realm，一个 realm 是一家有绝对权力的公司，居民不是公民，是用户，用户没有投票权，只有搬迁权——而所有其他 realm 也都是公司，所以搬迁权等于零。这套设计里最诚实的一句话是：旧金山可以承诺不砍居民的手，但因为它是主权实体，没人能强制执行这个承诺。翻译过来就是：权力不需要对任何人负责，只需要对自己负责。</p>
+  <p>这不是什么&quot;暗黑启蒙&quot;，这是把公司治理的逻辑推到它的终点。公司是什么？是一个只对股东负责、不对居民负责的实体。Yarvin 只是问了一句：为什么国家不能这样？然后他发现，其实很多国家早就是这样了，只是还留着一层选举的皮。他要做的是把那层皮撕掉，并且诚实地告诉你：撕掉之后，你连抱怨的资格都没有，因为你已经签了用户协议。</p>
+  <p>Vance 从 Yarvin 那里拿走的不是&quot;砍手&quot;这种极端设定，是更实用的那一半：清洗。De-Baathification、de-woke-ification、fire every single midlevel bureaucrat、replace them with our people、无视法院命令。这一段不需要任何哲学包装，它就是夺权操作手册。Project 2025 要裁五十万联邦雇员，Vance 说这活儿他可以干。注意这里的结构：先宣布官僚系统是敌人，再宣布清洗是净化，最后宣布法院无权阻止净化。三步走完，制度就没了，剩下的只有人。</p>
+  <p>报道里最值得盯住的不是 Yarvin 的疯狂，是 Thiel 的钱怎么走。2011 年 Yale 一场演讲，Vance 发邮件，Thiel 把他叫到加州；Mithril Capital 给他位置；Hillbilly Elegy 他写，Thiel 写推荐语；Narya Capital 开张，Thiel 和 Andreessen 出钱；2022 年参议院选举，Thiel 砸 1500 万美元，还说服 Trump 背书；2024 年，Thiel 领头说服 Trump 挑 Vance 当副手。这条链条上每一环都是钱，每一环都有回报。Vance 不是&quot;从俄亥俄底层爬上来的&quot;，Vance 是 Thiel 造出来的产品，产品现在要进白宫了。</p>
+  <p>这里要看清的是：Thiel 和 Musk 早就有钱了，钱对他们已经不是稀缺品。他们现在买的是**解释权**——谁定义什么叫&quot;生产力&quot;，谁定义谁该被虚拟化，谁定义法院能不能被无视。Yarvin 提供的正是这套解释权的语法：国家是过时的软件，居民是数据，政府是待重写的代码。语法一旦被接受，剩下的只是执行。</p>
+  <p>所以这不是&quot;技术亿万富翁支持 Trump 因为税和监管&quot;的故事。税和监管是零钱。他们买的是把主权公司化的许可，是让&quot;权力不需要对居民负责&quot;这件事从疯话变成政策草案。Musk 每月 4500 万美元，外加把 Twitter 改造成右翼 misinformation 武器的那 440 亿美元实物投入——这笔账不能只算成选举捐款，它是认知入口的收购价。</p>
+  <p>报道最后一句说，旧金山也开启了 Harris 的政治生涯，现在她要接手把美国民主从技术威权手里救出来。这个对称很漂亮，但它藏了一个更冷的事实：Yarvin 的方案里没有&quot;选民&quot;这个角色。他的整个设计前提就是，你不需要说服任何人，你只需要接管系统，然后宣布系统是你的。民主能不能救回来，取决于还有没有人相信投票箱比用户协议更硬。</p></div>
+  <div class="body lang-en"><p>The core of Yarvin&#x27;s scheme isn&#x27;t &quot;dictatorship.&quot; It&#x27;s **turning sovereignty into corporate equity**. A nation becomes a realm, a realm is a corporation with absolute power, residents aren&#x27;t citizens but users, and users don&#x27;t vote—they relocate. Except every other realm is also a corporate government, so the right to relocate is worth nothing. The most honest line in the whole design: San Francisco can promise not to cut off its residents&#x27; hands, but since it&#x27;s a sovereign power, no one can enforce that promise. Translated: power answers to no one but itself.</p>
+  <p>This isn&#x27;t some &quot;Dark Enlightenment.&quot; It&#x27;s corporate governance pushed to its endpoint. What is a corporation? An entity that answers only to shareholders, never to residents. Yarvin just asked: why can&#x27;t a state work like that? Then he noticed that plenty of states already do—they just keep a thin skin of elections over it. His contribution is to peel the skin off and tell you plainly: once it&#x27;s gone, you don&#x27;t even get to complain, because you already accepted the terms of service.</p>
+  <p>What Vance took from Yarvin isn&#x27;t the hand-cutting. It&#x27;s the practical half: purge. De-Baathification, de-woke-ification, fire every single midlevel bureaucrat, replace them with our people, ignore court orders. No philosophy required—that&#x27;s an operations manual for seizing power. Project 2025 wants to fire an estimated 500,000 federal employees; Vance says he can run the job. Note the structure: first declare the bureaucracy an enemy, then declare the purge a purification, then declare the courts powerless to stop purification. Three steps, and the institution is gone. What&#x27;s left is people.</p>
+  <p>The thing to watch in this story isn&#x27;t Yarvin&#x27;s madness. It&#x27;s how Thiel&#x27;s money moves. A 2011 speech at Yale, Vance sends an email, Thiel brings him to California; Mithril Capital gives him a seat; Vance writes Hillbilly Elegy, Thiel writes the blurb; Narya Capital opens, Thiel and Andreessen fund it; in 2022 Thiel spends an unprecedented $15 million on the Senate race and persuades Trump to endorse; in 2024 Thiel leads the push to make Vance the V.P. pick. Every link in that chain is money, and every link has a return. Vance didn&#x27;t climb out of Ohio. Vance is a Thiel product, and the product is heading for the White House.</p>
+  <p>What&#x27;s actually being bought here isn&#x27;t influence—Thiel and Musk already have money. They&#x27;re buying **the power to define**. Who defines &quot;productive.&quot; Who defines who gets virtualized. Who defines whether a court order can be ignored. Yarvin supplies the grammar: the state is outdated software, residents are data, government is code awaiting a rewrite. Once the grammar is accepted, only execution remains.</p>
+  <p>So this isn&#x27;t a story about tech billionaires backing Trump for tax cuts and deregulation. Taxes are pocket change. They&#x27;re buying permission to incorporate sovereignty—to move &quot;power owes residents nothing&quot; from crank manifesto to policy draft. Musk&#x27;s $45 million a month, plus the $44 billion in-kind contribution of gutting Twitter into a right-wing misinformation weapon, shouldn&#x27;t be booked as campaign donations. That&#x27;s the purchase price of a cognitive entry point.</p>
+  <p>The piece ends on a neat symmetry: San Francisco also launched Kamala Harris, who now inherits the job of saving American democracy from tech authoritarianism. It&#x27;s a beautiful symmetry, and it hides something colder. In Yarvin&#x27;s design there is no role called &quot;voter.&quot; The whole premise is that you don&#x27;t have to persuade anyone—you take over the system, then declare the system yours. Whether democracy can be saved depends on whether anyone still believes the ballot box is harder than a terms-of-service agreement.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
