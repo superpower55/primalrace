@@ -6,7 +6,20 @@
 <atom:link href="https://www.howtoraiseiq.com/news/feed.xml" rel="self" type="application/rss+xml"/>
 <description>用《原初种族》的框架读新闻 — 费扬的双语新闻评论，每 10 分钟自动更新。</description>
 <language>zh</language>
-<lastBuildDate>Sun, 01 Nov 2026 03:01:14 +0000</lastBuildDate>
+<lastBuildDate>Sun, 01 Nov 2026 03:11:14 +0000</lastBuildDate>
+<item><title>榜单是尺子，也是货架</title><link>https://www.howtoraiseiq.com/news/p/6215</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/6215</guid><pubDate>Sun, 01 Nov 2026 03:11:07 +0000</pubDate><description>排名从来不是中性的，它给表达定价。
+
+Billboard 这份榜单读起来像一份成绩单，其实是货架。Drake 十四首冠军单曲，紧追 The Beatles 的二十首和 Mariah Carey 的十九首，和 Rihanna、Taylor Swift 并列——数字是真的，可这串数字衡量的是&quot;被多少人买下并记住&quot;，不是&quot;唱出了什么&quot;。榜单是一种评价方式，评价方式一旦被当成能力本身，人就忘了它只是尺子。
+
+更值得看的是这份榜单里女性出现的位置。Anne Murray 1978 年靠《You Needed Me》成为第一位登顶的加拿大女艺人，Alannah Myles 1990 年靠《Black Velvet》成为第一位在冠军位置停留多周的加拿大女性，Carly Rae Jepsen 的《Call Me Maybe》九周冠军，是加拿大女性艺人里最长的。这些纪录被郑重地写出来，恰恰说明它们曾经稀缺到值得单独标注。而 Drake 一个人的冠军数，接近他两位最接近的加拿大对手之和——报道自己这么写的。
+
+榜单的排序逻辑是&quot;从少到多&quot;，把 Percy Faith 的一首和 Drake 的十四首放进同一个序列。这个序列看起来中立，实际上在告诉读者：一首冠军和十四首冠军是同一个东西，只是数量不同。不是的。一首冠军可能是某个人一生只写得出一次的东西，十四首冠军是工业流水线的产出。把它们并排，就是在用同一把尺子量两种完全不同的表达。
+
+报道里最诚实的一句是给 Nickelback 的注脚：&quot;对于一支被乐评人和品味制定者骂了很多年的乐队来说，不赖。&quot; 这句话泄露了榜单的真正功能——它替&quot;品味&quot;做仲裁。谁被骂、谁被供上神坛、谁的一首冠军被记住、谁的十四首冠军被当成理所当然，这套评价体系本身就是表达武器化的入口：它区分阶级，筛选异己，把&quot;什么是好的&quot;定价权交给榜单和它背后的商业机器。
+
+Drake 的新单曲叫《Janice STFU》，本周空降冠军。歌名本身就是一个表达：让一个叫 Janice 的人闭嘴。榜单把它记成第十四个冠军，不会记它让谁闭嘴。而这份榜单的读者，看到的是数字，不是这句话。
+
+榜单的下一个位置永远空着，等着下一首歌填进去。问题不是谁填进去，是谁在决定这个位置值得被填。</description></item>
 <item><title>排行榜是定价权，不是音乐</title><link>https://www.howtoraiseiq.com/news/p/6214</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/6214</guid><pubDate>Sun, 01 Nov 2026 02:51:03 +0000</pubDate><description>谁定义伟大，谁就定义谁值得被听见
 
 Billboard 把 21 世纪前 200 张专辑排了个座次，榜首是 Morgan Wallen 的《Dangerous: The Double Album》。一条榜单新闻，看上去只是数据回顾，实际上是解释权的一次公开行使：它宣布过去二十五年里什么算重要，然后所有人照着这个名单去补课。
@@ -1490,18 +1503,5 @@ Karel 和 Sukhdev 把分析放进免费的工作论文，绕过学术出版的�
 但这里有个缺口，报道没写：这套“后增长”的账，谁付、谁收。如果只是把增长指标换成福祉指标，而土地、住房、照护的所有权结构不动，那不过是把尺子从 GDP 换成另一把尺子，量的人还是同一批。
 
 真正该问的是，一个镇子的时间被谁拿走了。增长叙事最擅长的，是把被拿走的时间说成进步的代价。</description></item>
-<item><title>把否决权写进法案里</title><link>https://www.howtoraiseiq.com/news/p/6107</link><guid isPermaLink="true">https://www.howtoraiseiq.com/news/p/6107</guid><pubDate>Sat, 31 Oct 2026 20:01:50 +0000</pubDate><description>选民投过一次票，议会就把那次投票变成可撤销的。
-
-南达科他州这周要投的那条法案，核心不是医保，是投票权本身。四年前选民自己投票通过了 Medicaid 扩展，现在共和党主导的州议会推一条 trigger law：只要华盛顿把联邦匹配比例降到 90% 以下，扩展自动废除。Adam Searing 说得直白——到时候州里不会有辩论，也不由议员决定。等于把四年前那次公投的结果，预先作废了。
-
-这是结构暴力最标准的一种写法：不动用警察，不通过新的禁令，只是把&quot;如果钱少了就自动关门&quot;这句条件句塞进法条。将来真触发的时候，没有人需要为断掉几十万人的医保负责，因为&quot;不是我们决定的，是联邦先动的&quot;。责任被写进了机制里，从人身上转移走了。
-
-已经有十个州通过了同类法律，最近一个是今年三月的犹他。俄克拉荷马、西弗吉尼亚的共和党议会也在推。这些州几乎全都设定成&quot;联邦匹配资金再降一点就触发&quot;——也就是说，它们等的不是某一次具体的削减，而是任何一个削减。Heritage Foundation 和 Paragon Health Institute 一直在鼓吹砍联邦匹配比例，砍下去，这些闸门就一起落下。
-
-真正值得盯的是这条链子的方向。特朗普 2025 年那份被叫作&quot;One Big Beautiful Bill Act&quot;的预算案里，Medicaid 被削了近一万亿美元，加了工作要求，减了服务和资金。联邦层面 Rick Scott 想把匹配比例压到 90% 以下的修正案没成功，但州议会已经先动了。上面砍不动，就先在下面把门框装好。
-
-Searing 说 trigger law 至少比联邦那套削减&quot;没那么阴&quot;——因为它承认自己在握着方向盘，承认会把人踢出保险。这话对，但也只对一半。承认了又怎样？南达科他的农村人口占比很大，Murphy 说连锁反应会压在医疗机构、医院和整个医疗系统上。承认之后，这些地方照样关门。
-
-选民投过一次票，议会就把那次投票改写成可撤销的。这不是医保政策的争论，是解释权在谁手里的问题：谁有权决定一次公投算不算数。答案已经写在那十个州的法律里了。</description></item>
 </channel>
 </rss>
