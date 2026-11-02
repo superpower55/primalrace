@@ -55,7 +55,8 @@ jobs:
             echo "::error::Add the GEMINI_API_KEY repository secret first"
             exit 1
           fi
-          python -u build_search_index.py --max-minutes 300
+          # cap per run so live searches (same Gemini key) keep some daily quota
+          python -u build_search_index.py --max-minutes 300 --max-articles 500
 
       - name: Render (adds the search box once an index exists)
         # also after a cancel/timeout, so a partial index is kept

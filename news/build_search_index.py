@@ -47,7 +47,7 @@ INFO = OUT_DIR / "info.json"
 DIMS = 768
 BATCH = 50
 BODY_CHARS = 1500     # enough to capture the argument; keeps token use low
-SNIPPET_CHARS = 90
+SNIPPET_CHARS = 200  # also what the keyword fallback searches
 SAVE_EVERY = 120      # seconds between checkpoints
 
 
@@ -127,6 +127,9 @@ def write_index(entries: list, model: str) -> int:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--max-minutes", type=float, default=20, help="stop embedding after this long")
+    ap.add_argument("--max-articles", type=int, default=0,
+                    help="embed at most this many per run (0 = no cap); leaves the shared "
+                         "Gemini quota for live searches")
     args = ap.parse_args()
 
     key = (os.environ.get("GEMINI_API_KEY") or "").strip()
@@ -152,10 +155,14 @@ def main() -> None:
             "a": r["axiom"] or "", "ae": r["axiom_en"] or "",
             "d": (r["generated_at"] or "")[:10], "g": r["tag"] or "",
             "s": body[:SNIPPET_CHARS],
+            "o": r["source_title"] or "",  # original headline, for keyword search
         }
         entries.append([meta, text, prev.get((r["id"], h))])
 
     todo = [e for e in entries if e[2] is None]
+    if args.max_articles and len(todo) > args.max_articles:
+        print(f"capping this run at {args.max_articles} of {len(todo)} (--max-articles)")
+        todo = todo[:args.max_articles]
     print(f"{len(rows)} published, {len(rows) - len(todo)} reused, {len(todo)} to embed ({model})")
 
     def on_term(*_):

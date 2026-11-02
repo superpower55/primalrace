@@ -58,6 +58,35 @@ function keywordHit(m, needle) {
   return hay.includes(needle);
 }
 
+// Query -> match units: whitespace-separated words, with CJK runs broken into
+// overlapping two-character pieces ("南极海冰" -> 南极, 极海, 海冰), since
+// Chinese has no spaces and an exact-phrase match is too strict.
+function queryTerms(q) {
+  const terms = [];
+  q.toLowerCase().split(/\s+/).filter(Boolean).forEach((w) => {
+    const cjk = w.match(/[\u3400-\u9fff]+/g) || [];
+    const rest = w.replace(/[\u3400-\u9fff]+/g, ' ').split(/\s+/).filter((x) => x.length > 1);
+    cjk.forEach((run) => {
+      if (run.length <= 2) terms.push(run);
+      else for (let i = 0; i < run.length - 1; i++) terms.push(run.slice(i, i + 2));
+    });
+    terms.push(...rest);
+  });
+  return [...new Set(terms)];
+}
+
+// Share of query terms found anywhere (title, axiom, headline, snippet),
+// plus a bonus for the share found in the title/axiom/headline.
+function keywordScore(m, terms) {
+  if (!terms.length) return { cover: 0, score: 0 };
+  const head = (m.t + '\n' + m.te + '\n' + m.a + '\n' + m.ae + '\n' + (m.o || '')).toLowerCase();
+  const all = head + '\n' + m.s.toLowerCase();
+  let found = 0, inHead = 0;
+  terms.forEach((t) => { if (all.includes(t)) found += 1; if (head.includes(t)) inHead += 1; });
+  const cover = found / terms.length;
+  return { cover, score: cover + 0.5 * inHead / terms.length };
+}
+
 function toResult(m, score) {
   return {
     id: m.id, title: m.t, title_en: m.te, axiom: m.a, axiom_en: m.ae,
@@ -101,11 +130,13 @@ export default async function handler(req, res) {
       return [score, m];
     });
   } else {
-    // Keyword fallback: title/axiom hits first, then snippet hits; newest first within each.
+    // Keyword fallback (no embedding available, e.g. quota spent): rank by
+    // how many query terms appear; keep matches covering at least half.
+    const terms = queryTerms(q);
     scored = [];
     meta.forEach((m) => {
-      if (keywordHit(m, needle)) scored.push([1, m]);
-      else if (m.s.toLowerCase().includes(needle)) scored.push([0.5, m]);
+      const { cover, score } = keywordScore(m, terms);
+      if (cover >= 0.5) scored.push([score + (keywordHit(m, needle) ? 0.5 : 0), m]);
     });
   }
   scored.sort((a, b) => b[0] - a[0]);
