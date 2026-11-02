@@ -188,12 +188,19 @@ def _openai_generate(system_blocks: list[dict], user_msg: str,
 
     text = data["choices"][0]["message"]["content"]
     usage = data.get("usage", {}) or {}
+    prompt = usage.get("prompt_tokens", 0) or 0
+    # Prefix-cache hits: DeepSeek reports prompt_cache_hit_tokens (its cache is
+    # automatic), OpenAI-style hosts prompt_tokens_details.cached_tokens.
+    cached = (usage.get("prompt_cache_hit_tokens")
+              or (usage.get("prompt_tokens_details") or {}).get("cached_tokens")
+              or 0)
     return {
         "text": text,
         "model": model,
-        "input_tokens": usage.get("prompt_tokens", 0) or 0,
+        # uncached input, matching the Anthropic path's input_tokens
+        "input_tokens": prompt - cached,
         "output_tokens": usage.get("completion_tokens", 0) or 0,
-        "cache_read_tokens": 0,
+        "cache_read_tokens": cached,
         "cache_create_tokens": 0,
     }
 
