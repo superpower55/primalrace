@@ -87,6 +87,10 @@ def fetch_article(url: str) -> dict:
         raise RuntimeError(f"HTTP {resp.status_code}")
 
     final_url = resp.url
+    # No charset in Content-Type -> requests assumes ISO-8859-1 and UTF-8
+    # punctuation turns into "â" (seen on Reuters); detect it instead.
+    if "charset" not in resp.headers.get("Content-Type", "").lower():
+        resp.encoding = resp.apparent_encoding
     html = resp.text
     if not html:
         raise RuntimeError("empty body")
@@ -163,13 +167,19 @@ def build_user_msg(article: dict) -> str:
 
 def generate_commentary(article: dict) -> dict:
     user_msg = build_user_msg(article)
-    result = llm_generate(build_system_blocks(), user_msg, max_tokens=MAX_TOKENS,
-                          json_schema=OUTPUT_SCHEMA)
-    text = _strip_json_fence(result["text"])
-    try:
-        parsed = _parse_json_objects(text)
-    except json.JSONDecodeError as e:
-        raise RuntimeError(f"model returned non-JSON:\n{text}\n\nerror: {e}")
+    # One retry on malformed JSON (e.g. an unescaped " inside Chinese text);
+    # it is rare and a second sample almost always parses.
+    for attempt in (1, 2):
+        result = llm_generate(build_system_blocks(), user_msg, max_tokens=MAX_TOKENS,
+                              json_schema=OUTPUT_SCHEMA)
+        text = _strip_json_fence(result["text"])
+        try:
+            parsed = _parse_json_objects(text)
+            break
+        except json.JSONDecodeError as e:
+            if attempt == 2:
+                raise RuntimeError(f"model returned non-JSON:\n{text}\n\nerror: {e}")
+            print(f"  [retry] reply was not valid JSON ({e})")
 
     return {
         "summary": (parsed.get("summary") or "").strip(),
