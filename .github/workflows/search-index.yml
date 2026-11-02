@@ -58,6 +58,13 @@ jobs:
           # cap per run so live searches (same Gemini key) keep some daily quota
           python -u build_search_index.py --max-minutes 300 --max-articles 500
 
+      - name: Article images (search by image)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        working-directory: news
+        # Kept short: the news workflow waits in the same queue while this runs.
+        run: python -u build_image_index.py --max-fetch 1500 --max-captions 400 --max-minutes 60 || echo "image index not updated"
+
       - name: Render (adds the search box once an index exists)
         # also after a cancel/timeout, so a partial index is kept
         if: always()
@@ -69,7 +76,7 @@ jobs:
         run: |
           git config user.email "bot@howtoraiseiq.com"
           git config user.name "breaking-news-bot"
-          git add news/search news/index.html
+          git add news/search news/index.html news/news.db
           if git diff --cached --quiet; then
             echo "no changes"
             exit 0

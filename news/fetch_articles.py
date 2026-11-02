@@ -88,10 +88,10 @@ def main() -> None:
                 with connect() as conn:
                     conn.execute(
                         """INSERT OR IGNORE INTO articles
-                           (url, source, source_title, raw_text, fetched_at, published)
-                           VALUES (?, ?, ?, ?, ?, 0)""",
+                           (url, source, source_title, raw_text, fetched_at, image_url, published)
+                           VALUES (?, ?, ?, ?, ?, ?, 0)""",
                         (a["url"], a["source"], a["source_title"], a["raw_text"],
-                         datetime.now(timezone.utc).isoformat()),
+                         datetime.now(timezone.utc).isoformat(), a.get("image_url", "")),
                     )
                 seen.add(a["url"])
                 added += 1

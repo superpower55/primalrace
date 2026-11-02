@@ -9,49 +9,7 @@
 //
 // GET /api/search?q=代孕&n=20   → { mode, results: [{ id, title, ..., url }] }
 
-import { readFileSync } from 'fs';
-import path from 'path';
-
-let index = null;
-
-function loadIndex() {
-  if (index) return index;
-  const dir = path.join(process.cwd(), 'news', 'search');
-  const info = JSON.parse(readFileSync(path.join(dir, 'info.json'), 'utf8'));
-  const meta = JSON.parse(readFileSync(path.join(dir, 'meta.json'), 'utf8'));
-  const buf = readFileSync(path.join(dir, 'vectors.bin'));
-  const vectors = new Int8Array(buf.buffer, buf.byteOffset, buf.byteLength);
-  if (vectors.length !== meta.length * info.dims) throw new Error('index files disagree');
-  index = { info, meta, vectors };
-  return index;
-}
-
-async function embedQuery(q, info, key) {
-  const url = 'https://generativelanguage.googleapis.com/v1beta/models/'
-    + info.model + ':embedContent?key=' + encodeURIComponent(key);
-  const ctrl = new AbortController();
-  const t = setTimeout(() => ctrl.abort(), 6000);
-  try {
-    const r = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'models/' + info.model,
-        content: { parts: [{ text: q }] },
-        taskType: 'RETRIEVAL_QUERY',
-        outputDimensionality: info.dims,
-      }),
-      signal: ctrl.signal,
-    });
-    if (!r.ok) throw new Error('embed HTTP ' + r.status + ': ' + (await r.text()).slice(0, 160));
-    const values = ((await r.json()).embedding || {}).values || [];
-    if (values.length !== info.dims) throw new Error('embed: bad dims ' + values.length);
-    const norm = Math.sqrt(values.reduce((s, x) => s + x * x, 0)) || 1;
-    return values.map((x) => x / norm);
-  } finally {
-    clearTimeout(t);
-  }
-}
+import { loadIndex, embedQuery, cosineScores } from './_lib/search-core.js';
 
 function keywordHit(m, needle) {
   const hay = (m.t + '\n' + m.te + '\n' + m.a + '\n' + m.ae).toLowerCase();
@@ -100,10 +58,8 @@ export default async function handler(req, res) {
   const n = Math.min(50, Math.max(1, parseInt((req.query && req.query.n) || '20', 10) || 20));
   if (!q) { res.status(400).json({ error: 'no query' }); return; }
 
-  let idx;
-  try {
-    idx = loadIndex();
-  } catch (e) {
+  const idx = loadIndex();
+  if (!idx) {
     res.status(503).json({ error: 'search index not built yet' });
     return;
   }
@@ -121,14 +77,7 @@ export default async function handler(req, res) {
 
   let scored;
   if (qv) {
-    const dims = info.dims;
-    scored = meta.map((m, i) => {
-      let dot = 0;
-      const off = i * dims;
-      for (let j = 0; j < dims; j++) dot += qv[j] * vectors[off + j];
-      const score = dot / 127 + (keywordHit(m, needle) ? 0.1 : 0);
-      return [score, m];
-    });
+    scored = cosineScores(qv, idx).map(([score, m]) => [score + (keywordHit(m, needle) ? 0.1 : 0), m]);
   } else {
     // Keyword fallback (no embedding available, e.g. quota spent): rank by
     // how many query terms appear; keep matches covering at least half.

@@ -101,6 +101,7 @@ def fetch_article(url: str) -> dict:
         "source": (meta.sitename if meta else None) or _host(final_url),
         "source_title": (meta.title if meta else None) or "",
         "raw_text": text.strip(),
+        "image_url": (meta.image if meta else None) or "",
     }
 
 
@@ -250,16 +251,16 @@ def process_url(url: str) -> int:
         cur = conn.execute(
             """
             INSERT INTO articles
-              (url, source, source_title, raw_text, fetched_at,
+              (url, source, source_title, raw_text, fetched_at, image_url,
                title, axiom, body, title_en, axiom_en, body_en,
                tag, violence_layer,
                model, input_tokens, cache_read_tokens, cache_create_tokens,
                output_tokens, generated_at)
-            VALUES (?,?,?,?,?, ?,?,?,?,?,?, ?,?, ?,?,?,?,?,?)
+            VALUES (?,?,?,?,?,?, ?,?,?,?,?,?, ?,?, ?,?,?,?,?,?)
             """,
             (
                 article["url"], article["source"], article["source_title"],
-                article["raw_text"], now,
+                article["raw_text"], now, article.get("image_url", ""),
                 commentary["title"], commentary["axiom"], commentary["body"],
                 commentary["title_en"], commentary["axiom_en"], commentary["body_en"],
                 commentary["tag"], commentary["violence_layer"],

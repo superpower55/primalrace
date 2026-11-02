@@ -26,6 +26,9 @@
   "functions": {
     "api/search.js": {
       "includeFiles": "news/search/**"
+    },
+    "api/image-search.js": {
+      "includeFiles": "news/search/**"
     }
   }
 }
