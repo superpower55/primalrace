@@ -239,14 +239,35 @@ footer.foot a { color: var(--accent); text-decoration: none; }
 .search-results a.t:hover { color: var(--accent); }
 .search-results .ax { margin-top: 0.3rem; font-style: italic; color: var(--accent); }
 .search-results .m { margin-top: 0.3rem; font-size: 0.8rem; color: var(--muted); }
+.search .img-btn {
+  font: inherit; padding: 0.55rem 0.8rem; border: 1px solid var(--accent); color: var(--accent);
+  background: #fffdf8; cursor: pointer; white-space: nowrap;
+}
+.search-sub { margin-top: 1.2rem; font-size: 0.95rem; color: var(--accent); }
+.img-desc { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
+.img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.8rem; margin-top: 0.6rem; }
+.img-grid a { display: block; color: var(--ink); text-decoration: none; font-size: 0.85rem; line-height: 1.4; }
+.img-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #e9e2d4; display: block; margin-bottom: 0.3rem; }
+@media (max-width: 560px) { .search form { flex-wrap: wrap; } .search input { flex-basis: 100%; } }
 </style>
 <div class="search">
   <form id="search-form" role="search">
     <input id="search-q" type="search" name="q" maxlength="200" autocomplete="off"
            placeholder="搜索评论，可以按意思搜 · search the commentary" aria-label="搜索评论 search">
     <button type="submit"><span class="lang-zh">搜索</span><span class="lang-en">Search</span></button>
+    <label class="img-btn" for="search-img" title="上传一张图片，找配图相似或内容相关的评论">
+      <span class="lang-zh">以图搜索</span><span class="lang-en">By image</span></label>
+    <input id="search-img" type="file" accept="image/*" hidden>
   </form>
   <div id="search-status" class="search-status" hidden></div>
+  <div id="image-area" hidden>
+    <div id="img-desc" class="img-desc"></div>
+    <div id="img-similar" hidden>
+      <div class="search-sub"><span class="lang-zh">配图相似的评论</span><span class="lang-en">Commentary with a similar image</span></div>
+      <div id="img-grid" class="img-grid"></div>
+    </div>
+    <div class="search-sub"><span class="lang-zh">内容相关的评论</span><span class="lang-en">Commentary about this</span></div>
+  </div>
   <ol id="search-results" class="search-results" hidden></ol>
 </div>
 <script>
@@ -278,8 +299,29 @@ footer.foot a { color: var(--accent); text-decoration: none; }
     }
     status.hidden = false;
   }
+  var imgInput = document.getElementById('search-img');
+  var imgArea = document.getElementById('image-area');
+  function renderArticles(items) {
+    list.innerHTML = '';
+    items.forEach(function (it) {
+      var li = document.createElement('li');
+      var a = document.createElement('a'); a.className = 't'; a.href = it.url;
+      a.appendChild(bi(it.title, it.title_en));
+      li.appendChild(a);
+      if (it.axiom || it.axiom_en) {
+        var ax = document.createElement('div'); ax.className = 'ax';
+        ax.appendChild(bi(it.axiom, it.axiom_en)); li.appendChild(ax);
+      }
+      var m = document.createElement('div'); m.className = 'm';
+      m.textContent = it.date + (it.tag ? ' · ' + (TAGS[it.tag] || it.tag) : '');
+      li.appendChild(m);
+      list.appendChild(li);
+    });
+    list.hidden = false;
+    if (feed()) feed().hidden = true;
+  }
   function clear() {
-    input.value = ''; list.hidden = true; status.hidden = true;
+    input.value = ''; list.hidden = true; status.hidden = true; imgArea.hidden = true;
     if (feed()) feed().hidden = false;
     history.replaceState(null, '', location.pathname);
   }
@@ -291,29 +333,67 @@ footer.foot a { color: var(--accent); text-decoration: none; }
     fetch('/api/search?q=' + encodeURIComponent(q))
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (data) {
-        list.innerHTML = '';
-        data.results.forEach(function (it) {
-          var li = document.createElement('li');
-          var a = document.createElement('a'); a.className = 't'; a.href = it.url;
-          a.appendChild(bi(it.title, it.title_en));
-          li.appendChild(a);
-          if (it.axiom || it.axiom_en) {
-            var ax = document.createElement('div'); ax.className = 'ax';
-            ax.appendChild(bi(it.axiom, it.axiom_en)); li.appendChild(ax);
-          }
-          var m = document.createElement('div'); m.className = 'm';
-          m.textContent = it.date + (it.tag ? ' · ' + (TAGS[it.tag] || it.tag) : '');
-          li.appendChild(m);
-          list.appendChild(li);
-        });
-        list.hidden = false;
-        if (feed()) feed().hidden = true;
+        imgArea.hidden = true;
+        renderArticles(data.results);
         if (data.results.length) setStatus('与「' + q + '」相关的评论', 'Commentary related to “' + q + '”', true);
         else setStatus('没有找到相关评论', 'Nothing found', true);
       })
       .catch(function () { setStatus('搜索暂时不可用，请稍后再试', 'Search is unavailable right now', true); });
   }
   form.addEventListener('submit', function (e) { e.preventDefault(); run(input.value); });
+
+  // Search by image: shrink the photo in the browser, then let the server
+  // describe it and match the description against both indexes.
+  function shrink(file, done) {
+    var img = new Image();
+    img.onload = function () {
+      var max = 1024, w = img.naturalWidth, h = img.naturalHeight;
+      var k = Math.min(1, max / Math.max(w, h));
+      var c = document.createElement('canvas');
+      c.width = Math.round(w * k); c.height = Math.round(h * k);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(img.src);
+      done(c.toDataURL('image/jpeg', 0.85));
+    };
+    img.onerror = function () { done(null); };
+    img.src = URL.createObjectURL(file);
+  }
+  imgInput.addEventListener('change', function () {
+    var file = imgInput.files && imgInput.files[0];
+    imgInput.value = '';
+    if (!file) return;
+    input.value = '';
+    history.replaceState(null, '', location.pathname);
+    setStatus('正在识别图片…', 'Reading the image…', false);
+    shrink(file, function (dataUrl) {
+      if (!dataUrl) { setStatus('读不了这张图片', 'Could not read that image', true); return; }
+      fetch('/api/image-search', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: dataUrl }),
+      })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (data) {
+          document.getElementById('img-desc').textContent =
+            '图片内容 · what we see: ' + data.description.split('\n')[0];
+          var grid = document.getElementById('img-grid');
+          grid.innerHTML = '';
+          data.images.forEach(function (it) {
+            var a = document.createElement('a'); a.href = it.url;
+            var im = document.createElement('img');
+            im.src = it.image; im.alt = it.caption || ''; im.loading = 'lazy';
+            im.referrerPolicy = 'no-referrer';
+            im.onerror = function () { a.remove(); };
+            a.appendChild(im); a.appendChild(bi(it.title, it.title_en));
+            grid.appendChild(a);
+          });
+          document.getElementById('img-similar').hidden = !data.images.length;
+          imgArea.hidden = false;
+          renderArticles(data.articles);
+          setStatus('以图搜索的结果', 'Results for your image', true);
+        })
+        .catch(function () { setStatus('以图搜索暂时不可用，请稍后再试', 'Search by image is unavailable right now', true); });
+    });
+  });
   var q0 = new URLSearchParams(location.search).get('q');
   if (q0) { input.value = q0; run(q0); }
 })();
@@ -129040,7 +129120,7 @@ footer.foot a { color: var(--accent); text-decoration: none; }
 
 <footer class="foot">
   ― &nbsp; ― &nbsp; ―<br>
-  共 6455 条 &nbsp;·&nbsp; 更新于 2026-11-02 06:51
+  共 6455 条 &nbsp;·&nbsp; 更新于 2026-11-02 07:10
 </footer>
 
 </div>
