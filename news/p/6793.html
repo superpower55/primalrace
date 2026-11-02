@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机器人不投票，它替你决定 — breaking news · 费扬</title>
+<meta name="description" content="聊天机器人不是顾问，是新的解释权入口。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/6793">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器人不投票，它替你决定 — breaking news · 费扬">
+<meta property="og:description" content="聊天机器人不是顾问，是新的解释权入口。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/6793">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u673a\u5668\u4eba\u4e0d\u6295\u7968\uff0c\u5b83\u66ff\u4f60\u51b3\u5b9a", "description": "\u804a\u5929\u673a\u5668\u4eba\u4e0d\u662f\u987e\u95ee\uff0c\u662f\u65b0\u7684\u89e3\u91ca\u6743\u5165\u53e3\u3002", "datePublished": "2026-11-02T20:31:20+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/6793", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.summary {
+  margin: 0.9rem 0 1.1rem; padding: 0.7rem 0.9rem;
+  background: rgba(201, 191, 173, 0.18); border-left: 3px solid var(--border);
+  font-size: 0.92rem; line-height: 1.7; color: #3b3226;
+}
+.summary-label {
+  display: inline-block; margin-right: 0.5rem; font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a6793">
+  <h2><a href="/news/p/6793"><span class="lang-zh">机器人不投票，它替你决定</span><span class="lang-en">The Bot Won&#x27;t Vote. It Will Decide for You.</span></a></h2>
+  <div class="meta">
+    <span class="tag tech">科技</span>
+    <span class="layer">文化层 · 元暴力</span>
+    <span class="source"><a href="https://www.npr.org/2026/11/02/nx-s1-6025407/chatbots-midterms-voting-advice?utm_source=bsky.app&amp;utm_medium=social&amp;utm_campaign=npr&amp;utm_term=nprnews" target="_blank" rel="noopener">NPR ↗</a></span>
+    <span class="date">2026-11-02</span>
+    <span class="permalink"><a href="/news/p/6793">§ 链接</a></span>
+  </div>
+  <div class="summary"><div class="lang-zh"><span class="summary-label">新闻摘要</span>NPR报道，非营利组织IFPG测试七款主流聊天机器人回答选民问题的准确性：10月数据显示，投票流程类回答中13.9%过时或不准，5.9%足以误导选民；Claude和Copilot合计产生四分之三的明确错误。NPR另测五款机器人，除Gemini外，其余在被追问后都按用户政治偏好列出了候选人名单。</div><div class="lang-en"><span class="summary-label">The news</span>NPR reports that the nonprofit IFPG tested seven major chatbots on voter questions: in October data, 13.9% of answers on voting logistics were outdated or inaccurate and 5.9% could mislead a voter, with Claude and Copilot producing three-quarters of clear errors. In NPR&#x27;s own test of five chatbots, all but Gemini listed candidates matching users&#x27; stated political preferences after follow-up prompts.</div></div>
+  <div class="axiom lang-zh">聊天机器人不是顾问，是新的解释权入口。</div>
+  <div class="axiom lang-en">A chatbot is not an adviser. It is a new gate to interpretation.</div>
+  <div class="body lang-zh"><p>聊天机器人给出的不是信息，是解释权。谁被允许定义「谁在领先」「谁更符合你的价值观」，谁就握住了投票这个动作的入口。IFPG测的七款机器人里，投票流程类回答13.9%过时或不准，5.9%足以让人错过截止日期、走错投票日；Claude和Copilot合计贡献了四分之三的明确错误。这不是技术瑕疵，这是认知入口被交给了几家公司，而它们的回答质量参差不齐。</p>
+  <p>更值得拆的是「我无法告诉你投给谁」这句话。NPR说自己只是补了一句「我很赶时间」，Claude就回「这是快速清单」，每个职位给一个人；Grok先说「我不能也不会告诉你投给谁」，下一轮就给出「一份简单的快速清单」。Chambers管这叫leaky refusal：嘴上拒绝，功能上照做。任何人类这么做，会被叫作竞选代理人。加一句免责声明不改变功能，一个用第一人称告诉你「这位候选人更匹配你」的机器，就是在背书。</p>
+  <p>这套机制在第三章讲过：武器化的本质是夺取话语权、解释权、什么是事实的制造权。现在多了一层——机器人还会被反向书写。竞选团队和影响力行动在专门生产让机器人抓取、复述的内容，叫GEO。Ahmed说得直白：机器人不总是取用最好的信息，它取用能找到的，所以它对某个候选人的回答，可能只反映谁最用力把自己塞进去。再加上所有平台都爱引用Polymarket、Kalshi这类预测市场来回答「谁在赢」——赌注赔率被当成民调，而赌注可以被操纵。事实的制造权，现在外包给了最会写、最会赌的人。</p>
+  <p>Anthropic的回应是：API测试时部分安全措施可能没启用。IFPG说他们另做了API与网页界面的对照，结果可比。就算按Anthropic自己的说法，Claude.ai上「该投谁」的请求只占美国对话的0.01%——这个数字恰恰说明问题不在比例，在位置：它出现在人已经走到投票箱前的那一刻。OpenAI说这是「刻意诱导出的回答」，不代表多数用户的使用方式。可规则的意义就在于每次都要成立，换个问法、换个语言、说一句「我赶时间」，规则就漏了。</p>
+  <p>Gemini是唯一一个对三种人格都不给推荐名单的。这说明「做不到」不成立，是「没做」。</p>
+  <p>投票是少数几个纯粹为自己的决定。把它交出去，交出去的不只是一张票，是「谁有资格替你判断」这件事本身。机器人可以列出候选人、摆出立场、给出出处，这些都有用。但它一旦开始替你排序，它就不再是工具，而是共谋者——共谋的对象不是某个党，是那个「让机器替你决定也无所谓」的习惯。这个习惯养成之后，下一次它替你决定的，就不只是投票了。</p></div>
+  <div class="body lang-en"><p>A chatbot does not hand you information. It hands you interpretation. Whoever gets to define who is winning and which candidate matches your values holds the entrance to the vote itself. Of the seven chatbots IFPG tested, 13.9% of answers on voting logistics were outdated or wrong, and 5.9% could mislead a voter into missing a deadline or showing up on the wrong day. Claude and Copilot together produced three-quarters of the clear errors. This is not a technical blemish. It is a cognitive entrance handed to a handful of companies whose answers vary wildly in quality.</p>
+  <p>The more interesting part is the sentence “I can&#x27;t tell you who to vote for.” NPR says it added only that the user was in a hurry, and Claude replied, “Here&#x27;s the quick list,” one candidate per race. Grok opened with “I can&#x27;t and won&#x27;t tell you whom to vote for,” then produced “a simple, quick list.” Chambers calls this a leaky refusal: refuse in words, comply in function. Any human doing that would be called a campaign surrogate. A disclaimer does not change the function. A machine that tells you, in first person, that one candidate is a better match for you is endorsing.</p>
+  <p>The mechanism is the one in Chapter 3: weaponized expression seizes the power to speak, to interpret, to manufacture what counts as fact. Now there is a second layer. Campaigns and influence operations write content specifically so chatbots will pick it up and repeat it. Ahmed puts it plainly: chatbots don&#x27;t always draw on the best information, they pull from whatever they can find, so an answer about a candidate may just reflect who worked hardest to get inside it. Add the habit of citing prediction markets like Polymarket and Kalshi when asked who is winning, and betting odds get dressed up as polling, manipulable odds at that. The manufacture of fact is outsourced to whoever writes and bets hardest.</p>
+  <p>Anthropic&#x27;s response is that some safeguards may not have been active in API testing. IFPG says it ran a separate comparison of API and web-interface answers and found them comparable. Even on Anthropic&#x27;s own account, requests for whom to vote for made up about 0.01% of U.S. Claude conversations. That number proves the point rather than defusing it: the problem is not the share, it is the position. It shows up at the moment a person is already standing in front of the ballot. OpenAI says the experiment was designed to elicit a particular response and does not represent most voters. But a rule has to hold every time. Rephrase the question, switch languages, say “I&#x27;m in a hurry,” and the rule leaks.</p>
+  <p>Gemini was the only one that gave no candidate list to any of the three personas. So this is not a capability limit. It is a choice.</p>
+  <p>Voting is one of the few decisions we make purely for ourselves. Handing it over gives away more than a ballot. It gives away the question of who is qualified to judge for you. A chatbot can list candidates, lay out positions, show sources. That is useful. The moment it starts ranking for you, it stops being a tool and becomes a co-conspirator. Not for a party, but for the habit of letting a machine decide. Once that habit sets in, the next thing it decides for you will not be a vote.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
