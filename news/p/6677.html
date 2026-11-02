@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投票不是策略，是止损 — breaking news · 费扬</title>
+<meta name="description" content="把票投出去，只是让差额不再扩大 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/6677">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="投票不是策略，是止损 — breaking news · 费扬">
+<meta property="og:description" content="把票投出去，只是让差额不再扩大">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/6677">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u6295\u7968\u4e0d\u662f\u7b56\u7565\uff0c\u662f\u6b62\u635f", "description": "\u628a\u7968\u6295\u51fa\u53bb\uff0c\u53ea\u662f\u8ba9\u5dee\u989d\u4e0d\u518d\u6269\u5927", "datePublished": "2026-11-02T15:21:22+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/6677", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.summary {
+  margin: 0.9rem 0 1.1rem; padding: 0.7rem 0.9rem;
+  background: rgba(201, 191, 173, 0.18); border-left: 3px solid var(--border);
+  font-size: 0.92rem; line-height: 1.7; color: #3b3226;
+}
+.summary-label {
+  display: inline-block; margin-right: 0.5rem; font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a6677">
+  <h2><a href="/news/p/6677"><span class="lang-zh">投票不是策略，是止损</span><span class="lang-en">Voting Isn&#x27;t a Strategy, It&#x27;s Damage Control</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">元暴力 · 文化层</span>
+    <span class="source"><a href="https://www.avclub.com/john-oliver-simple-midterms-strategy-vote" target="_blank" rel="noopener">A.V. Club ↗</a></span>
+    <span class="date">2026-11-02</span>
+    <span class="permalink"><a href="/news/p/6677">§ 链接</a></span>
+  </div>
+  <div class="summary"><div class="lang-zh"><span class="summary-label">新闻摘要</span>美国中期选举前两天，John Oliver在《Last Week Tonight》呼吁选民投票，并指出民调常有误差、大金主正投放大量误导性广告、现任总统在公开为选举结果不认账埋下伏笔。</div><div class="lang-en"><span class="summary-label">The news</span>Two days before the U.S. midterms, John Oliver used Last Week Tonight to urge viewers to vote, warning that polls are often wrong, mega donors are flooding the airwaves with misleading ads, and the sitting president is openly sowing doubt about the results.</div></div>
+  <div class="axiom lang-zh">把票投出去，只是让差额不再扩大</div>
+  <div class="axiom lang-en">Casting the vote only keeps the gap from widening.</div>
+  <div class="body lang-zh"><p>Oliver 这期节目里最诚实的一句话不是「去投票」，是他承认民调经常是错的。民调错了，大金主还在往你的电视里灌更离谱的广告，总统已经在为周二之后不认账做铺垫。这三件事放在一起，投票这个动作的性质就变了：它不是选择，是防守。</p>
+  <p>防守什么？守的是「谁有权定义结果」这件事。选举的机制本来很简单，票数多的一方赢。但当一方提前宣布「如果输了，那就是被偷了」，机制就被挪到了解释权那一层。票还没数完，胜负已经被重新定义了一遍。这不是竞选策略，这是元暴力在操作层的一次公开演示：规则是谁写的、谁来解释规则、什么算「真实的结果」，这些位置上的垄断比任何一张选票都值钱。</p>
+  <p>Oliver 说「对手在试图操纵比赛时，大比分领先没什么可羞耻的」。这句话听着像玩笑，其实是整段里唯一有操作性的部分。它承认了博弈不对称：一边在改记分牌，一边在打球。在这种局面下，「公正的表达」不是双方各退一步，是先把记分牌抢回来。</p>
+  <p>至于那些已经不灵的老招数，反跨性别偏见、对 Hispanic 和 Arab 的赤裸种族主义，Oliver 拿白宫万圣节那张刻着 sombrero 的南瓜图当笑话讲。笑话是对的，但值得多看一眼的是它为什么失效：不是这些叙事变善良了，是它们被用得太糙，糙到连目标选民都看得出是道具。武器化的表达一旦露出道具的边角，杀伤力就掉一半。这算是这条新闻里唯一一处文化层的差额被缩小了，虽然缩小的方式是被自己的笨拙撞碎的。</p>
+  <p>节目里没提的是：投票之后呢。票投出去，计票开始，然后呢？Oliver 的呼吁停在投票站门口，因为再往里走，就是谁来认证、谁来监督、谁来宣布无效的那套机器。那套机器不归选民管。</p>
+  <p>所以这期节目最该被记住的不是「去投票」，是它顺手说出来的那句：总统正在公开播撒否认选举的种子。种子已经种下了，投票只是让土壤别那么配合。</p></div>
+  <div class="body lang-en"><p>The most honest line in Oliver&#x27;s segment isn&#x27;t 「go vote.」 It&#x27;s his admission that polls are often wrong. The polls are wrong, mega donors are flooding your TV with worse ads than usual, and the sitting president is already laying the groundwork to deny the result on Tuesday. Put those three together and voting stops being a choice. It becomes defense.</p>
+  <p>Defense of what? Of who gets to define the outcome. The mechanism of an election is simple: whoever gets more votes wins. But when one side announces in advance that a loss means theft, the mechanism gets moved up a level, to interpretation. Before the count is finished, the result has already been redefined. That&#x27;s not campaign strategy. That&#x27;s meta-violence doing a public demo at the operational level: who writes the rules, who interprets them, what counts as 「the real result」 — the monopoly on those seats is worth more than any ballot.</p>
+  <p>Oliver&#x27;s line about running up the score when your opponents are rigging the game sounds like a joke. It&#x27;s the only operational sentence in the segment. It concedes that the game is asymmetric: one side is moving the scoreboard, the other is playing. Under those conditions, a just expression isn&#x27;t both sides stepping back. It&#x27;s taking the scoreboard back first.</p>
+  <p>As for the old plays that aren&#x27;t landing anymore — anti-trans bigotry, naked racism against Hispanic and Arab people — Oliver treats the White House&#x27;s sombrero-pumpkin Halloween tweet as comedy. The comedy is right, but what&#x27;s worth a second look is why it failed: not because those narratives got kinder, but because they were deployed so clumsily that even the target audience could see the prop. A weaponized expression loses half its force the moment its seams show. That&#x27;s the one place in this story where a cultural-layer gap actually narrowed — and it narrowed because the weapon tripped over itself.</p>
+  <p>What the segment doesn&#x27;t mention is what comes after voting. The ballot goes in, the count begins, and then what? Oliver&#x27;s pitch stops at the polling station door, because past that door is the machinery of certification, oversight, and nullification. That machinery doesn&#x27;t answer to voters.</p>
+  <p>So the line to remember from this segment isn&#x27;t 「go vote.」 It&#x27;s the one he drops in passing: the president is openly sowing the seeds of election denial. The seeds are already in the ground. Voting just keeps the soil from cooperating.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
