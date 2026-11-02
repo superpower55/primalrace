@@ -244,7 +244,6 @@ footer.foot a { color: var(--accent); text-decoration: none; }
   background: #fffdf8; cursor: pointer; white-space: nowrap;
 }
 .search-sub { margin-top: 1.2rem; font-size: 0.95rem; color: var(--accent); }
-.img-desc { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
 .img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.8rem; margin-top: 0.6rem; }
 .img-grid a { display: block; color: var(--ink); text-decoration: none; font-size: 0.85rem; line-height: 1.4; }
 .img-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #e9e2d4; display: block; margin-bottom: 0.3rem; }
@@ -255,13 +254,12 @@ footer.foot a { color: var(--accent); text-decoration: none; }
     <input id="search-q" type="search" name="q" maxlength="200" autocomplete="off"
            placeholder="搜索评论，可以按意思搜 · search the commentary" aria-label="搜索评论 search">
     <button type="submit"><span class="lang-zh">搜索</span><span class="lang-en">Search</span></button>
-    <label class="img-btn" for="search-img" title="上传一张图片，找配图相似或内容相关的评论">
+    <label class="img-btn" for="search-img" title="上传一张图片，找配图相似或内容相关的评论（图片只在你的浏览器里处理，不会上传）">
       <span class="lang-zh">以图搜索</span><span class="lang-en">By image</span></label>
     <input id="search-img" type="file" accept="image/*" hidden>
   </form>
   <div id="search-status" class="search-status" hidden></div>
   <div id="image-area" hidden>
-    <div id="img-desc" class="img-desc"></div>
     <div id="img-similar" hidden>
       <div class="search-sub"><span class="lang-zh">配图相似的评论</span><span class="lang-en">Commentary with a similar image</span></div>
       <div id="img-grid" class="img-grid"></div>
@@ -342,21 +340,32 @@ footer.foot a { color: var(--accent); text-decoration: none; }
   }
   form.addEventListener('submit', function (e) { e.preventDefault(); run(input.value); });
 
-  // Search by image: shrink the photo in the browser, then let the server
-  // describe it and match the description against both indexes.
-  function shrink(file, done) {
-    var img = new Image();
-    img.onload = function () {
-      var max = 1024, w = img.naturalWidth, h = img.naturalHeight;
-      var k = Math.min(1, max / Math.max(w, h));
-      var c = document.createElement('canvas');
-      c.width = Math.round(w * k); c.height = Math.round(h * k);
-      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-      URL.revokeObjectURL(img.src);
-      done(c.toDataURL('image/jpeg', 0.85));
-    };
-    img.onerror = function () { done(null); };
-    img.src = URL.createObjectURL(file);
+  // Search by image: CLIP runs in the browser (transformers.js, the same
+  // quantized model news/build_image_index.py indexes with); only the 512-number
+  // vector is sent to the server, never the photo. ~90 MB on first use, cached after.
+  var clip = null;
+  function loadClip() {
+    if (!clip) {
+      clip = import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.2').then(function (t) {
+        var mb = {};
+        var progress = function (p) {
+          if (p.status === 'progress' && p.total > 5e6) {
+            mb[p.file] = [p.loaded, p.total];
+            var got = 0, all = 0;
+            Object.keys(mb).forEach(function (k) { got += mb[k][0]; all += mb[k][1]; });
+            setStatus('首次使用，正在下载图像模型 ' + Math.round(got / 1e6) + ' / ' + Math.round(all / 1e6) + ' MB…',
+                      'First use: downloading the image model ' + Math.round(got / 1e6) + ' / ' + Math.round(all / 1e6) + ' MB…', false);
+          }
+        };
+        var id = 'Xenova/clip-vit-base-patch32';
+        return Promise.all([
+          t.AutoProcessor.from_pretrained(id, { progress_callback: progress }),
+          t.CLIPVisionModelWithProjection.from_pretrained(id, { dtype: 'q8', progress_callback: progress }),
+        ]).then(function (pm) { return { t: t, processor: pm[0], model: pm[1] }; });
+      });
+      clip.catch(function () { clip = null; });
+    }
+    return clip;
   }
   imgInput.addEventListener('change', function () {
     var file = imgInput.files && imgInput.files[0];
@@ -364,35 +373,42 @@ footer.foot a { color: var(--accent); text-decoration: none; }
     if (!file) return;
     input.value = '';
     history.replaceState(null, '', location.pathname);
-    setStatus('正在识别图片…', 'Reading the image…', false);
-    shrink(file, function (dataUrl) {
-      if (!dataUrl) { setStatus('读不了这张图片', 'Could not read that image', true); return; }
-      fetch('/api/image-search', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ image: dataUrl }),
+    setStatus('正在准备图像模型…', 'Preparing the image model…', false);
+    var url = URL.createObjectURL(file);
+    loadClip()
+      .then(function (c) {
+        setStatus('正在分析图片…', 'Looking at the image…', false);
+        return c.t.RawImage.fromURL(url)
+          .then(function (img) { return c.processor(img); })
+          .then(function (inputs) { return c.model(inputs); })
+          .then(function (out) { return Array.from(out.image_embeds.data); });
       })
-        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-        .then(function (data) {
-          document.getElementById('img-desc').textContent =
-            '图片内容 · what we see: ' + data.description.split('\n')[0];
-          var grid = document.getElementById('img-grid');
-          grid.innerHTML = '';
-          data.images.forEach(function (it) {
-            var a = document.createElement('a'); a.href = it.url;
-            var im = document.createElement('img');
-            im.src = it.image; im.alt = it.caption || ''; im.loading = 'lazy';
-            im.referrerPolicy = 'no-referrer';
-            im.onerror = function () { a.remove(); };
-            a.appendChild(im); a.appendChild(bi(it.title, it.title_en));
-            grid.appendChild(a);
-          });
-          document.getElementById('img-similar').hidden = !data.images.length;
-          imgArea.hidden = false;
-          renderArticles(data.articles);
-          setStatus('以图搜索的结果', 'Results for your image', true);
-        })
-        .catch(function () { setStatus('以图搜索暂时不可用，请稍后再试', 'Search by image is unavailable right now', true); });
-    });
+      .then(function (vector) {
+        URL.revokeObjectURL(url);
+        return fetch('/api/image-search', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ vector: vector }),
+        });
+      })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (data) {
+        var grid = document.getElementById('img-grid');
+        grid.innerHTML = '';
+        data.images.forEach(function (it) {
+          var a = document.createElement('a'); a.href = it.url;
+          var im = document.createElement('img');
+          im.src = it.image; im.alt = ''; im.loading = 'lazy';
+          im.referrerPolicy = 'no-referrer';
+          im.onerror = function () { a.remove(); };
+          a.appendChild(im); a.appendChild(bi(it.title, it.title_en));
+          grid.appendChild(a);
+        });
+        document.getElementById('img-similar').hidden = !data.images.length;
+        imgArea.hidden = false;
+        renderArticles(data.articles);
+        setStatus('以图搜索的结果', 'Results for your image', true);
+      })
+      .catch(function () { setStatus('以图搜索暂时不可用，请稍后再试', 'Search by image is unavailable right now', true); });
   });
   var q0 = new URLSearchParams(location.search).get('q');
   if (q0) { input.value = q0; run(q0); }
