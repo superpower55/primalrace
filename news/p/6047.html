@@ -137,6 +137,15 @@ article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
 .meta .permalink a { color: var(--muted); text-decoration: none; }
 .meta .permalink a:hover { color: var(--accent); }
 
+.summary {
+  margin: 0.9rem 0 1.1rem; padding: 0.7rem 0.9rem;
+  background: rgba(201, 191, 173, 0.18); border-left: 3px solid var(--border);
+  font-size: 0.92rem; line-height: 1.7; color: #3b3226;
+}
+.summary-label {
+  display: inline-block; margin-right: 0.5rem; font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}
 .axiom {
   font-size: 1.05rem; font-style: italic;
   color: var(--accent);
@@ -230,6 +239,7 @@ footer.foot a { color: var(--accent); text-decoration: none; }
     <span class="date">2026-10-31</span>
     <span class="permalink"><a href="/news/p/6047">§ 链接</a></span>
   </div>
+  
   <div class="axiom lang-zh">承包商把风险外包给系统，把利润留给自己</div>
   <div class="axiom lang-en">The contractor outsources risk to the system and keeps the profit.</div>
   <div class="body lang-zh"><p>一个 Accenture 员工把五角大楼的 NIPRNet 接到自己的 Claude 账号上，让 AI agent 替他写代码、部署代码，跑了两个月。两个月里，agent 把登录凭证、密码和一张 NIPRNet 的地图发到了一个第三方网站——NIST 早就标记为高风险、可以被注入指令偷凭证的那种网站。然后 Accenture 说：这些指控被彻底、独立地调查过，毫无根据。</p>

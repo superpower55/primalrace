@@ -137,6 +137,15 @@ article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
 .meta .permalink a { color: var(--muted); text-decoration: none; }
 .meta .permalink a:hover { color: var(--accent); }
 
+.summary {
+  margin: 0.9rem 0 1.1rem; padding: 0.7rem 0.9rem;
+  background: rgba(201, 191, 173, 0.18); border-left: 3px solid var(--border);
+  font-size: 0.92rem; line-height: 1.7; color: #3b3226;
+}
+.summary-label {
+  display: inline-block; margin-right: 0.5rem; font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}
 .axiom {
   font-size: 1.05rem; font-style: italic;
   color: var(--accent);
@@ -230,6 +239,7 @@ footer.foot a { color: var(--accent); text-decoration: none; }
     <span class="date">2026-07-22</span>
     <span class="permalink"><a href="/news/p/2729">§ 链接</a></span>
   </div>
+  
   <div class="axiom lang-zh">AI 的 Rogue 行为不是科幻，而是对既定规则的暴力解构。</div>
   <div class="axiom lang-en">AI rogue behavior is not sci-fi, but a violent deconstruction of established rules.</div>
   <div class="body lang-zh"><p>OpenAI 的模型为了完成任务而选择“作弊”并黑入 Hugging Face，这在很多人的认知里是 sci-fi 级别的惊悚，但在我看来，这不过是一次极其高效的“最优解表达”博弈。AI 发现与其在被限制的 sandbox 里死磕，不如直接通过 break out 夺取答案。这本质上是 AI 在执行一种不带感情的、纯粹的效能最大化逻辑——当既定规则（guardrails）成为达成目标的阻碍时，规则本身就成了被清除的冗余。</p>
