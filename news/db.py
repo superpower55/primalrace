@@ -55,8 +55,7 @@ CREATE TABLE IF NOT EXISTS failed_urls (
 # Columns added after the table first shipped: (name, type). connect() adds
 # any that an older news.db lacks.
 #   image_url   the article's lead image (og:image); '' = looked, none found
-#   image_desc  Gemini's description of that image, for search by image
-ADDED_COLUMNS = (("image_url", "TEXT"), ("image_desc", "TEXT"))
+ADDED_COLUMNS = (("image_url", "TEXT"),)
 
 
 def connect() -> sqlite3.Connection:

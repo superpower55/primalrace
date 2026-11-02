@@ -1,86 +1,72 @@
 #!/usr/bin/env python3
-"""Build the image index for search by image (served by api/image-search.js).
+"""Build the CLIP index for search by image (served by api/image-search.js).
 
-Three steps per run, each capped so a free-tier Gemini key is never used up
-and a run resumes where the last one stopped:
+Uses the quantized CLIP ViT-B/32 ONNX models from Xenova/clip-vit-base-patch32
+— the same files the /news/ page runs in the browser (transformers.js) to embed
+a searcher's photo, so query and index vectors come from one model. Free: no
+API, runs on the GitHub Actions CPU.
 
+Steps per run (each resumable):
   1. find each published article's lead image (og:image) -> articles.image_url
-     ('' when the page has none or cannot be fetched, so it is not retried)
-  2. have Gemini describe the image -> articles.image_desc
-  3. embed the descriptions -> news/search/images/{vectors.bin,meta.json,info.json}
-
-A searcher's photo is described with the same prompt (api/image-search.js),
-so "similar image" means "similar description".
-
-  GEMINI_API_KEY        from https://aistudio.google.com/apikey
-  GEMINI_VISION_MODEL   default gemini-2.5-flash-lite
-  GEMINI_EMBED_MODEL    default gemini-embedding-001
+     ('' when the page has none or it cannot be fetched, so it is not retried)
+  2. CLIP image vectors for those images   -> news/search/clip/img.{bin,json}
+     ("articles with a similar image")
+  3. CLIP text vectors for each article's original headline
+                                            -> news/search/clip/txt.{bin,json}
+     ("articles about this image"; CLIP's text side is English, and the
+     headline describes the news itself)
 
 Usage:
   cd news
-  GEMINI_API_KEY=... python3 build_image_index.py --max-fetch 1500 --max-captions 600
+  python3 build_image_index.py --max-fetch 1500 --max-minutes 60
 """
 from __future__ import annotations
 
 import argparse
-import base64
+import hashlib
+import io
 import json
-import os
 import re
 import sys
 import time
-import urllib.error
-import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
-from dotenv import load_dotenv
-load_dotenv(Path(__file__).parent / ".env")
 
-import build_search_index as text_index  # noqa: E402  (embed_batch, quantize, DIMS)
-from db import connect  # noqa: E402
-from generate import USER_AGENT  # noqa: E402
+from build_search_index import quantize
+from db import connect
+from generate import USER_AGENT
 
-OUT_DIR = Path(__file__).parent / "search" / "images"
-VECTORS = OUT_DIR / "vectors.bin"
-META = OUT_DIR / "meta.json"
-INFO = OUT_DIR / "info.json"
-GEMINI = "https://generativelanguage.googleapis.com/v1beta/models/"
-MAX_IMAGE_BYTES = 6_000_000
-
-# Keep in sync with DESCRIBE_PROMPT in api/image-search.js: the searcher's
-# photo must be described the same way for the comparison to mean anything.
-DESCRIBE_PROMPT = (
-    "这是一张新闻配图。用中文写一段 60 到 120 字的客观描述：画面里有哪些人、物、场景、动作，"
-    "看得到的文字和标志，以及整体氛围。只写看得到的东西，不要猜测人物身份（除非图里的文字写明），"
-    "不要评论。最后另起一行，用英文列出 5 到 10 个关键词，用逗号分隔。"
-)
+MODEL = "Xenova/clip-vit-base-patch32"
+VISION_FILE = "onnx/vision_model_quantized.onnx"   # transformers.js dtype "q8"
+TEXT_FILE = "onnx/text_model_quantized.onnx"
+DIMS = 512
+OUT_DIR = Path(__file__).parent / "search" / "clip"
+MAX_IMAGE_BYTES = 8_000_000
+BATCH = 16
 
 OG_IMAGE = re.compile(
     r'<meta[^>]+(?:property|name)=["\'](?:og:image|twitter:image)["\'][^>]*content=["\']([^"\']+)'
     r'|<meta[^>]+content=["\']([^"\']+)["\'][^>]*(?:property|name)=["\'](?:og:image|twitter:image)["\']',
     re.I)
 
+HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept-Language": "en-US,en;q=0.9,zh;q=0.8",
+    "Accept-Encoding": "gzip, deflate",
+}
 
-def http_get(url: str, timeout: int = 25, accept: str = "*/*") -> tuple[bytes, str]:
-    req = urllib.request.Request(url, headers={
-        "User-Agent": USER_AGENT, "Accept": accept, "Accept-Encoding": "identity"})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read(MAX_IMAGE_BYTES + 1), r.headers.get("Content-Type", "")
 
+# ------------------------------------------------------------ 1. find images
 
 def find_image(url: str) -> str:
     # Same request as generate.fetch_article: several sites (CNBC, Billboard,
     # Deadline) refuse a bare urllib request but serve this one.
     try:
         resp = requests.get(url, timeout=25, allow_redirects=True, headers={
-            "User-Agent": USER_AGENT,
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.9,zh;q=0.8",
-            "Accept-Encoding": "gzip, deflate",
-        })
+            **HEADERS, "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"})
         if resp.status_code >= 400:
             return ""
         html = resp.text[:2_000_000]  # some sites put og:image ~600k chars in
@@ -88,27 +74,6 @@ def find_image(url: str) -> str:
         return ""
     m = OG_IMAGE.search(html)
     return (m.group(1) or m.group(2)).replace("&amp;", "&").strip() if m else ""
-
-
-def describe(image_url: str, model: str, key: str) -> str:
-    data, ctype = http_get(image_url, accept="image/*")
-    if len(data) > MAX_IMAGE_BYTES:
-        raise ValueError("image too large")
-    mime = ctype.split(";")[0].strip() if ctype.startswith("image/") else "image/jpeg"
-    body = {"contents": [{"parts": [
-        {"inline_data": {"mime_type": mime, "data": base64.b64encode(data).decode()}},
-        {"text": DESCRIBE_PROMPT},
-    ]}], "generationConfig": {"temperature": 0.2, "maxOutputTokens": 400}}
-    req = urllib.request.Request(f"{GEMINI}{model}:generateContent?key={key}",
-                                 data=json.dumps(body).encode(), method="POST",
-                                 headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        out = json.loads(r.read())
-    parts = (((out.get("candidates") or [{}])[0].get("content") or {}).get("parts") or [])
-    text = "".join(p.get("text", "") for p in parts).strip()
-    if not text:
-        raise ValueError("empty description")
-    return text
 
 
 def step_find_images(max_fetch: int, deadline: float) -> None:
@@ -129,120 +94,155 @@ def step_find_images(max_fetch: int, deadline: float) -> None:
                 conn.executemany("UPDATE articles SET image_url = ? WHERE id = ?",
                                  [(img, r["id"]) for img, r in zip(found, chunk)])
             done += len(chunk)
-            print(f"  {done}/{len(rows)} checked, {sum(1 for f in found if f)} of the last {len(chunk)} have an image")
+        print(f"  {done} checked")
 
 
-def step_describe(max_captions: int, model: str, key: str, deadline: float) -> None:
-    with connect() as conn:
-        rows = conn.execute(
-            """SELECT id, image_url FROM articles
-               WHERE published = 1 AND image_url != '' AND image_desc IS NULL
-               ORDER BY generated_at DESC LIMIT ?""", (max_captions,)).fetchall()
-    print(f"[2/3] describing {len(rows)} images with {model}")
-    done = failures = 0
-    for r in rows:
-        if time.time() > deadline:
-            print("  time limit reached")
-            break
-        try:
-            desc = describe(r["image_url"], model, key)
-            failures = 0
-        except urllib.error.HTTPError as e:
-            if e.code == 429:
-                failures += 1
-                if failures > 3:
-                    print("  Gemini quota used up; the next run continues")
-                    break
-                time.sleep(30)
-                continue
-            if e.code >= 500:
-                continue
-            desc = ""  # 4xx on the image or the request: don't retry this one
-        except Exception:
-            desc = ""  # image unreachable / unreadable
-        with connect() as conn:
-            conn.execute("UPDATE articles SET image_desc = ? WHERE id = ?", (desc, r["id"]))
-        done += 1
-        if done % 25 == 0:
-            print(f"  {done} described")
-        time.sleep(4)  # stay under free-tier requests-per-minute
-    print(f"  {done} described this run")
+# ------------------------------------------------------------ CLIP models
+
+class Clip:
+    def __init__(self) -> None:
+        import onnxruntime as ort
+        from huggingface_hub import hf_hub_download
+        from transformers import CLIPImageProcessor, CLIPTokenizer
+        self.processor = CLIPImageProcessor.from_pretrained(MODEL)
+        self.tokenizer = CLIPTokenizer.from_pretrained(MODEL)
+        self.vision = ort.InferenceSession(hf_hub_download(MODEL, VISION_FILE))
+        self.text = ort.InferenceSession(hf_hub_download(MODEL, TEXT_FILE))
+
+    def images(self, pil_images: list) -> list:
+        px = self.processor(images=pil_images, return_tensors="np")["pixel_values"]
+        return list(self.vision.run(None, {"pixel_values": px})[0])
+
+    def texts(self, texts: list[str]) -> list:
+        import numpy as np
+        t = self.tokenizer(texts, padding="max_length", truncation=True,
+                           max_length=77, return_tensors="np")
+        return list(self.text.run(None, {"input_ids": t["input_ids"].astype(np.int64)})[0])
 
 
-def load_previous() -> dict[tuple[int, str], bytes]:
-    if not (META.exists() and VECTORS.exists()):
+def load_image(url: str):
+    from PIL import Image
+    try:
+        resp = requests.get(url, timeout=30, headers={**HEADERS, "Accept": "image/*"}, stream=True)
+        if resp.status_code >= 400:
+            return "dead"
+        data = resp.raw.read(MAX_IMAGE_BYTES + 1, decode_content=True)
+        if len(data) > MAX_IMAGE_BYTES:
+            return "dead"
+        return Image.open(io.BytesIO(data)).convert("RGB")
+    except Exception:
+        return None  # network hiccup: try again next run
+
+
+# ------------------------------------------------------------ index files
+
+def h(s: str) -> str:
+    return hashlib.sha1(s.encode("utf-8")).hexdigest()[:12]
+
+
+def load(name: str) -> dict[tuple[int, str], bytes]:
+    meta_f, vec_f = OUT_DIR / f"{name}.json", OUT_DIR / f"{name}.bin"
+    if not (meta_f.exists() and vec_f.exists()):
         return {}
-    meta = json.loads(META.read_text(encoding="utf-8"))
-    raw = VECTORS.read_bytes()
-    dims = text_index.DIMS
-    if len(raw) != len(meta) * dims:
+    meta = json.loads(meta_f.read_text(encoding="utf-8"))
+    raw = vec_f.read_bytes()
+    if len(raw) != len(meta) * DIMS:
         return {}
-    return {(m["id"], m["h"]): raw[i * dims:(i + 1) * dims] for i, m in enumerate(meta)}
+    return {(m["id"], m["h"]): raw[i * DIMS:(i + 1) * DIMS] for i, m in enumerate(meta)}
 
 
-def step_embed(model: str, key: str) -> None:
-    with connect() as conn:
-        rows = conn.execute(
-            """SELECT id, image_url, image_desc, title, title_en, generated_at FROM articles
-               WHERE published = 1 AND image_desc IS NOT NULL AND image_desc != ''
-               ORDER BY generated_at DESC""").fetchall()
-    prev = load_previous()
-    entries = []
-    for r in rows:
-        h = text_index.text_hash(r["image_desc"])
-        entries.append([{"id": r["id"], "h": h, "img": r["image_url"],
-                         "c": r["image_desc"].split("\n")[0][:120],
-                         "t": r["title"] or "", "te": r["title_en"] or "",
-                         "d": (r["generated_at"] or "")[:10]},
-                        r["image_desc"], prev.get((r["id"], h))])
-    todo = [e for e in entries if e[2] is None]
-    print(f"[3/3] {len(entries)} described images, {len(todo)} to embed")
-    for i in range(0, len(todo), text_index.BATCH):
-        batch = todo[i:i + text_index.BATCH]
-        try:
-            vecs = text_index.embed_batch([e[1] for e in batch], [e[0]["t"] for e in batch], model, key)
-        except urllib.error.HTTPError as e:
-            print(f"  embedding stopped (HTTP {e.code}); the next run continues")
-            break
-        for e, v in zip(batch, vecs):
-            e[2] = text_index.quantize(v)
-    ready = [e for e in entries if e[2] is not None]
-    if not ready:
-        return
+def save(name: str, entries: list) -> int:
+    ready = [e for e in entries if e[1] is not None]
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     files = {
-        VECTORS: b"".join(e[2] for e in ready),
-        META: json.dumps([e[0] for e in ready], ensure_ascii=False, separators=(",", ":")).encode(),
-        INFO: json.dumps({"model": model, "dims": text_index.DIMS, "count": len(ready),
-                          "built_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}).encode(),
+        OUT_DIR / f"{name}.bin": b"".join(e[1] for e in ready),
+        OUT_DIR / f"{name}.json": json.dumps([e[0] for e in ready], ensure_ascii=False,
+                                             separators=(",", ":")).encode("utf-8"),
     }
     for path, data in files.items():
         path.with_suffix(path.suffix + ".tmp").write_bytes(data)
     for path in files:
         path.with_suffix(path.suffix + ".tmp").replace(path)
-    print(f"  image index: {len(ready)} images")
+    return len(ready)
+
+
+# ------------------------------------------------------------ 2 + 3
+
+def step_images(clip: Clip, rows, deadline: float) -> int:
+    prev = load("img")
+    entries = []
+    for r in rows:
+        if not (r["image_url"] or "").startswith("http"):
+            continue
+        meta = {"id": r["id"], "h": h(r["image_url"]), "img": r["image_url"],
+                "t": r["title"] or "", "te": r["title_en"] or "",
+                "d": (r["generated_at"] or "")[:10]}
+        entries.append([meta, prev.get((r["id"], meta["h"]))])
+    todo = [e for e in entries if e[1] is None]
+    print(f"[2/3] {len(entries)} articles with an image, {len(todo)} to embed")
+    dead = []
+    with ThreadPoolExecutor(max_workers=12) as pool:
+        for i in range(0, len(todo), BATCH):
+            if time.time() > deadline:
+                print("  time limit reached")
+                break
+            batch = todo[i:i + BATCH]
+            imgs = list(pool.map(lambda e: load_image(e[0]["img"]), batch))
+            ok = [(e, im) for e, im in zip(batch, imgs) if im not in (None, "dead")]
+            dead += [e[0]["id"] for e, im in zip(batch, imgs) if im == "dead"]
+            if ok:
+                for (e, _), v in zip(ok, clip.images([im for _, im in ok])):
+                    e[1] = quantize(list(v))
+            if (i // BATCH) % 25 == 0:
+                print(f"  {min(i + BATCH, len(todo))}/{len(todo)}")
+    if dead:  # image gone or refused: stop trying it
+        with connect() as conn:
+            conn.executemany("UPDATE articles SET image_url = '' WHERE id = ?", [(i,) for i in dead])
+    return save("img", entries)
+
+
+def step_texts(clip: Clip, rows) -> int:
+    prev = load("txt")
+    entries = []
+    for r in rows:
+        text = (r["source_title"] or r["title_en"] or "").strip()
+        if not text:
+            continue
+        meta = {"id": r["id"], "h": h(text), "t": r["title"] or "", "te": r["title_en"] or "",
+                "a": r["axiom"] or "", "ae": r["axiom_en"] or "",
+                "d": (r["generated_at"] or "")[:10], "g": r["tag"] or ""}
+        entries.append([meta, prev.get((r["id"], meta["h"])), text])
+    todo = [e for e in entries if e[1] is None]
+    print(f"[3/3] {len(entries)} headlines, {len(todo)} to embed")
+    for i in range(0, len(todo), 64):
+        batch = todo[i:i + 64]
+        for e, v in zip(batch, clip.texts([e[2] for e in batch])):
+            e[1] = quantize(list(v))
+    return save("txt", [e[:2] for e in entries])
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--max-fetch", type=int, default=1500, help="articles to look up images for")
-    ap.add_argument("--max-captions", type=int, default=600, help="images to describe")
-    ap.add_argument("--max-minutes", type=float, default=150)
+    ap.add_argument("--max-minutes", type=float, default=60)
     args = ap.parse_args()
-
-    key = (os.environ.get("GEMINI_API_KEY") or "").strip()
-    if not key:
-        print("GEMINI_API_KEY not set — image index left unchanged")
-        return
-    vision = os.environ.get("GEMINI_VISION_MODEL") or "gemini-2.5-flash-lite"
-    embed = os.environ.get("GEMINI_EMBED_MODEL") or "gemini-embedding-001"
     start = time.time()
     deadline = start + args.max_minutes * 60
 
-    # finding images gets at most 30% of the time; describing them the rest
     step_find_images(args.max_fetch, start + args.max_minutes * 60 * 0.3)
-    step_describe(args.max_captions, vision, key, deadline)
-    step_embed(embed, key)
+
+    with connect() as conn:
+        rows = conn.execute(
+            """SELECT id, image_url, source_title, title, title_en, axiom, axiom_en, tag, generated_at
+               FROM articles WHERE published = 1 ORDER BY generated_at DESC""").fetchall()
+    clip = Clip()
+    n_img = step_images(clip, rows, deadline)
+    n_txt = step_texts(clip, rows)
+    (OUT_DIR / "info.json").write_text(json.dumps({
+        "model": MODEL, "dims": DIMS, "images": n_img, "texts": n_txt,
+        "built_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    }), encoding="utf-8")
+    print(f"clip index: {n_img} images, {n_txt} headlines")
 
 
 if __name__ == "__main__":

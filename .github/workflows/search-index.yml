@@ -58,12 +58,17 @@ jobs:
           # cap per run so live searches (same Gemini key) keep some daily quota
           python -u build_search_index.py --max-minutes 300 --max-articles 500
 
-      - name: Article images (search by image)
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      - name: Cache CLIP model
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-clip-vit-base-patch32-q8
+
+      - name: Article images (search by image, CLIP — no API key)
         working-directory: news
-        # Kept short: the news workflow waits in the same queue while this runs.
-        run: python -u build_image_index.py --max-fetch 1500 --max-captions 400 --max-minutes 60 || echo "image index not updated"
+        run: |
+          pip install onnxruntime pillow transformers
+          python -u build_image_index.py --max-fetch 6000 --max-minutes 45 || echo "image index not updated"
 
       - name: Render (adds the search box once an index exists)
         # also after a cancel/timeout, so a partial index is kept
