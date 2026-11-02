@@ -26,7 +26,7 @@ import trafilatura                    # noqa: E402
 
 from db import connect                # noqa: E402
 from llm import generate as llm_generate, provider_label  # noqa: E402
-from prompts.system import OUTPUT_SCHEMA, build_system_blocks  # noqa: E402
+from prompts.system import OUTPUT_SCHEMA, build_system_blocks, build_user_msg  # noqa: E402
 
 
 # Bilingual commentary runs ~1,000-1,700 output tokens on DeepSeek; leave room.
@@ -152,17 +152,6 @@ def _parse_json_objects(text: str) -> dict:
     if not merged:
         raise json.JSONDecodeError("empty reply", text, 0)
     return merged
-
-
-def build_user_msg(article: dict) -> str:
-    return (
-        f"以下是今天要评论的一条新闻。\n"
-        f"标题：{article['source_title']}\n"
-        f"来源：{article['source']}\n"
-        f"链接：{article['url']}\n\n"
-        f"--- 正文 ---\n{article['raw_text']}\n--- 正文结束 ---\n\n"
-        f"按系统提示里的格式输出你的评论。"
-    )
 
 
 def generate_commentary(article: dict) -> dict:

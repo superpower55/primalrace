@@ -1,0 +1,3 @@
+# GPU box only (CUDA). Unsloth pulls matching torch / transformers / peft / trl.
+unsloth
+datasets

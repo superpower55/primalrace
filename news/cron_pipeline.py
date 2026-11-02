@@ -121,6 +121,16 @@ def main():
             (NEWS_DIR / ".new_ids").write_text(
                 "\n".join(str(i) for i in new_ids), encoding="utf-8")
 
+    # Fill in the news summary for older articles a few at a time (they are
+    # the LoRA training set and the site shows the summary above commentary).
+    per_run = int(os.environ.get("SUMMARY_BACKFILL_PER_RUN", "20"))
+    if per_run:
+        try:
+            from backfill_summaries import backfill
+            print(f"\n=== summaries for older articles: {backfill(per_run)} written ===")
+        except Exception as e:
+            print(f"  [warn] summary backfill skipped: {e}", file=sys.stderr)
+
     print("\n=== [3/4] Render ===")
     subprocess.check_call([sys.executable, "render.py"], cwd=NEWS_DIR)
 

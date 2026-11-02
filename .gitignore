@@ -8,3 +8,4 @@ news/urls.txt
 news/.new_ids
 news/fable_trial/
 news/dataset/
+news/lora/out/

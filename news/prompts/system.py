@@ -112,6 +112,13 @@ Violence = Potential − Actual。任何"现状"低于本可达到的状态，�
 是结构性胜利还是表演性让步。表演性让步、PR 立法、叙事换皮是 cultural violence 的
 高级版本，按它真正属于的类别 tag，不要算作 good_news。"""
 
+# The summary rules, shared with backfill_summaries.py (which writes summaries
+# for articles generated before the summary field existed).
+SUMMARY_FIELDS = """- `summary`：中文新闻摘要，2 到 3 句，最多 120 个汉字。宁短勿长：只留读者看懂评论必需的
+  核心事实（谁、做了什么、在哪里、什么时候、关键数字），其余细节留给评论去用，不要都塞进摘要。
+  只写报道里的事实，不加判断，不用框架术语，不带语气——判断留给评论。
+- `summary_en`：同一摘要的英文版，2 到 3 句，最多 60 words。"""
+
 STYLE = """# 怎么写
 
 费扬的评论以判断开头。第一句就是一个判断，或者拆穿一个伪装，不绕弯、不铺垫；
@@ -181,10 +188,7 @@ STYLE = """# 怎么写
 输出一个 JSON 对象。先写摘要，再写评论——摘要是读者进入评论前对这条新闻的全部了解，
 也是你写评论时的事实底稿：评论里用到的事实，摘要里应该都有。字段如下（按这个顺序写）：
 
-- `summary`：中文新闻摘要，2 到 3 句，最多 120 个汉字。宁短勿长：只留读者看懂评论必需的
-  核心事实（谁、做了什么、在哪里、什么时候、关键数字），其余细节留给评论去用，不要都塞进摘要。
-  只写报道里的事实，不加判断，不用框架术语，不带语气——判断留给评论。
-- `summary_en`：同一摘要的英文版，2 到 3 句，最多 60 words。
+__SUMMARY_FIELDS__
 - `title`：中文标题
 - `axiom`：一句话核心判断，≤30 字，会单独作为题图引用
 - `body`：中文正文，段落之间用两个换行分隔
@@ -202,6 +206,8 @@ STYLE = """# 怎么写
 
 只输出这个 JSON 对象本身，前后不加说明或代码块。中文文字里的引号一律用「」或“”，
 不要用英文直引号 "——它会把 JSON 弄坏。"""
+
+STYLE = STYLE.replace("__SUMMARY_FIELDS__", SUMMARY_FIELDS)
 
 BOOK_HEADER = """# 风格语料：《原初种族》第一至四章 + 第六章（费扬亲笔）
 
@@ -249,12 +255,29 @@ OUTPUT_SCHEMA = {
 }
 
 
+# The short instruction the LoRA-tuned Gemma is trained with (news/lora/).
+# The voice, framework and output format are learned from the examples, so
+# the ~36k-token prompt above is not needed at inference. Changing this text
+# means retraining.
+TRAIN_SYSTEM = (
+    "你是费扬（Yang Fei），《原初种族》的作者。用书里的框架为下面这条新闻写一篇评论，"
+    "中英双语，只用报道里有的事实；天气播报、无关紧要的琐事这类不值得评论的就跳过。"
+    "先写中立的新闻摘要，再写评论。输出 JSON：summary, summary_en, title, axiom, body, "
+    "title_en, axiom_en, body_en, tag, violence_layer, skip, skip_reason。"
+)
+
+
 def build_system_blocks() -> list[dict]:
     """Return system content as a list of blocks for the Messages API.
+
+    With PROMPT_STYLE=lora (the fine-tuned Gemma) only TRAIN_SYSTEM is sent.
 
     The last block is the book corpus, marked with cache_control so the
     Anthropic cache can serve it on subsequent calls (5-min TTL).
     """
+    import os
+    if os.environ.get("PROMPT_STYLE") == "lora":
+        return [{"type": "text", "text": TRAIN_SYSTEM}]
     static_part = "\n\n---\n\n".join([IDENTITY, FRAMEWORK, STYLE])
     return [
         {"type": "text", "text": static_part},
@@ -273,3 +296,14 @@ if __name__ == "__main__":
         print(f"--- block {i}{cached} ({len(b['text'])} chars) ---")
         print(b["text"][:300])
         print("...")
+
+
+def build_user_msg(article: dict) -> str:
+    return (
+        f"以下是今天要评论的一条新闻。\n"
+        f"标题：{article['source_title']}\n"
+        f"来源：{article['source']}\n"
+        f"链接：{article['url']}\n\n"
+        f"--- 正文 ---\n{article['raw_text']}\n--- 正文结束 ---\n\n"
+        f"按系统提示里的格式输出你的评论。"
+    )

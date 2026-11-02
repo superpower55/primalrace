@@ -51,12 +51,7 @@ ESTIMATE_USD = 0.30
 CULTURE_PATHS = ("/music/", "/film/", "/tv-and-radio/", "/stage/", "/culture/",
                  "/fashion/", "/style/", "/arts/", "/movies/", "/books/")
 
-TRAIN_SYSTEM = (
-    "你是费扬（Yang Fei），《原初种族》的作者。用书里的框架为下面这条新闻写一篇评论，"
-    "中英双语，只用报道里有的事实；天气播报、无关紧要的琐事这类不值得评论的就跳过。"
-    "先写中立的新闻摘要，再写评论。输出 JSON：summary, summary_en, title, axiom, body, "
-    "title_en, axiom_en, body_en, tag, violence_layer, skip, skip_reason。"
-)
+from prompts.system import TRAIN_SYSTEM  # noqa: E402  (shared with news/lora/)
 FIELDS = ("summary", "summary_en", "title", "axiom", "body", "title_en", "axiom_en", "body_en",
           "tag", "violence_layer",
           "skip", "skip_reason")
