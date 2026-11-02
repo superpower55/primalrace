@@ -7,8 +7,11 @@ a searcher's photo, so query and index vectors come from one model. Free: no
 API, runs on the GitHub Actions CPU.
 
 Steps per run (each resumable):
-  1. find each published article's lead image (og:image) -> articles.image_url
-     ('' when the page has none or it cannot be fetched, so it is not retried)
+  1. find the lead image (og:image) of each published article that has no
+     articles.image_url (new articles store theirs when fetched)
+     -> news/search/clip/found.json  {id: url, or '' when none / unreachable}
+     Kept out of news.db so this workflow never commits the database the
+     news workflow writes every 10 minutes.
   2. CLIP image vectors for those images   -> news/search/clip/img.{bin,json}
      ("articles with a similar image")
   3. CLIP text vectors for each article's original headline
@@ -44,6 +47,7 @@ VISION_FILE = "onnx/vision_model_quantized.onnx"   # transformers.js dtype "q8"
 TEXT_FILE = "onnx/text_model_quantized.onnx"
 DIMS = 512
 OUT_DIR = Path(__file__).parent / "search" / "clip"
+FOUND = OUT_DIR / "found.json"
 MAX_IMAGE_BYTES = 8_000_000
 BATCH = 16
 
@@ -76,11 +80,26 @@ def find_image(url: str) -> str:
     return (m.group(1) or m.group(2)).replace("&amp;", "&").strip() if m else ""
 
 
-def step_find_images(max_fetch: int, deadline: float) -> None:
+def load_found() -> dict[int, str]:
+    if FOUND.exists():
+        return {int(k): v for k, v in json.loads(FOUND.read_text(encoding="utf-8")).items()}
+    img = OUT_DIR / "img.json"  # first run after the move: seed from the index
+    if img.exists():
+        return {m["id"]: m["img"] for m in json.loads(img.read_text(encoding="utf-8"))}
+    return {}
+
+
+def save_found(found: dict[int, str]) -> None:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    FOUND.write_text(json.dumps({str(k): v for k, v in sorted(found.items())},
+                                separators=(",", ":")), encoding="utf-8")
+
+
+def step_find_images(found: dict[int, str], max_fetch: int, deadline: float) -> None:
     with connect() as conn:
-        rows = conn.execute(
+        rows = [r for r in conn.execute(
             """SELECT id, url FROM articles WHERE published = 1 AND image_url IS NULL
-               ORDER BY generated_at DESC LIMIT ?""", (max_fetch,)).fetchall()
+               ORDER BY generated_at DESC""") if r["id"] not in found][:max_fetch]
     print(f"[1/3] finding lead images for {len(rows)} articles")
     done = 0
     with ThreadPoolExecutor(max_workers=8) as pool:
@@ -89,12 +108,11 @@ def step_find_images(max_fetch: int, deadline: float) -> None:
                 print("  time limit reached")
                 break
             chunk = rows[i:i + 40]
-            found = list(pool.map(lambda r: find_image(r["url"]), chunk))
-            with connect() as conn:
-                conn.executemany("UPDATE articles SET image_url = ? WHERE id = ?",
-                                 [(img, r["id"]) for img, r in zip(found, chunk)])
+            for r, img in zip(chunk, pool.map(lambda r: find_image(r["url"]), chunk)):
+                found[r["id"]] = img
             done += len(chunk)
-        print(f"  {done} checked")
+    save_found(found)
+    print(f"  {done} checked")
 
 
 # ------------------------------------------------------------ CLIP models
@@ -168,13 +186,14 @@ def save(name: str, entries: list) -> int:
 
 # ------------------------------------------------------------ 2 + 3
 
-def step_images(clip: Clip, rows, deadline: float) -> int:
+def step_images(clip: Clip, rows, found: dict[int, str], deadline: float) -> int:
     prev = load("img")
     entries = []
     for r in rows:
-        if not (r["image_url"] or "").startswith("http"):
+        url = r["image_url"] or found.get(r["id"], "")
+        if not url.startswith("http"):
             continue
-        meta = {"id": r["id"], "h": h(r["image_url"]), "img": r["image_url"],
+        meta = {"id": r["id"], "h": h(url), "img": url,
                 "t": r["title"] or "", "te": r["title_en"] or "",
                 "d": (r["generated_at"] or "")[:10]}
         entries.append([meta, prev.get((r["id"], meta["h"]))])
@@ -195,9 +214,9 @@ def step_images(clip: Clip, rows, deadline: float) -> int:
                     e[1] = quantize(list(v))
             if (i // BATCH) % 25 == 0:
                 print(f"  {min(i + BATCH, len(todo))}/{len(todo)}")
-    if dead:  # image gone or refused: stop trying it
-        with connect() as conn:
-            conn.executemany("UPDATE articles SET image_url = '' WHERE id = ?", [(i,) for i in dead])
+    for i in dead:  # image gone or refused: stop trying it
+        found[i] = ""
+    save_found(found)
     return save("img", entries)
 
 
@@ -229,14 +248,15 @@ def main() -> None:
     start = time.time()
     deadline = start + args.max_minutes * 60
 
-    step_find_images(args.max_fetch, start + args.max_minutes * 60 * 0.3)
+    found = load_found()
+    step_find_images(found, args.max_fetch, start + args.max_minutes * 60 * 0.3)
 
     with connect() as conn:
         rows = conn.execute(
             """SELECT id, image_url, source_title, title, title_en, axiom, axiom_en, tag, generated_at
                FROM articles WHERE published = 1 ORDER BY generated_at DESC""").fetchall()
     clip = Clip()
-    n_img = step_images(clip, rows, deadline)
+    n_img = step_images(clip, rows, found, deadline)
     n_txt = step_texts(clip, rows)
     (OUT_DIR / "info.json").write_text(json.dumps({
         "model": MODEL, "dims": DIMS, "images": n_img, "texts": n_txt,
