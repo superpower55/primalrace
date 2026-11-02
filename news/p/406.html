@@ -137,6 +137,15 @@ article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
 .meta .permalink a { color: var(--muted); text-decoration: none; }
 .meta .permalink a:hover { color: var(--accent); }
 
+.summary {
+  margin: 0.9rem 0 1.1rem; padding: 0.7rem 0.9rem;
+  background: rgba(201, 191, 173, 0.18); border-left: 3px solid var(--border);
+  font-size: 0.92rem; line-height: 1.7; color: #3b3226;
+}
+.summary-label {
+  display: inline-block; margin-right: 0.5rem; font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}
 .axiom {
   font-size: 1.05rem; font-style: italic;
   color: var(--accent);
@@ -230,6 +239,7 @@ footer.foot a { color: var(--accent); text-decoration: none; }
     <span class="date">2026-06-01</span>
     <span class="permalink"><a href="/news/p/406">§ 链接</a></span>
   </div>
+  
   <div class="axiom lang-zh">安全补丁是对结构性漏洞的PR，而非对个体主体的真正赋权。</div>
   <div class="axiom lang-en">Security patches are PR for structural loopholes, not true empowerment of the subject.</div>
   <div class="body lang-zh"><p>苹果推出的 Stolen Device Protection 看起来是一个 good_news，因为它通过增加一个小时的 security delay 强行削减了 direct violence 的发生概率。但如果把视角拉高到结构层，这其实是一次典型的“补丁式”权力博弈。设备被盗后，小偷能迅速通过 PIN 码接管你的 Apple ID 从而“毁灭你的生活”，这证明了在原有的系统设计中，用户对自身数字主体的掌控权极低，这种掌控权被简化成了一个极易被窥视的数字组合。</p>
