@@ -172,6 +172,8 @@ def generate_commentary(article: dict) -> dict:
         raise RuntimeError(f"model returned non-JSON:\n{text}\n\nerror: {e}")
 
     return {
+        "summary": (parsed.get("summary") or "").strip(),
+        "summary_en": (parsed.get("summary_en") or "").strip(),
         "title": parsed.get("title", "").strip(),
         "axiom": parsed.get("axiom", "").strip(),
         "body": parsed.get("body", "").strip(),
@@ -239,6 +241,7 @@ def process_url(url: str) -> int:
         # not fetched again, and return 0 so nothing gets published.
         print(f"  [skipped] {commentary['skip_reason']}")
         commentary.update(title="", body="", title_en="", axiom_en="", body_en="",
+                          summary="", summary_en="",
                           tag="skipped", axiom=commentary["skip_reason"])
     print(f"  [done] '{commentary['title']}' "
           f"(in={commentary['input_tokens']} "
@@ -252,15 +255,17 @@ def process_url(url: str) -> int:
             """
             INSERT INTO articles
               (url, source, source_title, raw_text, fetched_at, image_url,
+               summary, summary_en,
                title, axiom, body, title_en, axiom_en, body_en,
                tag, violence_layer,
                model, input_tokens, cache_read_tokens, cache_create_tokens,
                output_tokens, generated_at)
-            VALUES (?,?,?,?,?,?, ?,?,?,?,?,?, ?,?, ?,?,?,?,?,?)
+            VALUES (?,?,?,?,?,?, ?,?, ?,?,?,?,?,?, ?,?, ?,?,?,?,?,?)
             """,
             (
                 article["url"], article["source"], article["source_title"],
                 article["raw_text"], now, article.get("image_url", ""),
+                commentary["summary"], commentary["summary_en"],
                 commentary["title"], commentary["axiom"], commentary["body"],
                 commentary["title_en"], commentary["axiom_en"], commentary["body_en"],
                 commentary["tag"], commentary["violence_layer"],

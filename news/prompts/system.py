@@ -178,8 +178,12 @@ STYLE = """# 怎么写
 
 # 输出
 
-输出一个 JSON 对象，字段如下：
+输出一个 JSON 对象。先写摘要，再写评论——摘要是读者进入评论前对这条新闻的全部了解，
+也是你写评论时的事实底稿：评论里用到的事实，摘要里应该都有。字段如下（按这个顺序写）：
 
+- `summary`：中文新闻摘要，3 到 4 句，不超过 150 字——读者扫一眼就知道发生了什么。只写报道里的事实：谁、做了什么、
+  在哪里、什么时候、结果或数字。不加判断，不用框架术语，不带语气——判断留给评论。
+- `summary_en`：同一摘要的英文版，3 到 4 句。
 - `title`：中文标题
 - `axiom`：一句话核心判断，≤30 字，会单独作为题图引用
 - `body`：中文正文，段落之间用两个换行分隔
@@ -193,7 +197,7 @@ STYLE = """# 怎么写
   表示这条新闻揭示的暴力主要在哪一层；好新闻填它在哪一层取得了真正的进展
 - `skip`：决定不评论时填 true（见上面"什么时候不评论"），否则 false
 - `skip_reason`：skip 为 true 时用一句话说明为什么不评论；不跳过时留空字符串。
-  skip 为 true 时，其余字段都填空字符串（tag 填 other）
+  skip 为 true 时，其余字段（包括摘要）都填空字符串（tag 填 other）
 
 只输出这个 JSON 对象本身，前后不加说明或代码块。"""
 
@@ -222,6 +226,8 @@ BOOK_HEADER = """# 风格语料：《原初种族》第一至四章 + 第六章�
 OUTPUT_SCHEMA = {
     "type": "object",
     "properties": {
+        "summary": {"type": "string"},
+        "summary_en": {"type": "string"},
         "title": {"type": "string"},
         "axiom": {"type": "string"},
         "body": {"type": "string"},
@@ -235,7 +241,7 @@ OUTPUT_SCHEMA = {
         "skip": {"type": "boolean"},
         "skip_reason": {"type": "string"},
     },
-    "required": ["title", "axiom", "body", "title_en", "axiom_en", "body_en",
+    "required": ["summary", "summary_en", "title", "axiom", "body", "title_en", "axiom_en", "body_en",
                  "tag", "violence_layer", "skip", "skip_reason"],
     "additionalProperties": False,
 }

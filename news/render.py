@@ -182,6 +182,15 @@ article.good_news .axiom {{ color: #2d6a3e; border-left-color: #2d6a3e; }}
 .meta .permalink a {{ color: var(--muted); text-decoration: none; }}
 .meta .permalink a:hover {{ color: var(--accent); }}
 
+.summary {{
+  margin: 0.9rem 0 1.1rem; padding: 0.7rem 0.9rem;
+  background: rgba(201, 191, 173, 0.18); border-left: 3px solid var(--border);
+  font-size: 0.92rem; line-height: 1.7; color: #3b3226;
+}}
+.summary-label {{
+  display: inline-block; margin-right: 0.5rem; font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}}
 .axiom {{
   font-size: 1.05rem; font-style: italic;
   color: var(--accent);
@@ -306,6 +315,7 @@ ARTICLE_TEMPLATE = """<article class="{article_cls}" id="a{id}">
     <span class="date">{date}</span>
     <span class="permalink"><a href="{permalink}">§ 链接</a></span>
   </div>
+  {summary_block}
   {axiom_block_zh}
   {axiom_block_en}
   <div class="body lang-zh">{body}</div>
@@ -361,6 +371,19 @@ def attr(s: str, limit: int = 300) -> str:
     return html.escape(s, quote=True)
 
 
+def summary_html(r) -> str:
+    """Neutral news summary shown above the commentary (newer articles only)."""
+    keys = r.keys()
+    zh = (r["summary"] or "").strip() if "summary" in keys else ""
+    en = (r["summary_en"] or "").strip() if "summary_en" in keys else ""
+    if not zh and not en:
+        return ""
+    return ('<div class="summary">'
+            f'<div class="lang-zh"><span class="summary-label">新闻摘要</span>{html.escape(zh or en)}</div>'
+            f'<div class="lang-en"><span class="summary-label">The news</span>{html.escape(en or zh)}</div>'
+            '</div>')
+
+
 def article_html(r, include_drafts: bool) -> str:
     is_draft = not r["published"]
     date = (r["generated_at"] or "")[:10]
@@ -396,6 +419,7 @@ def article_html(r, include_drafts: bool) -> str:
         layer=render_layer(r["violence_layer"] or ""),
         source_link=render_source(r["url"] or "", r["source"] or ""),
         date=date,
+        summary_block=summary_html(r),
         axiom_block_zh=f'<div class="axiom lang-zh">{html.escape(axiom)}</div>' if axiom else "",
         axiom_block_en=f'<div class="axiom lang-en">{html.escape(axiom_en)}</div>' if axiom_en else "",
         body=render_body(body_text) if body_text else "<p><em>(no body)</em></p>",

@@ -65,7 +65,7 @@ def _client():
 def check(article: dict, commentary: dict) -> dict:
     """Returns {"issues": [...], "model", "cost_usd"}. Raises on refusal."""
     model = os.environ.get("FACTCHECK_MODEL") or "claude-sonnet-5-5"
-    fields = ("title", "axiom", "body", "title_en", "axiom_en", "body_en")
+    fields = ("summary", "summary_en", "title", "axiom", "body", "title_en", "axiom_en", "body_en")
     user_msg = (
         f"--- 报道原文 ---\n标题：{article['source_title']}\n来源：{article['source']}\n\n"
         f"{article['raw_text']}\n--- 原文结束 ---\n\n"
