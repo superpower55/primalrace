@@ -170,6 +170,8 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=2)
     ap.add_argument("--max-tokens", type=int, default=4000)
     ap.add_argument("--judge", action="store_true", help="DeepSeek rates voice + faithfulness")
+    ap.add_argument("--replies", help="score replies already generated (lora/generate_local.py "
+                    "output: {id, raw, seconds} per line) instead of calling a model")
     ap.add_argument("--reference", action="store_true",
                     help="score the reference answers themselves (sanity check, no model calls)")
     args = ap.parse_args()
@@ -183,9 +185,20 @@ def main() -> None:
         recs = [{"id": e["id"], "seconds": 0, "ref": json.loads(e["messages"][-1]["content"]),
                  "got": json.loads(e["messages"][-1]["content"])} for e in examples]
         tag = "reference"
+    elif args.replies:
+        got = {r["id"]: r for r in (json.loads(l) for l in
+               Path(args.replies).read_text(encoding="utf-8").splitlines() if l.strip())}
+        recs = [{"id": i, "seconds": got[i].get("seconds", 0), "raw": got[i]["raw"],
+                 "ref": json.loads(by_id[i]["messages"][-1]["content"]), "got": parse(got[i]["raw"])}
+                for i in by_id if i in got]
+        tag = args.tag or Path(args.replies).stem
+        if args.judge:
+            for r in recs:
+                if r["got"] and not r["got"].get("skip") and not r["ref"].get("skip"):
+                    r["judge"] = judge(by_id[r["id"]], r["got"], r["ref"])
     else:
         if not (args.base_url and args.model):
-            ap.error("--base-url and --model are required (or --reference)")
+            ap.error("--base-url and --model are required (or --replies / --reference)")
         tag = args.tag or re.sub(r"[^\w.-]+", "_", args.model)
         with ThreadPoolExecutor(max_workers=args.workers) as pool:
             recs = []

@@ -92,6 +92,8 @@ def main() -> None:
     ap.add_argument("--rank", type=int, default=16)
     ap.add_argument("--batch", type=int, default=1)
     ap.add_argument("--grad-accum", type=int, default=8)
+    ap.add_argument("--save-steps", type=int, default=50)
+    ap.add_argument("--resume", action="store_true", help="continue from the last checkpoint in --out")
     ap.add_argument("--gguf", default="", help="also export GGUF, e.g. q4_k_m (for Ollama)")
     ap.add_argument("--check-only", action="store_true",
                     help="load only the tokenizer, encode the set, print stats")
@@ -128,7 +130,8 @@ def main() -> None:
         model,
         finetune_vision_layers=False, finetune_language_layers=True,
         finetune_attention_modules=True, finetune_mlp_modules=True,
-        r=args.rank, lora_alpha=args.rank, lora_dropout=0, bias="none", random_state=3407)
+        r=args.rank, lora_alpha=args.rank, lora_dropout=0, bias="none", random_state=3407,
+        use_gradient_checkpointing="unsloth")  # long examples on a 16 GB card
 
     tr, d1 = build(tok, train_rows, args.max_seq)
     ev, d2 = build(tok, eval_rows, args.max_seq)
@@ -157,14 +160,16 @@ def main() -> None:
             bf16=bf16, fp16=not bf16,
             logging_steps=5,
             eval_strategy="epoch" if ev else "no",
-            save_strategy="epoch",
+            save_strategy="steps",
+            save_steps=args.save_steps,  # Kaggle/Colab sessions can end; resume with --resume
             save_total_limit=2,
             report_to="none",
             seed=3407,
             remove_unused_columns=False,
         ),
     )
-    trainer.train()
+    resume = args.resume and any(Path(args.out).glob("checkpoint-*"))
+    trainer.train(resume_from_checkpoint=True if resume else None)
 
     adapter = Path(args.out) / "adapter"
     model.save_pretrained(str(adapter))

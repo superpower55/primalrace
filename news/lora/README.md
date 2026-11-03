@@ -53,6 +53,20 @@ Expected scale:
 
 A 24 GB card (4090, A10) also works with `--max-seq 6144`.
 
+### Free option: Kaggle
+
+`kaggle_train.ipynb` runs on Kaggle's free T4 GPU, which allows 30 h a week
+and 12 h per run.
+
+1. Upload `lora_dataset.zip` as a private Dataset.
+2. Import the notebook.
+3. Set the accelerator to GPU T4 x2, turn Internet on, and add the dataset as input.
+4. Choose **Save & Run All**.
+
+The run trains (about 4–6 h) and then generates 20 eval replies with
+`generate_local.py`. It scores them with `eval_lora.py --replies`. The adapter
+lands in the version's Output tab.
+
 ## 3. Serve with Ollama
 
 ```
