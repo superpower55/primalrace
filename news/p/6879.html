@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自研引擎是自由，也是账本 — breaking news · 费扬</title>
+<meta name="description" content="独立工作室的浪漫，是资本缺席时自己垫上的风险 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/6879">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自研引擎是自由，也是账本 — breaking news · 费扬">
+<meta property="og:description" content="独立工作室的浪漫，是资本缺席时自己垫上的风险">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/6879">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u81ea\u7814\u5f15\u64ce\u662f\u81ea\u7531\uff0c\u4e5f\u662f\u8d26\u672c", "description": "\u72ec\u7acb\u5de5\u4f5c\u5ba4\u7684\u6d6a\u6f2b\uff0c\u662f\u8d44\u672c\u7f3a\u5e2d\u65f6\u81ea\u5df1\u57ab\u4e0a\u7684\u98ce\u9669", "datePublished": "2026-11-03T01:11:47+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/6879", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.summary {
+  margin: 0.9rem 0 1.1rem; padding: 0.7rem 0.9rem;
+  background: rgba(201, 191, 173, 0.18); border-left: 3px solid var(--border);
+  font-size: 0.92rem; line-height: 1.7; color: #3b3226;
+}
+.summary-label {
+  display: inline-block; margin-right: 0.5rem; font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a6879">
+  <h2><a href="/news/p/6879"><span class="lang-zh">自研引擎是自由，也是账本</span><span class="lang-en">A Custom Engine Is Freedom, and Also a Ledger</span></a></h2>
+  <div class="meta">
+    <span class="tag culture">文娱</span>
+    <span class="layer">结构层</span>
+    <span class="source"><a href="https://www.polygon.com/mina-the-hollower-yacht-club-games-interview/?link_source=ta_bluesky_link&amp;taid=6ae9321d401f6f00010d1d61" target="_blank" rel="noopener">Polygon.com ↗</a></span>
+    <span class="date">2026-11-03</span>
+    <span class="permalink"><a href="/news/p/6879">§ 链接</a></span>
+  </div>
+  <div class="summary"><div class="lang-zh"><span class="summary-label">新闻摘要</span>Polygon 采访《Mina the Hollower》开发商 Yacht Club Games，团队讲述九处设计取舍：为俯视角恶魔城式战斗发明「钻地」闪避、自研引擎以压低延迟、60 件饰品与开放区域顺序带来的平衡难题，以及公司用自有资金独自承担风险、开发末期一度看着账户余额担心破产。</div><div class="lang-en"><span class="summary-label">The news</span>Polygon interviewed Yacht Club Games about Mina the Hollower: how its burrow-dodge was invented for top-down Castlevania combat, why the studio built its own engine for near-zero input latency, the balancing nightmare of 60 trinkets across an open world, and how the self-funded team nearly ran out of money.</div></div>
+  <div class="axiom lang-zh">独立工作室的浪漫，是资本缺席时自己垫上的风险</div>
+  <div class="axiom lang-en">The romance of the indie studio is the risk it absorbs when no capital shows up.</div>
+  <div class="body lang-zh"><p>Polygon 这篇采访把「独立游戏」讲成了一个很动人的故事：自研引擎、延迟压到 0.01 毫秒、60 件饰品全部可以同时装备、世界地图直到开发末期才接通。这些细节都是真的，可它们拼出来的不是自由，是一张没人签字的账单。</p>
+  <p>Yacht Club 说得很清楚，他们财务独立，没有外部投资，用的是 Shovel Knight 的钱和 Kickstarter 的钱，「如果游戏不赚钱，我们就倒闭了」。所以自研引擎不是浪漫，是必须：Unity 和 Unreal 给不了 192 像素高度下那种输入精度，他们只能自己造。程序员说得很直白，那些引擎「三帧延迟」，他们不接受。不接受，就得自己写。</p>
+  <p>这套结构的代价，采访里也写到了。团队同时开两个项目，注意力一分为二，两边都慢一半；几年下来看着银行账户，才决定必须先把一个做完。士气低落，尤其是开发末期。这不是「为了艺术牺牲」的励志桥段，这是资本缺席时，风险被转嫁到开发者自己身上的标准流程。</p>
+  <p>最值得看的是「Astral Orrery」那一关。它是 Kickstarter 上没达到的延伸目标，团队还是做了，理由是「如果砍掉这一关，我们就砍掉了所有最疯狂的想法」。设计师说，他看着这一关，看到的是「坚持和掏空银行账户去做伟大艺术的价值」。这句话没错，但它同时说明了一件事：当没有发行商替你兜底时，「不妥协」这三个字的价格，是由做游戏的人自己付的。</p>
+  <p>这不是在说他们做错了。恰恰相反，Mina 能做成这样，正是因为没有人能在中途要求他们改方向。但「没有人能要求你改方向」和「没有人会替你承担失败」是同一句话的两面。采访里九条经验，每一条都在讲他们怎么把控制权攥在自己手里，没有一条在讲如果这次没成，谁来接住这些人。</p>
+  <p>游戏行业的独立神话，向来擅长把这种结构写成美德：小团队、自筹资金、不妥协、掏空账户。读者看到的是勇气，看不到的是这套叙事替谁省了钱。发行商省了，平台省了，玩家得到了一个好游戏，开发者得到了一个「我们差点破产」的采访段子。</p>
+  <p>Mina 做出来了，账户没空，故事有了好结局。但采访里那句「这个教训我们吃了三次」，说明下一次不一定。</p></div>
+  <div class="body lang-en"><p>Polygon&#x27;s interview turns Mina the Hollower into a very moving story: a custom engine, input latency pushed to 0.01 milliseconds, 60 trinkets all usable together, a world map not connected until late in development. All of it is true. None of it adds up to freedom. It adds up to an invoice nobody signed.</p>
+  <p>Yacht Club says it plainly: they are financially independent, no one is backing them, the money is their own, from Shovel Knight and Kickstarter, and if the game does not make money, they are out of business. So the custom engine is not romance, it is necessity. Unity and Unreal cannot give them the precision they want at 192 pixels of height, so they build their own. The programmer says the off-the-shelf engines come with three frames of latency and they simply will not accept it. Not accepting it means writing it yourself.</p>
+  <p>The cost of that structure is in the interview too. The team ran two projects at once, split its attention, and both went half as fast. After enough years they looked at the bank account and decided one game had to be finished. Morale was low, especially near the end. This is not a励志 beat about sacrifice for art. This is the standard procedure by which, when capital is absent, the risk gets transferred onto the people making the thing.</p>
+  <p>The Astral Orrery level is the clearest case. It was a Kickstarter stretch goal they did not hit, and they made it anyway, because cutting it would mean cutting all their craziest ideas. The designer says that when he looks at it, he sees the value of persevering and draining the bank account to make great art. That is true, and it also shows exactly what 「no compromises」 costs when no publisher is standing behind you: the people building the game pay for it themselves.</p>
+  <p>This is not an argument that they did anything wrong. Mina exists in this form precisely because nobody could tell them to change direction mid-course. But 「nobody can tell you to change direction」 and 「nobody will catch you if you fail」 are the same sentence read from two ends. All nine lessons are about keeping control. Not one is about who would have absorbed the loss.</p>
+  <p>The indie myth is very good at turning this structure into a virtue: small team, self-funded, uncompromising, account drained. The reader sees courage. What the narrative quietly does is save someone else the bill. The publisher saves it. The platform saves it. The player gets a good game. The developer gets a story about nearly going broke.</p>
+  <p>Mina shipped, the account survived, the story has a good ending. But the line about learning that lesson three times says the next one might not.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
