@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>共情不是bug，是他们的敌人 — breaking news · 费扬</title>
+<meta name="description" content="把共情说成漏洞，是为了让谁都不必再被看见。 — 用《原初种族》的框架读新闻，费扬评论。">
+<meta name="author" content="费扬 Yang Fei">
+<link rel="canonical" href="https://www.howtoraiseiq.com/news/p/6977">
+<link rel="alternate" type="application/rss+xml" title="breaking news · 费扬" href="https://www.howtoraiseiq.com/news/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:title" content="共情不是bug，是他们的敌人 — breaking news · 费扬">
+<meta property="og:description" content="把共情说成漏洞，是为了让谁都不必再被看见。">
+<meta property="og:url" content="https://www.howtoraiseiq.com/news/p/6977">
+<meta property="og:site_name" content="The Primal Race">
+<meta property="og:image" content="https://www.howtoraiseiq.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "\u5171\u60c5\u4e0d\u662fbug\uff0c\u662f\u4ed6\u4eec\u7684\u654c\u4eba", "description": "\u628a\u5171\u60c5\u8bf4\u6210\u6f0f\u6d1e\uff0c\u662f\u4e3a\u4e86\u8ba9\u8c01\u90fd\u4e0d\u5fc5\u518d\u88ab\u770b\u89c1\u3002", "datePublished": "2026-11-03T08:41:23+00:00", "inLanguage": "zh", "author": {"@type": "Person", "name": "Yang Fei", "alternateName": "\u8d39\u626c"}, "mainEntityOfPage": "https://www.howtoraiseiq.com/news/p/6977", "isPartOf": {"@type": "WebSite", "name": "The Primal Race", "url": "https://www.howtoraiseiq.com"}}</script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+// owner opt-out: visit once with ?me=1 to stop being counted on this device
+try {
+  var q = new URLSearchParams(location.search);
+  if (q.get('me') === '1') localStorage.setItem('pr-owner', '1');
+  if (q.get('me') === '0') localStorage.removeItem('pr-owner');
+} catch (e) {}
+// skip analytics for headless crawlers + the site owner
+if (!navigator.webdriver && localStorage.getItem('pr-owner') !== '1') {
+  ['/_vercel/insights/script.js', '/_vercel/speed-insights/script.js',
+   'https://www.googletagmanager.com/gtag/js?id=G-KRTMG8HV7F'].forEach(function (src) {
+    var s = document.createElement('script');
+    s.defer = true; s.src = src;
+    document.head.appendChild(s);
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-KRTMG8HV7F');
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1a1109;
+  --paper: #f5f0e8;
+  --accent: #8b1a1a;
+  --accent-light: #b52020;
+  --muted: #6b5c47;
+  --border: #c9bfad;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Georgia", "Noto Serif SC", "Source Han Serif CN", serif;
+  padding: 2.5rem 1.2rem 4rem;
+  line-height: 1.75;
+}
+body::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg,
+    transparent, transparent 28px,
+    rgba(0,0,0,0.025) 28px, rgba(0,0,0,0.025) 29px);
+}
+.wrap { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+
+header.masthead {
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-top: 5px solid var(--accent);
+  padding: 2.2rem 0 1.4rem;
+  margin-bottom: 2.4rem;
+  background: rgba(255,253,248,0.6);
+}
+.masthead .ornament {
+  color: var(--accent); font-size: 1.1rem;
+  letter-spacing: 0.4em; display: block; margin-bottom: 0.8rem;
+}
+.masthead h1 {
+  font-size: 2.4rem; font-weight: 700;
+  letter-spacing: 0.12em; line-height: 1.1;
+}
+.masthead h1 a { color: inherit; text-decoration: none; }
+.masthead .subtitle {
+  font-size: 0.85rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.4rem;
+}
+.masthead .byline {
+  font-size: 0.82rem; color: var(--muted);
+  margin-top: 1rem; font-style: italic;
+}
+.masthead .byline a { color: var(--accent); text-decoration: none; }
+.masthead .byline a:hover { text-decoration: underline; }
+
+.crumbs {
+  margin-bottom: 1.6rem; font-size: 0.85rem;
+}
+.crumbs a { color: var(--accent); text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+article {
+  background: rgba(255,253,248,0.92);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 2rem 2.2rem 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+}
+article.draft { border-left-color: var(--muted); opacity: 0.78; }
+article h2 {
+  font-size: 1.55rem; line-height: 1.35;
+  margin-bottom: 0.55rem; color: var(--ink);
+  letter-spacing: 0.02em;
+}
+article h2 a { color: inherit; text-decoration: none; }
+article h2 a:hover { color: var(--accent); }
+.meta {
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.05em; margin-bottom: 1.2rem;
+  display: flex; flex-wrap: wrap; gap: 0.8rem;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 0.8rem;
+}
+.meta .tag {
+  background: var(--accent); color: #fff;
+  padding: 0.08rem 0.55rem; letter-spacing: 0.08em;
+  font-size: 0.72rem;
+}
+.meta .tag.good_news { background: #2d6a3e; }
+article.good_news { border-left-color: #2d6a3e; }
+article.good_news .axiom { color: #2d6a3e; border-left-color: #2d6a3e; }
+.meta .layer {
+  color: var(--accent); font-style: italic;
+}
+.meta .source a { color: var(--muted); text-decoration: none; }
+.meta .source a:hover { color: var(--accent); text-decoration: underline; }
+.meta .permalink a { color: var(--muted); text-decoration: none; }
+.meta .permalink a:hover { color: var(--accent); }
+
+.summary {
+  margin: 0.9rem 0 1.1rem; padding: 0.7rem 0.9rem;
+  background: rgba(201, 191, 173, 0.18); border-left: 3px solid var(--border);
+  font-size: 0.92rem; line-height: 1.7; color: #3b3226;
+}
+.summary-label {
+  display: inline-block; margin-right: 0.5rem; font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase;
+}
+.axiom {
+  font-size: 1.05rem; font-style: italic;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9rem; margin-bottom: 1.2rem;
+  line-height: 1.55;
+}
+.body p {
+  margin-bottom: 1rem; text-align: justify;
+  text-indent: 2em;
+  font-size: 1.02rem;
+}
+.body p:last-child { margin-bottom: 0; }
+.body.lang-en p { text-indent: 0; }
+
+/* language toggle */
+.lang-switch {
+  position: fixed; top: 1rem; right: 1.2rem; z-index: 10;
+  background: rgba(255,253,248,0.95);
+  border: 1px solid var(--border);
+  font-family: inherit; font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.lang-switch button {
+  background: transparent; border: none; cursor: pointer;
+  padding: 0.45rem 0.85rem; font: inherit; color: var(--muted);
+  border-right: 1px solid var(--border);
+}
+.lang-switch button:last-child { border-right: none; }
+.lang-switch button.active { background: var(--accent); color: #fff; }
+body[data-lang="zh"] .lang-en { display: none; }
+body[data-lang="en"] .lang-zh { display: none; }
+body[data-lang="en"] .meta .layer { font-style: italic; }
+.no-translation {
+  font-size: 0.85rem; color: var(--muted);
+  font-style: italic; padding: 0.6rem 0;
+}
+
+.draft-badge {
+  display: inline-block; background: var(--muted); color: #fff;
+  font-size: 0.7rem; letter-spacing: 0.1em;
+  padding: 0.1rem 0.5rem; margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+footer.foot {
+  text-align: center; margin-top: 3.5rem;
+  font-size: 0.78rem; color: var(--muted);
+  letter-spacing: 0.18em;
+}
+footer.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 560px) {
+  body { padding: 1.6rem 0.9rem 3rem; }
+  .masthead h1 { font-size: 1.8rem; }
+  article { padding: 1.4rem 1.2rem; }
+  article h2 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body data-lang="zh">
+
+<div class="lang-switch">
+  <button data-set="zh" class="active">中文</button>
+  <button data-set="en">EN</button>
+</div>
+
+<div class="wrap">
+
+<header class="masthead">
+  <span class="ornament">✦ &nbsp; ✦ &nbsp; ✦</span>
+  <h1><a href="/news/">breaking news</a></h1>
+  <div class="subtitle">News, read through The Primal Race</div>
+  <div class="byline">
+    <span class="lang-zh">by 费扬 &nbsp;·&nbsp; 数据 Claude &nbsp;·&nbsp;
+    <a href="/">回到《原初种族》</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+    <span class="lang-en">by Yang Fei &nbsp;·&nbsp; data Claude &nbsp;·&nbsp;
+    <a href="/">back to The Primal Race</a> &nbsp;·&nbsp;
+    <a href="/news/feed.xml">RSS</a></span>
+  </div>
+</header>
+
+<div class="crumbs"><a href="/news/">← 全部评论 · all commentary</a></div>
+<article class="" id="a6977">
+  <h2><a href="/news/p/6977"><span class="lang-zh">共情不是bug，是他们的敌人</span><span class="lang-en">Empathy Is Not a Bug. It&#x27;s Their Target.</span></a></h2>
+  <div class="meta">
+    <span class="tag international">国际</span>
+    <span class="layer">文化层 · 元暴力</span>
+    <span class="source"><a href="https://www.theguardian.com/commentisfree/2026/nov/03/us-midterms-hard-right-britain-empathy-politics?CMP=bsky_gu" target="_blank" rel="noopener">The Guardian ↗</a></span>
+    <span class="date">2026-11-03</span>
+    <span class="permalink"><a href="/news/p/6977">§ 链接</a></span>
+  </div>
+  <div class="summary"><div class="lang-zh"><span class="summary-label">新闻摘要</span>英国改革党财政发言人詹里克在《每日电讯报》撰文，主张到2030年削减25%的福利支出，并借用「自杀式共情」一词形容福利制度。该词出自加拿大学者Gad Saad今年出版的同名书，并获马斯克推荐。民调显示84%的美国民主党登记选民认为共情有助于建设健康社会，共和党人中仅54%持此看法。</div><div class="lang-en"><span class="summary-label">The news</span>Reform UK Treasury spokesman Robert Jenrick wrote in the Daily Telegraph calling for a 25% cut in welfare spending by 2030, attacking the state&#x27;s &quot;suicidal empathy&quot; — a phrase taken from a book of that title by Canadian academic Gad Saad, endorsed by Elon Musk. Polling shows 84% of registered US Democrats see empathy as helping build a healthy society, against 54% of Republicans.</div></div>
+  <div class="axiom lang-zh">把共情说成漏洞，是为了让谁都不必再被看见。</div>
+  <div class="axiom lang-en">Calling empathy a glitch is how you make sure no one has to be seen again.</div>
+  <div class="body lang-zh"><p>「自杀式共情」这个词不是从天上掉下来的。詹里克要砍掉四分之一福利支出，先得让「共情」变成一个需要被治的病，于是他从Gad Saad今年出的那本书里借来一个现成的诊断书，马斯克在封底背书。一个词从书里到专栏里，再到政策文件里，路径清清楚楚：先给同情定价，再宣布它太贵。</p>
+  <p>这套操作是教科书级的文化暴力。加尔通的三角里，最底层那层专门负责让上面两层看起来不像暴力——让削减福利看起来像财政理性，让放任移民溺水看起来像边境秩序，让「同情是bug」听起来像进化心理学的结论。马斯克的原话是西方文明的「同理心漏洞」被进步派利用了。漏洞。这个词选得极准：漏洞意味着系统本该没有这个功能，意味着关掉它是修复而不是破坏。</p>
+  <p>Saad那本书里最值得抄下来的一句，是把「觉醒主义」的蔓延归因于「女性更容易陷入这种情感与意识形态的俘获」。这一句把整件事说穿了。共情被武器化地重新定义，不是无性别的。它指名道姓地指向谁太软、谁太多情、谁不配参与决策。元暴力在这里露出了原形：对解释权的垄断，从来都靠先定义谁的情绪不算数。</p>
+  <p>但别把这件事全推给几个写书的和发推的。PRRI的数据里，共和党登记选民只有54%认为共情有助于建设健康社会，白人福音派新教徒是唯一一个多数不认为共情是基础道德价值的宗教群体——42%认同，54%说共情可能危险。这不是几个精英在操纵一群受害者，这是有相当数量的普通人已经在共谋：他们从「同情是软弱」这套叙事里拿到了东西，拿到的是不必再看一眼那些被砍掉的人的位置。共谋的回报从来不是钱，是免于看见。</p>
+  <p>哈里斯那篇文章里最锋利的地方，是他把这件事接回了基督教自身的账本。Tom Holland写过，罗马世界把婴儿丢在路边和垃圾堆上任其哭号是日常风景，直到君士坦丁之后，教会每周为孤儿寡妇、囚犯、船难者、病人收捐，一整套社会保障的雏形才长出来。今天最起劲地哀悼「犹太-基督教文化」衰落的那些人，正在主张让救生船停止救人。他们悼念的从来不是那套道德，是那套道德曾经给他们的权威。</p>
+  <p>所以这不是一场关于预算的辩论。这是一次解释权的换手：谁有资格被算作「我们」，谁的情绪算数，谁的痛苦只是账本上的一行。詹里克借一个词，马斯克借一个平台，Saad借一本书，三个人各出一份力，把「同情」从美德改写成负债。</p>
+  <p>还有一件事没被算进去。那25%砍下去，账单不会消失，它只会从财政账本挪到另一些人的身体上——那些被判定为心理疾病而领福利的人，接下来要在没有钱的情况下继续生病。他们不在Saad的书里，不在马斯克的推文里，也不在这篇专栏的采访对象里。谁的名字没有出现，谁就正在付账。</p></div>
+  <div class="body lang-en"><p>&quot;Suicidal empathy&quot; did not fall from the sky. Jenrick needs to cut a quarter of welfare spending by 2030, so first empathy has to become a condition that requires treatment — and he lifts the diagnosis ready-made from Gad Saad&#x27;s book of that title, with Musk on the cover. A word travels from a book to a column to a policy paper, and the route is plain: price compassion first, then declare it too expensive.</p>
+  <p>This is cultural violence at textbook grade. In Galtung&#x27;s triangle, the bottom layer exists to make the layers above look like something other than violence — to make welfare cuts look like fiscal rationality, to make letting migrants drown look like border order, to make &quot;empathy is a bug&quot; sound like a finding of evolutionary psychology. Musk&#x27;s own words: the West&#x27;s &quot;empathy exploit,&quot; a bug that progressives learned to abuse. Bug. The word is chosen with care. A bug means the system was never supposed to have this function, means switching it off is a repair, not a demolition.</p>
+  <p>The line in Saad&#x27;s book most worth copying out is the one tracing &quot;woke-ism&quot; to the fact that women are &quot;much more likely to succumb to such emotional and ideological capture.&quot; That sentence gives the whole thing away. The redefinition of empathy is not gender-neutral. It names, precisely, who is too soft, too sentimental, too unfit to hold decision-making power. Meta-violence shows its face here: the monopoly on interpretation always begins by defining whose feelings don&#x27;t count.</p>
+  <p>But don&#x27;t hand this entirely to a few authors and posters. In the PRRI numbers, only 54% of registered Republicans agree empathy helps build a healthy society; white evangelical Protestants are the only religious group where a majority rejects empathy as a foundational moral value — 42% agree, 54% call it dangerous. This is not a handful of elites manipulating a passive crowd. A substantial number of ordinary people are already co-conspirators: they get something from the story that compassion is weakness, and what they get is not having to look at the people whose place gets cut away. The payoff of complicity is never money. It is exemption from seeing.</p>
+  <p>Harris&#x27;s sharpest move is to put this back on Christianity&#x27;s own ledger. Tom Holland documented how, across the Roman world, infants abandoned on roadsides and rubbish tips were an everyday sight — until, after Constantine, churches raised weekly collections for orphans and widows, the imprisoned, the shipwrecked, the sick, and entire systems of social security began to emerge. The people loudest in mourning &quot;Judeo-Christian culture&quot; today are arguing that the lifeboats should stop rescuing people. What they mourn was never the ethic. It was the authority that ethic once handed them.</p>
+  <p>So this is not a debate about a budget. It is an exchange of interpretive power: who counts as &quot;we,&quot; whose feelings are valid, whose pain is a line item. Jenrick brings a phrase, Musk brings a platform, Saad brings a book, and together they rewrite compassion from virtue into liability.</p>
+  <p>One thing goes uncounted. The 25% doesn&#x27;t vanish when it&#x27;s cut; it moves off the fiscal ledger and onto other people&#x27;s bodies — the ones classified as mentally ill and drawing benefits will now go on being ill without the money. They are not in Saad&#x27;s book, not in Musk&#x27;s posts, not among this column&#x27;s interviewees. Whoever&#x27;s name is missing is the one paying.</p></div>
+</article>
+
+<footer class="foot">
+  ― &nbsp; ― &nbsp; ―<br>
+  <a href="/news/">breaking news</a> &nbsp;·&nbsp; <a href="/">原初种族 The Primal Race</a>
+</footer>
+
+</div>
+
+<script>
+(function() {
+  var key = 'breaking-news-lang';
+  var saved = localStorage.getItem(key) || 'zh';
+  setLang(saved);
+  document.querySelectorAll('.lang-switch button').forEach(function(b) {
+    b.addEventListener('click', function() {
+      setLang(b.dataset.set);
+      localStorage.setItem(key, b.dataset.set);
+    });
+  });
+  function setLang(l) {
+    document.body.dataset.lang = l;
+    document.querySelectorAll('.lang-switch button').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.set === l);
+    });
+  }
+})();
+</script>
+</body>
+</html>
