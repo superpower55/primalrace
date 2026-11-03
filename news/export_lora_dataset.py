@@ -63,9 +63,17 @@ def norm_layers(v: str | None) -> str:
     return ",".join(l for l in LAYERS if l in got)
 
 
+MONTHS = ("january", "february", "march", "april", "may", "june", "july", "august",
+          "september", "october", "november", "december")
+
+
 def _forms(num: str, unit: str) -> set[str]:
-    """Ways the article may have written a number: 330万 -> 3.3 (million), 3300000."""
+    """Ways the article may have written a number: 330万 -> 3.3 (million), 3300000;
+    12月 -> december / dec."""
     forms = {num}
+    if unit == "月" and num.isdigit() and 1 <= int(num) <= 12:
+        name = MONTHS[int(num) - 1]
+        forms |= {name, name[:3] + " ", name[:3] + "."}
     if unit in ("万", "亿"):
         v = float(num) * (1e4 if unit == "万" else 1e8)
         forms |= {f"{v / d:g}" for d in (1, 1e3, 1e6, 1e9)}
@@ -75,13 +83,14 @@ def _forms(num: str, unit: str) -> set[str]:
 def ungrounded_numbers(text: str, source: str) -> list[str]:
     """Numbers (2+ digits) in text that never appear in the source article."""
     src = source.replace(",", "")
+    low = src.lower()
     bad = []
     for m in NUM.finditer(text):
         n = m.group().replace(",", "")
         if len(n.replace(".", "")) < 2:
             continue
-        unit = text[m.end():m.end() + 1]
-        if not any(f in src for f in _forms(n, unit)):
+        unit = text[m.end():m.end() + 3].lstrip()[:1]  # "3.04 亿" as well as "3.04亿"
+        if not any(f in low for f in _forms(n, unit)):
             bad.append(m.group() + unit)
     return bad
 
